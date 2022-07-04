@@ -6,7 +6,7 @@
 /*   By: mbascuna <mbascuna@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/04 16:53:46 by mbascuna          #+#    #+#             */
-/*   Updated: 2022/07/04 17:03:35 by mbascuna         ###   ########.fr       */
+/*   Updated: 2022/07/04 17:13:48 by mbascuna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,8 @@ typedef struct s_texture
 	int	ceiling_b;
 	int fd;
 	void	*img;
+	int	width;
+	int	height;
 
 } t_texture;
 

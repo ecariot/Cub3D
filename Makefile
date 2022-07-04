@@ -6,13 +6,14 @@
 #    By: mbascuna <mbascuna@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/07/01 14:09:10 by emcariot          #+#    #+#              #
-#    Updated: 2022/07/04 16:56:02 by mbascuna         ###   ########.fr        #
+#    Updated: 2022/07/04 17:15:57 by mbascuna         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 SRCS		=	parsing/parse_map.c game/init_game.c \
 				toolbox/error.c main.c\
 				parsing/parse_texture.c \
+
 
 OBJS        = ${SRCS:.c=.o}
 
@@ -39,6 +40,11 @@ all:		${NAME}
 
 .c.o:
 			${CC} ${FLAGS} -I${INCL} -I${MLX_DIR} -c $< -o ${<:.c=.o}
+
+${LIBFT}:
+			@echo "\033[35m----Building libft----"
+			@make -sC ${LIB_DIR}
+			@echo "OK"
 
 ${MLX}:
 			@echo "\033[35m----Building MLX----"
