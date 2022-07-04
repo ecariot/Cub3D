@@ -6,7 +6,7 @@
 /*   By: emcariot <emcariot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/01 13:39:51 by emcariot          #+#    #+#             */
-/*   Updated: 2022/07/01 14:54:54 by emcariot         ###   ########.fr       */
+/*   Updated: 2022/07/04 12:55:09 by emcariot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,12 @@
 # include <unistd.h>
 # include <stdlib.h>
 # include "libft/libft.h"
+
+typedef struct s_cub
+{
+	int	posX;
+	int	posY;
+}	t_cub;
 
 //PARSING
 int	check_extension(char *file);
