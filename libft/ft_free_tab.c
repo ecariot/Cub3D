@@ -1,35 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_free_tab.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mbascuna <mbascuna@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/07/04 16:53:06 by mbascuna          #+#    #+#             */
-/*   Updated: 2022/07/04 16:53:09 by mbascuna         ###   ########.fr       */
+/*   Created: 2022/07/04 14:24:02 by mbascuna          #+#    #+#             */
+/*   Updated: 2022/07/04 14:24:41 by mbascuna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/cub.h"
+#include "libft.h"
 
-int	ft_errors(char *str)
+char	**ft_free_tab(char **tab)
 {
-	printf("Error\n%s\n", str);
-	return (1);
-}
+	int	i;
 
-int main(int ac, char **av)
-{
-	t_data	data;
-
-	if (ac != 2)
-		return (ft_errors("Wrong nb of args"));
-	data.fd = open(av[1], O_RDONLY);
-	if (ft_check_extension(av[1], ".cub") != 0)
+	i = 0;
+	while (tab[i])
 	{
-		close(data.fd);
-		return (1);
+		free(tab[i]);
+		i++;
 	}
-	ft_parsing(&data);
-	return (0);
+	free(tab);
+	return (NULL);
 }

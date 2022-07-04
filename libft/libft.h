@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: emcariot <emcariot@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mbascuna <mbascuna@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/08 12:24:36 by mbascuna          #+#    #+#             */
-/*   Updated: 2022/06/09 11:28:40 by emcariot         ###   ########.fr       */
+/*   Updated: 2022/07/04 14:24:24 by mbascuna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,5 +83,7 @@ char		*ft_strcpy(char *dest, char *src);
 char		**ft_split_many(char *str, char *charset);
 int			include_charset(char c, char *charset);
 bool		ft_str_isalnum(char *str);
+int			ft_strlen_tab(char **s);
+char		**ft_free_tab(char **tab);
 
 #endif

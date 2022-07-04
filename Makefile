@@ -3,52 +3,71 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: emcariot <emcariot@student.42.fr>          +#+  +:+       +#+         #
+#    By: mbascuna <mbascuna@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/07/01 14:09:10 by emcariot          #+#    #+#              #
-#    Updated: 2022/07/04 14:44:22 by emcariot         ###   ########.fr        #
+#    Updated: 2022/07/04 16:56:02 by mbascuna         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 SRCS		=	parsing/parse_map.c game/init_game.c \
 				toolbox/error.c main.c\
+				parsing/parse_texture.c \
 
-OBJS		= ${SRCS:.c=.o}
+OBJS        = ${SRCS:.c=.o}
 
-NAME		= cub3d
+NAME        = cub3d
 
-CC			= gcc
+INCL        = includes
 
-CFLAGS		= -Wall -Wextra -Werror -g3
+LIB_DIR = ./libft
+MLX_DIR = ./mlx_linux
 
-RM			= rm -f
+LIBFT	= ./libft/libft.a
+MLX = ./mlx_linux/libmlx.a
 
-MLX			= ./mlx_linux
+OBJS	= ${SRCS:.c=.o}
 
-MLX_LIB		= ./mlx_linux/libmlx_Linux.a
+RM	= rm -f
 
-INCL		= includes
+CC	= gcc
 
-.c.o:
-			${CC} ${CFLAGS} -I${INCL} -I${MLX} -g3 -c $< -o ${<:.c=.o}
-
-${NAME}:	${OBJS} ${MLX_LIB}
-			${CC}  ${CFLAGS} ${OBJS} -o ${NAME} ${MLX_LIB}\
-			-L -lmlx_linux -L/usr/lib -Imlx_linux -lXext -lX11 -lm -lz
-
-${MLX_LIB}:
-			make -C ${MLX} -j
+FLAGS	= -Wall -Wextra -Werror -g3
+FLAGS_LIB = -lXext -lX11
 
 all:		${NAME}
 
+.c.o:
+			${CC} ${FLAGS} -I${INCL} -I${MLX_DIR} -c $< -o ${<:.c=.o}
+
+${MLX}:
+			@echo "\033[35m----Building MLX----"
+			@make -sC ${MLX_DIR}
+			@echo "OK"
+
+${NAME}:	${OBJS} ${LIBFT} ${MLX}
+			@echo "\033[34m----Compiling----"
+			@${CC} ${FLAGS} ${OBJS} -L ${MLX_DIR} -lmlx -lm ${FLAGS_LIB} -o ${NAME} ${LIBFT}
+			@echo "OK"
+
 clean:
-			${RM} ${OBJS}
-			make clean -C ${MLX}
+			@echo "\033[31m----Cleaning libft----"
+			@make clean -sC ${LIB_DIR}
+			@echo "OK"
+			@echo "\033[31m----Cleaning MLX----"
+			@make clean -sC ${MLX_DIR}
+			@echo "OK"
+			@echo "\033[31m----Cleaning objects----"
+			@${RM} ${OBJS}
+			@echo "OK"
 
-fclean:			clean
-			${RM} ${NAME}
-			${RM} ${NAME} ${MLX_LIB}
+fclean:		clean
+			@echo "\033[33m----Cleaning all----"
+			@${RM} ${NAME}
+			@${RM} ${LIBFT}
+			@${RM} ${MLX}
+			@echo "OK"
 
-re:			fclean all
+re:            fclean all
 
-.PHONY:		all clean fclean re
+.PHONY:        all clean fclean re
