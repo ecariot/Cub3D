@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: emcariot <emcariot@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mbascuna <mbascuna@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/01 13:39:51 by emcariot          #+#    #+#             */
-/*   Updated: 2022/07/04 12:55:09 by emcariot         ###   ########.fr       */
+/*   Updated: 2022/07/04 13:10:07 by mbascuna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,11 +18,17 @@
 # include <stdlib.h>
 # include "libft/libft.h"
 
-typedef struct s_cub
+typedef struct s_texture
 {
-	int	posX;
-	int	posY;
-}	t_cub;
+
+} t_texture;
+
+typedef struct s_data
+{
+	int	fd;
+	t_texture	texture;
+}	t_data;
+
 
 //PARSING
 int	check_extension(char *file);
