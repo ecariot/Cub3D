@@ -6,11 +6,12 @@
 #    By: emcariot <emcariot@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/07/01 14:09:10 by emcariot          #+#    #+#              #
-#    Updated: 2022/07/01 14:13:22 by emcariot         ###   ########.fr        #
+#    Updated: 2022/07/04 14:44:22 by emcariot         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-SRCS		=
+SRCS		=	parsing/parse_map.c game/init_game.c \
+				toolbox/error.c main.c\
 
 OBJS		= ${SRCS:.c=.o}
 
@@ -20,34 +21,33 @@ CC			= gcc
 
 CFLAGS		= -Wall -Wextra -Werror -g3
 
-RM			= @rm -f
+RM			= rm -f
 
-%.o: %.c
-	${CC} ${CFLAGS} -I/usr/include -Imlx_linux -Iincludes -Ilibft -c $< -o ${<:.c=.o}
+MLX			= ./mlx_linux
 
-${LIBFT}:
-			@echo "\033[35m----Building libft----"
-			@make -sC ${LIB_DIR}
-			@echo "OK"
+MLX_LIB		= ./mlx_linux/libmlx_Linux.a
 
-${NAME}:	${OBJS} ${LIBFT}
-			@echo "\033[34m----Compiling----"
-			@${CC} ${FLAGS} ${OBJS} -lreadline -o ${NAME} ${LIBFT}
-			@echo "OK"
+INCL		= includes
+
+.c.o:
+			${CC} ${CFLAGS} -I${INCL} -I${MLX} -g3 -c $< -o ${<:.c=.o}
+
+${NAME}:	${OBJS} ${MLX_LIB}
+			${CC}  ${CFLAGS} ${OBJS} -o ${NAME} ${MLX_LIB}\
+			-L -lmlx_linux -L/usr/lib -Imlx_linux -lXext -lX11 -lm -lz
+
+${MLX_LIB}:
+			make -C ${MLX} -j
+
+all:		${NAME}
 
 clean:
-			@echo "\033[31m----Cleaning libft----"
-			@make clean -sC ${LIB_DIR}
-			@echo "OK"
-			@echo "\033[31m----Cleaning objects----"
-			@${RM} ${OBJS}
-			@echo "OK"
+			${RM} ${OBJS}
+			make clean -C ${MLX}
 
-fclean:		clean
-			@echo "\033[33m----Cleaning all----"
-			@${RM} ${NAME}
-			@${RM} ${LIBFT}
-			@echo "OK"
+fclean:			clean
+			${RM} ${NAME}
+			${RM} ${NAME} ${MLX_LIB}
 
 re:			fclean all
 

@@ -1,34 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   init_game.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: emcariot <emcariot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/07/01 14:51:05 by emcariot          #+#    #+#             */
-/*   Updated: 2022/07/04 14:57:42 by emcariot         ###   ########.fr       */
+/*   Created: 2022/07/04 13:40:17 by emcariot          #+#    #+#             */
+/*   Updated: 2022/07/04 14:43:39 by emcariot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub.h"
+#include "../mlx_linux/mlx.h"
 
-int	ft_errors(char *str)
+void	init_texture(t_cub *cub)
 {
-	printf("Error\n%s\n", str);
-	return (0);
-}
-
-int main(int ac, char **av)
-{
-	// t_data	*data;
-	(void)av;
-	if (ac != 2 && ac != 3)
-		return (ft_errors("Wrong nb of args"));
-	if (check_extension(av[1], &data) != 0)
-	{
-		close(data.fd);
-		return (1);
-	}
-	ft_parsing(&data);
-	return (0);
+	cub->walls.img = mlx_xpm_file_to_image(cub->mlx,
+		 "../textures/redbrick_1.xpm", &cub->walls.width, &cub->walls.height);
+	if (!cub->walls.img)
+		return_error("Missing texture\n");
 }
