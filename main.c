@@ -6,7 +6,7 @@
 /*   By: emcariot <emcariot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/04 16:53:06 by mbascuna          #+#    #+#             */
-/*   Updated: 2022/07/05 12:42:48 by emcariot         ###   ########.fr       */
+/*   Updated: 2022/07/05 13:44:49 by emcariot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ int main(int ac, char **av)
 		close(data.fd);
 		return (1);
 	}
-	draw_window(&cub);
+	// draw_window(&cub);
 	mlx_hook(cub.mlx_win, 17, 1L << 2, close_window, &cub);
 	mlx_hook(cub.mlx_win, 2, 1L << 0, keycode, &cub);
 	mlx_loop(cub.mlx);
