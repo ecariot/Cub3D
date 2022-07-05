@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_split_many.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: emcariot <emcariot@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mbascuna <mbascuna@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/24 16:54:31 by emcariot          #+#    #+#             */
-/*   Updated: 2022/06/08 11:14:12 by emcariot         ###   ########.fr       */
+/*   Updated: 2022/07/05 08:49:46 by mbascuna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,17 +85,17 @@ static char	**ft_free(char **split)
 
 char	**ft_split_many(char *str, char *charset)
 {
-	char	**res;
+	// char	**res;
 	int		words;
 	char	**split;
 
 	words = count_words(str, charset);
-	res = (char **)malloc(sizeof(char *) * (words + 1));
-	if (!res)
+	split = (char **)malloc(sizeof(char *) * (words + 1));
+	if (!split)
 		return (NULL);
-	split = ft_split_words(str, charset, res);
+	split = ft_split_words(str, charset, split);
 	if (!split)
 		return (ft_free(split));
-	res[words] = NULL;
-	return (res);
+	split[words] = NULL;
+	return (split);
 }

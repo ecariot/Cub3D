@@ -6,7 +6,7 @@
 /*   By: mbascuna <mbascuna@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/01 13:39:51 by emcariot          #+#    #+#             */
-/*   Updated: 2022/07/04 16:13:44 by mbascuna         ###   ########.fr       */
+/*   Updated: 2022/07/05 12:44:56 by mbascuna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,6 @@ typedef struct s_texture
 	int	ceiling_g;
 	int	ceiling_b;
 	int fd;
-
 } t_texture;
 
 typedef struct s_cub
@@ -48,6 +47,8 @@ typedef struct s_cub
 	int	dirY;
 	int	width;
 	int	height;
+	int line;
+	int col;
 	// t_texture    walls;
     // t_texture    sky;
     // t_texture    floor;
@@ -65,20 +66,23 @@ typedef struct s_data
 
 //PARSING
 int	ft_check_extension(char *file, char *extension);
-int	ft_parsing(t_data *data);
-int ft_fill_map(t_data *data);
+int	ft_parsing(t_data *data, char *file);
+int ft_parse_element(t_data *data, char *file);
 int	ft_check_line(char *line, t_data *data);
-char	**ft_add_line_in_map(char *line, char **map);
+char	**ft_add_line_in_map(char *line, char **map, t_data *data);
 
 /** parse_texture.c **/
 void	ft_parse_color(char **format_color, t_data *data);
 int ft_check_digits(char **format_color);
-int	ft_check_if_color(char *line, t_data *data);
+int	ft_check_if_color(char **line, t_data *data);
 void	ft_parse_texture(char **format_texture, t_data *data);
-int	ft_check_if_texture(char *line, t_data *data);
+int	ft_check_if_texture(char **line, t_data *data);
 
-
+void ft_init_texture(t_data *data);
+void ft_init_cub(t_data *data);
 int	ft_errors(char *str);
+char	**ft_init_tab(t_data *data);
+void	ft_read_map(t_data *data, char *file);
 
 
 #endif

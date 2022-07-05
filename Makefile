@@ -6,11 +6,11 @@
 #    By: mbascuna <mbascuna@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/07/01 14:09:10 by emcariot          #+#    #+#              #
-#    Updated: 2022/07/04 15:23:42 by mbascuna         ###   ########.fr        #
+#    Updated: 2022/07/05 08:39:40 by mbascuna         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-SRCS        =    parsing/parse_map.c parsing/parse_texture.c \
+SRCS        =    parsing/parse_map.c parsing/parse_texture.c parsing/init.c \
 				 main.c
 				# game/init_game.c \
                 # toolbox/error.c \
@@ -53,7 +53,7 @@ ${MLX}:
 
 ${NAME}:	${OBJS} ${LIBFT} ${MLX}
 			@echo "\033[34m----Compiling----"
-			@${CC} ${FLAGS} ${OBJS} -L ${MLX_DIR} -lmlx -lm ${FLAGS_LIB} -o ${NAME} ${LIBFT}
+			@${CC} ${FLAGS} ${OBJS} -L -lmlx -lm ${FLAGS_LIB} -o ${NAME} ${LIBFT} ${MLX}
 			@echo "OK"
 
 clean:
