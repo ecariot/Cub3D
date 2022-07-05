@@ -1,15 +1,3 @@
-# **************************************************************************** #
-#                                                                              #
-#                                                         :::      ::::::::    #
-#    Makefile                                           :+:      :+:    :+:    #
-#                                                     +:+ +:+         +:+      #
-#    By: emcariot <emcariot@student.42.fr>          +#+  +:+       +#+         #
-#                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2022/07/05 13:33:19 by emcariot          #+#    #+#              #
-#    Updated: 2022/07/05 13:54:07 by emcariot         ###   ########.fr        #
-#                                                                              #
-# **************************************************************************** #
-
 SRCS		=	parsing/parse_map.c game/init_game.c \
 				toolbox/error.c toolbox/utils.c main.c\
 				parsing/parse_texture.c  game/moves.c\

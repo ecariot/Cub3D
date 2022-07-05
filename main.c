@@ -70,8 +70,8 @@ int main(int ac, char **av)
 	// data.fd = open(av[1], O_RDONLY);
 	ft_parsing(&data, av[1]);
 	// draw_window(&cub);
-	mlx_hook(cub.mlx_win, 17, 1L << 2, close_window, &cub);
-	mlx_hook(cub.mlx_win, 2, 1L << 0, keycode, &cub);
-	mlx_loop(cub.mlx);
+	// mlx_hook(cub.mlx_win, 17, 1L << 2, close_window, &cub);
+	// mlx_hook(cub.mlx_win, 2, 1L << 0, keycode, &cub);
+	// mlx_loop(cub.mlx);
 	return (0);
 }
