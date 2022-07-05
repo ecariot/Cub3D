@@ -1,14 +1,3 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: emcariot <emcariot@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/07/05 13:25:06 by emcariot          #+#    #+#             */
-/*   Updated: 2022/07/05 13:30:10 by emcariot         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
 
 #include "../includes/cub.h"
 
@@ -80,7 +69,6 @@ int main(int ac, char **av)
 	ft_read_map(&data, av[1]);
 	// data.fd = open(av[1], O_RDONLY);
 	ft_parsing(&data, av[1]);
-
 	// draw_window(&cub);
 	mlx_hook(cub.mlx_win, 17, 1L << 2, close_window, &cub);
 	mlx_hook(cub.mlx_win, 2, 1L << 0, keycode, &cub);
