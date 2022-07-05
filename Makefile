@@ -5,15 +5,14 @@
 #                                                     +:+ +:+         +:+      #
 #    By: mbascuna <mbascuna@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2022/07/01 14:09:10 by emcariot          #+#    #+#              #
-#    Updated: 2022/07/04 17:15:57 by mbascuna         ###   ########.fr        #
+#    Created: 2022/07/05 13:22:57 by mbascuna          #+#    #+#              #
+#    Updated: 2022/07/05 13:23:14 by mbascuna         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-SRCS		=	parsing/parse_map.c game/init_game.c \
+SRCS		=	parsing/parse_map.c game/init_game.c parsing/init.c\
 				toolbox/error.c main.c\
 				parsing/parse_texture.c \
-
 
 OBJS        = ${SRCS:.c=.o}
 
@@ -53,7 +52,7 @@ ${MLX}:
 
 ${NAME}:	${OBJS} ${LIBFT} ${MLX}
 			@echo "\033[34m----Compiling----"
-			@${CC} ${FLAGS} ${OBJS} -L ${MLX_DIR} -lmlx -lm ${FLAGS_LIB} -o ${NAME} ${LIBFT}
+			@${CC} ${FLAGS} ${OBJS} -L -lmlx -lm ${FLAGS_LIB} -o ${NAME} ${LIBFT} ${MLX}
 			@echo "OK"
 
 clean:
