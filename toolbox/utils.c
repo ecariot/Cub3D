@@ -1,19 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   error.c                                            :+:      :+:    :+:   */
+/*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: emcariot <emcariot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/07/04 14:12:44 by emcariot          #+#    #+#             */
-/*   Updated: 2022/07/05 10:21:51 by emcariot         ###   ########.fr       */
+/*   Created: 2022/07/05 12:30:35 by emcariot          #+#    #+#             */
+/*   Updated: 2022/07/05 12:35:28 by emcariot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub.h"
 
-int	return_error(char *str)
+int	close_window(t_cub *cub)
 {
-	printf("Error: %s\n", str);
-	return (1);
+	return (mlx_loop_end(cub->mlx));
 }

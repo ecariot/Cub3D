@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mbascuna <mbascuna@student.42.fr>          +#+  +:+       +#+        */
+/*   By: emcariot <emcariot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/04 16:53:46 by mbascuna          #+#    #+#             */
-/*   Updated: 2022/07/04 17:13:48 by mbascuna         ###   ########.fr       */
+/*   Updated: 2022/07/05 12:34:03 by emcariot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,34 +37,32 @@ typedef struct s_texture
 	int	ceiling_b;
 	int fd;
 	void	*img;
-	int	width;
-	int	height;
+	char	*addr;
+	int	bits_per_pixel;
+	int	line_len;
+	int	endian;
 
 } t_texture;
 
 typedef struct s_cub
 {
-	//les mlx on pourrait les mettre dans la globale/data ?
     void    *mlx;
 	void	*mlx_win;
-
 	char **map;
 	int	posX;
 	int	posY;
 	int	dirX;
 	int	dirY;
-	int	width;
-	int	height;
-	t_texture    walls;
-    t_texture    sky;
-    t_texture    floor;
+	int	w;
+	int	h;
+	t_texture	screen;
 }    t_cub;
 
 typedef struct s_data
 {
 	int		fd;
-	void	*mlx_ptr;
-	void	*win_ptr;
+	void	*mlx;
+	void	*win;
 	t_texture	texture;
 	t_cub		cub;
 }	t_data;
@@ -85,11 +83,19 @@ void	ft_parse_texture(char **format_texture, t_data *data);
 int	ft_check_if_texture(char *line, t_data *data);
 
 
-int	ft_errors(char *str);
 
 
 //GAME
-void	return_error(char *str);
 int		keycode(int key, t_cub *cub);
+int		init_cub(t_cub *cub);
+void	init_struct(t_cub *cub);
+int	draw_window(t_cub *cub);
+
+//ERROR
+int		ft_errors(char *str);
+int	return_error(char *str);
+
+//UTILS
+int	close_window(t_cub *cub);
 
 #endif
