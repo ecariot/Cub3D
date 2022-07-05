@@ -6,13 +6,13 @@
 #    By: emcariot <emcariot@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/07/01 14:09:10 by emcariot          #+#    #+#              #
-#    Updated: 2022/07/05 12:35:14 by emcariot         ###   ########.fr        #
+#    Updated: 2022/07/05 12:47:25 by emcariot         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 SRCS		=	parsing/parse_map.c game/init_game.c \
 				toolbox/error.c toolbox/utils.c main.c\
-				parsing/parse_texture.c \
+				parsing/parse_texture.c  game/moves.c\
 
 
 OBJS        = ${SRCS:.c=.o}

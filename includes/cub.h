@@ -6,7 +6,7 @@
 /*   By: emcariot <emcariot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/04 16:53:46 by mbascuna          #+#    #+#             */
-/*   Updated: 2022/07/05 12:34:03 by emcariot         ###   ########.fr       */
+/*   Updated: 2022/07/05 13:07:04 by emcariot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,8 @@ typedef struct s_texture
 	int	bits_per_pixel;
 	int	line_len;
 	int	endian;
+	int	*width;
+	int	*height;
 
 } t_texture;
 
@@ -89,11 +91,11 @@ int	ft_check_if_texture(char *line, t_data *data);
 int		keycode(int key, t_cub *cub);
 int		init_cub(t_cub *cub);
 void	init_struct(t_cub *cub);
-int	draw_window(t_cub *cub);
+int		draw_window(t_cub *cub, t_texture *texture);
 
 //ERROR
 int		ft_errors(char *str);
-int	return_error(char *str);
+int		return_error(char *str);
 
 //UTILS
 int	close_window(t_cub *cub);

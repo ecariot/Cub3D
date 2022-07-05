@@ -6,21 +6,12 @@
 /*   By: emcariot <emcariot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/04 13:40:17 by emcariot          #+#    #+#             */
-/*   Updated: 2022/07/05 12:38:21 by emcariot         ###   ########.fr       */
+/*   Updated: 2022/07/05 13:08:19 by emcariot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub.h"
 #include "../mlx_linux/mlx.h"
-
-// void	init_texture(t_cub *cub)
-// {
-// 	// cub->walls.img = mlx_xpm_file_to_image(cub->mlx,
-// 	// 	 "../textures/redbrick_1.xpm", &cub->walls.width, &cub->walls.height);
-// 	// if (!cub->walls.img)
-// 	// 	return_error("Missing texture\n");
-
-// }
 
 void	init_struct(t_cub *cub)
 {
@@ -33,7 +24,7 @@ void	init_struct(t_cub *cub)
 	cub->h = 0;
 }
 
-int	draw_window(t_cub *cub)
+int	draw_window(t_cub *cub, t_texture *texture)
 {
 	cub->mlx = mlx_init();
 	if (!cub->mlx)
@@ -44,6 +35,9 @@ int	draw_window(t_cub *cub)
 	cub->screen.img = mlx_new_image(cub->mlx, 1064, 640);
 	if (!cub->screen.img)
 		return_error("test1");
-	cub->screen.addr = mlx_get_data_addr(cub->mlx, &cub->screen.bits_per_pixel, &cub->screen.line_len, &cub->screen.endian);
+	cub->screen.addr = mlx_get_data_addr(cub->mlx,
+		&cub->screen.bits_per_pixel, &cub->screen.line_len, &cub->screen.endian);
+	texture->north = mlx_xpm_file_to_image(cub->mlx,
+		"../textures/redbrick_1.xpm", texture->width, texture->height);
 	return (0);
 }
