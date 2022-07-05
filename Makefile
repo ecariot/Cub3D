@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: emcariot <emcariot@student.42.fr>          +#+  +:+       +#+         #
+#    By: mbascuna <mbascuna@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/07/05 13:33:19 by emcariot          #+#    #+#              #
-#    Updated: 2022/07/05 13:36:16 by emcariot         ###   ########.fr        #
+#    Updated: 2022/07/05 13:53:08 by mbascuna         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -53,7 +53,7 @@ ${MLX}:
 
 ${NAME}:	${OBJS} ${LIBFT} ${MLX}
 			@echo "\033[34m----Compiling----"
-			@${CC} ${FLAGS} ${OBJS} -L -lmlx -lm ${FLAGS_LIB} -o ${NAME} ${LIBFT} ${MLX}
+			@${CC} ${FLAGS} ${OBJS} -L ${MLX_DIR} -lmlx -lm ${FLAGS_LIB} -o ${NAME} ${LIBFT} ${MLX}
 			@echo "OK"
 
 clean:
