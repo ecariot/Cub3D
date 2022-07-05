@@ -3,16 +3,17 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: mbascuna <mbascuna@student.42.fr>          +#+  +:+       +#+         #
+#    By: emcariot <emcariot@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2022/07/05 13:22:57 by mbascuna          #+#    #+#              #
-#    Updated: 2022/07/05 13:23:14 by mbascuna         ###   ########.fr        #
+#    Created: 2022/07/05 13:33:19 by emcariot          #+#    #+#              #
+#    Updated: 2022/07/05 13:36:16 by emcariot         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-SRCS		=	parsing/parse_map.c game/init_game.c parsing/init.c\
-				toolbox/error.c main.c\
-				parsing/parse_texture.c \
+SRCS		=	parsing/parse_map.c game/init_game.c \
+				toolbox/error.c toolbox/utils.c main.c\
+				parsing/parse_texture.c  game/moves.c\
+				parsing/init.c \
 
 OBJS        = ${SRCS:.c=.o}
 

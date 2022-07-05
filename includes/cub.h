@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mbascuna <mbascuna@student.42.fr>          +#+  +:+       +#+        */
+/*   By: emcariot <emcariot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/07/05 13:22:20 by mbascuna          #+#    #+#             */
-/*   Updated: 2022/07/05 13:22:46 by mbascuna         ###   ########.fr       */
+/*   Created: 2022/07/05 13:26:25 by emcariot          #+#    #+#             */
+/*   Updated: 2022/07/05 13:43:00 by emcariot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@
 # include <math.h>
 # include "../libft/libft.h"
 # include "../mlx_linux/mlx.h"
+# include "../mlx_linux/mlx_int.h"
 
 typedef struct s_texture
 {
@@ -36,16 +37,19 @@ typedef struct s_texture
 	int	ceiling_b;
 	int fd;
 	void	*img;
-	int	width;
-	int	height;
+	char	*addr;
+	int	bits_per_pixel;
+	int	line_len;
+	int	endian;
+	int	*width;
+	int	*height;
+
 } t_texture;
 
 typedef struct s_cub
 {
-	//les mlx on pourrait les mettre dans la globale/data ?
     void    *mlx;
 	void	*mlx_win;
-
 	char **map;
 	int	posX;
 	int	posY;
@@ -55,13 +59,16 @@ typedef struct s_cub
 	int	height;
 	int line;
 	int col;
+	int	w;
+	int	h;
+	t_texture	screen;
 }    t_cub;
 
 typedef struct s_data
 {
 	int		fd;
-	void	*mlx_ptr;
-	void	*win_ptr;
+	void	*mlx;
+	void	*win;
 	t_texture	texture;
 	t_cub		cub;
 }	t_data;
@@ -89,7 +96,16 @@ void	ft_read_map(t_data *data, char *file);
 
 
 //GAME
-void	return_error(char *str);
 int		keycode(int key, t_cub *cub);
+int		init_cub(t_cub *cub);
+void	init_struct(t_cub *cub);
+int		draw_window(t_cub *cub, t_texture *texture);
+
+//ERROR
+int		ft_errors(char *str);
+int		return_error(char *str);
+
+//UTILS
+int	close_window(t_cub *cub);
 
 #endif
