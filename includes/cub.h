@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: emcariot <emcariot@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mbascuna <mbascuna@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/05 13:26:25 by emcariot          #+#    #+#             */
-/*   Updated: 2022/07/05 13:43:00 by emcariot         ###   ########.fr       */
+/*   Updated: 2022/07/05 15:51:48 by mbascuna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,6 +94,12 @@ int	ft_errors(char *str);
 char	**ft_init_tab(t_data *data);
 void	ft_read_map(t_data *data, char *file);
 
+/** check_map.c **/
+int	ft_check_map(t_data *data);
+int	ft_check_if_close(char **map);
+int ft_check_char(char **map);
+int ft_is_start(char c);
+int is_valid_char(char c);
 
 //GAME
 int		keycode(int key, t_cub *cub);
