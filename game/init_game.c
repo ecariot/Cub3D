@@ -6,7 +6,7 @@
 /*   By: emcariot <emcariot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/04 13:40:17 by emcariot          #+#    #+#             */
-/*   Updated: 2022/07/04 14:43:39 by emcariot         ###   ########.fr       */
+/*   Updated: 2022/07/05 09:31:19 by emcariot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,4 +19,5 @@ void	init_texture(t_cub *cub)
 		 "../textures/redbrick_1.xpm", &cub->walls.width, &cub->walls.height);
 	if (!cub->walls.img)
 		return_error("Missing texture\n");
+
 }

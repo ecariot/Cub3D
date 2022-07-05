@@ -1,9 +1,9 @@
 /*
-** mlx.h for MinilibX in 
-** 
+** mlx.h for MinilibX in
+**
 ** Made by Charlie Root
 ** Login   <ol@epitech.net>
-** 
+**
 ** Started on  Mon Jul 31 16:37:50 2000 Charlie Root
 ** Last update Tue May 15 16:23:28 2007 Olivier Crouzet
 */
@@ -109,7 +109,7 @@ int	mlx_string_put(void *mlx_ptr, void *win_ptr, int x, int y, int color,
 void	mlx_set_font(void *mlx_ptr, void *win_ptr, char *name);
 void	*mlx_xpm_to_image(void *mlx_ptr, char **xpm_data,
 			  int *width, int *height);
-void	*mlx_xpm_file_to_image(void *mlx_ptr, char *filename,
+void	*mlx_xpm_age(void *mlx_ptr, char *filename,
 			       int *width, int *height);
 int	mlx_destroy_window(void *mlx_ptr, void *win_ptr);
 
