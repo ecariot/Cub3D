@@ -1,15 +1,3 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   parse_map.c                                        :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: mbascuna <mbascuna@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/07/05 13:22:00 by mbascuna          #+#    #+#             */
-/*   Updated: 2022/07/06 15:12:33 by mbascuna         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #include "../includes/cub.h"
 
 int	ft_check_extension(char *file, char *extension)
@@ -52,26 +40,3 @@ int	ft_is_map(char *line)
 	}
 	return (0);
 }
-
-
-// char	**ft_fill_map(t_data *data, char *file, char *get_line)
-// {
-// 	int line;
-// 	int i = 0;
-// 	(void)file;
-
-// 	// data->cub.line -= nb_line - 1;
-// 	line = data->cub.line;
-// 	data->cub.map = ft_init_tab(data);
-// 	while (i < line)
-// 	{
-// 		data->cub.map[i] = ft_strdup(get_line);
-// 		free(get_line);
-// 		get_line = ft_get_next_line(data->fd);
-// 		i++;
-// 	}
-// 	data->cub.map[i] = NULL;
-// 	// free(get_line);
-// 	// close(data->fd);
-// 	return(data->cub.map);
-// }

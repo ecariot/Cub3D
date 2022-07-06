@@ -1,15 +1,3 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   cub.h                                              :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: mbascuna <mbascuna@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/07/05 13:26:25 by emcariot          #+#    #+#             */
-/*   Updated: 2022/07/06 16:32:11 by mbascuna         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #ifndef CUB_H
 # define CUB_H
 
@@ -22,6 +10,17 @@
 # include "../libft/libft.h"
 # include "../mlx_linux/mlx.h"
 # include "../mlx_linux/mlx_int.h"
+
+typedef struct s_pic
+{
+	void	*img;
+	char	*addr;
+	int		bits_per_pixel;
+	int		line_len;
+	int		endian;
+	int		height;
+	int		width;
+}	t_pic;
 
 typedef struct s_texture
 {
@@ -36,21 +35,16 @@ typedef struct s_texture
 	int	ceiling_g;
 	int	ceiling_b;
 	int fd;
-	void	*img;
-	char	*addr;
-	int	bits_per_pixel;
-	int	line_len;
 	int	endian;
 	int	*width;
 	int	*height;
-
 } t_texture;
 
 typedef struct s_cub
 {
-    void    *mlx;
+	void	*mlx;
 	void	*mlx_win;
-	char **map;
+	char	**map;
 	int	posX;
 	int	posY;
 	int	dirX;
@@ -62,14 +56,21 @@ typedef struct s_cub
 	int	w;
 	int	h;
 	int player;
-	t_texture	screen;
-}    t_cub;
+	int	x;
+	int	y;
+	t_pic	w_no;
+	t_pic	w_so;
+	t_pic	w_ea;
+	t_pic	w_we;
+}	t_cub;
+
 
 typedef struct s_data
 {
 	int		fd;
 	void	*mlx;
 	void	*win;
+	void	*img;
 	t_texture	texture;
 	t_cub		cub;
 }	t_data;
@@ -115,7 +116,9 @@ void	ft_read_map(t_data *data, char *file);
 int		keycode(int key, t_cub *cub);
 int		init_cub(t_cub *cub);
 void	init_struct(t_cub *cub);
-int		draw_window(t_cub *cub, t_texture *texture);
+int		draw_window(t_cub *cub, t_data *data);
+int	put_img(t_cub *cub);
+int	fill_wall_north(char **split_line, t_data *data);
 
 //ERROR
 int		ft_errors(char *str);

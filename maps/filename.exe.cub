@@ -1,7 +1,7 @@
-NO ../textures/wall.xpm
-SO ../textures/purplestone.xpm
-WE ../textures/green.xpm
-EA ../textures/greystone.xpm
+NO ./textures/wall.xpm
+SO ./textures/purplestone.xpm
+EA ./textures/greystone.xpm
+WE ./textures/grass.xpm
 
 111111111111111111111111111111111
 100000000011000000000000000000001

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mbascuna <mbascuna@student.42.fr>          +#+  +:+       +#+        */
+/*   By: emcariot <emcariot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/05 12:30:35 by emcariot          #+#    #+#             */
-/*   Updated: 2022/07/06 15:56:29 by mbascuna         ###   ########.fr       */
+/*   Updated: 2022/07/06 15:59:38 by emcariot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ char	*ft_strdup_no_n(const char *s1)
 	if (!str)
 		return (NULL);
 	i = 0;
-	while ((size_t)i < ft_strlen(s1))
+	while ((size_t)i < ft_strlen(s1) - 1)
 	{
 		str[i] = s1[i];
 		i++;

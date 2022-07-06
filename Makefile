@@ -21,7 +21,7 @@ OBJS	= ${SRCS:.c=.o}
 
 RM	= rm -f
 
-CC	= gcc
+CC	= gcc -fno-stack-protector
 
 FLAGS	= -Wall -Wextra -Werror -g3
 FLAGS_LIB = -lXext -lX11

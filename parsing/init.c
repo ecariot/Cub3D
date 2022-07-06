@@ -1,14 +1,3 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   init.c                                             :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: mbascuna <mbascuna@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/07/05 08:31:20 by mbascuna          #+#    #+#             */
-/*   Updated: 2022/07/06 16:16:34 by mbascuna         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
 
 #include "../includes/cub.h"
 
@@ -37,6 +26,8 @@ void ft_init_cub(t_data *data)
 	data->cub.posY = 0;
 	data->cub.posX = 0;
 	data->cub.map = NULL;
+	// data->cub.w_no.height = 0;
+	// data->cub.w_no.width = 0;
 }
 
 void	ft_read_map(t_data *data, char *file)
@@ -71,7 +62,7 @@ char	**ft_init_tab(t_data *data)
 	tab = (char **)malloc(sizeof(char *) * (data->cub.line + 1));
 	if (!tab)
 		return (NULL);
-	tab[data->cub.line] = NULL;
+	tab[tmp] = NULL;
 	while (tmp > 0)
 	{
 		tmp--;
