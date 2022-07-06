@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mbascuna <mbascuna@student.42.fr>          +#+  +:+       +#+        */
+/*   By: emcariot <emcariot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/05 08:31:20 by mbascuna          #+#    #+#             */
-/*   Updated: 2022/07/05 10:32:36 by mbascuna         ###   ########.fr       */
+/*   Updated: 2022/07/06 12:38:09 by emcariot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,4 +36,6 @@ void ft_init_cub(t_data *data)
 	data->cub.posY = 0;
 	data->cub.posX = 0;
 	data->cub.map = NULL;
+	data->cub.w_no.height = 0;
+	data->cub.w_no.width = 0;
 }

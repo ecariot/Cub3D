@@ -53,14 +53,12 @@ char	**ft_init_tab(t_data *data)
 int main(int ac, char **av)
 {
 	t_data	data;
-	t_cub cub;
 
 	if (ac != 2)
 		return (ft_errors("Wrong nb of args"));
 	ft_init_texture(&data);
 	ft_init_cub(&data);
 	data.fd = open(av[1], O_RDONLY);
-	init_struct(&cub);
 	if (ft_check_extension(av[1], ".cub") != 0)
 	{
 		close(data.fd);
@@ -69,9 +67,15 @@ int main(int ac, char **av)
 	ft_read_map(&data, av[1]);
 	// data.fd = open(av[1], O_RDONLY);
 	ft_parsing(&data, av[1]);
-	// draw_window(&cub);
-	// mlx_hook(cub.mlx_win, 17, 1L << 2, close_window, &cub);
-	// mlx_hook(cub.mlx_win, 2, 1L << 0, keycode, &cub);
-	// mlx_loop(cub.mlx);
+	if (!(draw_window(&data.cub)))
+	{
+		//free
+		return (-1);
+	}
+	printf("mlx = %p", data.cub.mlx);
+	mlx_hook(data.cub.mlx_win, 17, 1L << 2, close_window, &data.cub);
+	mlx_hook(data.cub.mlx_win, 2, 1L << 0, keycode, &data.cub);
+	mlx_loop_hook(data.cub.mlx, put_img, &data.cub);
+	mlx_loop(data.cub.mlx);
 	return (0);
 }
