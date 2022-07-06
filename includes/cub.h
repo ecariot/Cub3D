@@ -6,7 +6,7 @@
 /*   By: mbascuna <mbascuna@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/05 13:26:25 by emcariot          #+#    #+#             */
-/*   Updated: 2022/07/06 15:56:13 by mbascuna         ###   ########.fr       */
+/*   Updated: 2022/07/06 16:32:11 by mbascuna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,7 @@ typedef struct s_cub
 	int col;
 	int	w;
 	int	h;
+	int player;
 	t_texture	screen;
 }    t_cub;
 

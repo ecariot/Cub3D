@@ -6,7 +6,7 @@
 /*   By: mbascuna <mbascuna@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/05 08:31:20 by mbascuna          #+#    #+#             */
-/*   Updated: 2022/07/06 15:47:00 by mbascuna         ###   ########.fr       */
+/*   Updated: 2022/07/06 16:16:34 by mbascuna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ void ft_init_texture(t_data *data)
 
 void ft_init_cub(t_data *data)
 {
+	data->cub.player = 0;
 	data->cub.line = 0;
 	data->cub.col = 0;
 	data->cub.width = 0;

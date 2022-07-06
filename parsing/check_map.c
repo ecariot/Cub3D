@@ -6,7 +6,7 @@
 /*   By: mbascuna <mbascuna@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/05 14:35:57 by mbascuna          #+#    #+#             */
-/*   Updated: 2022/07/06 10:07:48 by mbascuna         ###   ########.fr       */
+/*   Updated: 2022/07/06 16:31:59 by mbascuna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,8 @@ int ft_is_start(char c)
 	else
 		return (0);
 }
+
+
 
 int ft_check_char(char **map)
 {
@@ -78,11 +80,40 @@ int	ft_check_if_close(char **map)
 	return (1);
 }
 
+int	ft_check_player(char **map, t_cub *cub)
+{
+	int x;
+	int y;
+
+	x = 0;
+	while (map[x])
+	{
+		y = 0;
+		while (map[x][y])
+		{
+			if (ft_is_start(map[x][y]) && map[x][y] != '0')
+			{
+				if (cub->player == 0)
+					cub->player = 1;
+				else
+					return (0);
+			}
+			y++;
+		}
+		x++;
+	}
+	return (1);
+}
+
 int	ft_check_map(t_cub cub)
 {
 	if (!(ft_check_char(cub.map)))
 		return (ft_errors("Wrong char in map"));
 	if (!(ft_check_if_close(cub.map)))
 		return (ft_errors("Map is not closed"));
+	if (!(ft_check_player(cub.map, &cub)))
+		return (ft_errors("Too Many Players"));
 	return (1);
 }
+
+
