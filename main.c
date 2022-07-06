@@ -23,10 +23,7 @@ int main(int ac, char **av)
 	ft_read_map(&data, av[1]);
 	// data.fd = open(av[1], O_RDONLY);
 	ft_parsing(&data, av[1]);
-	// printf("NORTHWALL = %s\n", data.texture.north);
-	// printf("len = %ld %s\n", ft_strlen(data.texture.north), data.texture.north);
-	// printf("len = %ld ./textures/wall.xpm\n", ft_strlen("./textures/wall.xpm"));
-	if (!(draw_window(&data.cub, &data.texture, &data)))
+	if (!(draw_window(&data.cub, &data)))
 	{
 		//free
 		return (-1);

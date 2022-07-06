@@ -115,8 +115,8 @@ void	ft_read_map(t_data *data, char *file);
 int		keycode(int key, t_cub *cub);
 int		init_cub(t_cub *cub);
 void	init_struct(t_cub *cub);
-int		draw_window(t_cub *cub, t_texture *texture, t_data *data);
-int	put_img(t_cub *cub, t_texture *texture);
+int		draw_window(t_cub *cub, t_data *data);
+int	put_img(t_cub *cub);
 int	fill_wall_north(char **split_line, t_data *data);
 
 //ERROR
