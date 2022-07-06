@@ -6,7 +6,7 @@
 /*   By: mbascuna <mbascuna@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/05 08:31:20 by mbascuna          #+#    #+#             */
-/*   Updated: 2022/07/06 14:43:29 by mbascuna         ###   ########.fr       */
+/*   Updated: 2022/07/06 15:47:00 by mbascuna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ void	ft_read_map(t_data *data, char *file)
 		if (ft_is_map(get_line))
 			data->cub.line++;
 		if (ft_strlen(get_line) > (size_t)data->cub.col)
-			data->cub.col = ft_strlen(get_line);
+			data->cub.col = ft_strlen(get_line) - 1;
 	}
 	close(fd);
 }
