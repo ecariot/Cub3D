@@ -6,43 +6,44 @@
 /*   By: emcariot <emcariot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/05 13:24:53 by emcariot          #+#    #+#             */
-/*   Updated: 2022/07/06 15:19:34 by emcariot         ###   ########.fr       */
+/*   Updated: 2022/07/06 15:41:19 by emcariot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub.h"
 
-void draw_map(t_cub *cub)
+void draw_map(t_cub *cub, t_texture *texture)
 {
-	mlx_put_image_to_window(cub->mlx, cub->mlx_win, cub->w_no.img, 50, 50);
+	mlx_put_image_to_window(cub->mlx, cub->mlx_win, texture->w_no.img, 50, 50);
 	// mlx_put_image_to_window(cub->mlx, cub->mlx_win, cub->w_so.img, 50, 50);
 	// mlx_put_image_to_window(cub->mlx, cub->mlx_win, cub->w_ea.img, 200, 200);
 	// mlx_put_image_to_window(cub->mlx, cub->mlx_win, cub->w_we.img, 400, 400);
 }
 
-int	put_img(t_cub *cub)
+int	put_img(t_cub *cub, t_texture *texture)
 {
-	draw_map(cub);
+	draw_map(cub, texture);
 	return (1);
 }
 
 int	draw_window(t_cub *cub, t_texture *texture, t_data *data)
 {
-	// (void)tsexture;
+	// (void)texture;
 	(void)data;
 	cub->mlx = mlx_init();
 	if (!cub->mlx)
 		return_error("Erreur");
 	cub->mlx_win = mlx_new_window(cub->mlx, 2000, 1500, "Cub3d");
 	//WALL NORTH
-	printf("NORTHWALL = %s\n", data->texture.north);
-	cub->w_no.img = mlx_xpm_file_to_image(cub->mlx, texture->north,
-		&cub->w_no.width, &cub->w_no.height);
-	if (!cub->w_no.img)
+	printf("h = %ls", &texture->w_no.height);
+	printf("w = %ls", &texture->w_no.width);
+	texture->w_no.img = mlx_xpm_file_to_image(cub->mlx, texture->north,
+		&texture->w_no.width, &texture->w_no.height);
+	if (!texture->w_no.img)
 		return_error("Missing texture");
-	cub->w_no.addr = mlx_get_data_addr(cub->w_no.img, &cub->w_no.bits_per_pixel,
-		&cub->w_no.line_len, &cub->w_no.endian);
-	if (!cub->w_no.addr)
+	texture->w_no.addr = mlx_get_data_addr(texture->w_no.img, &texture->w_no.bits_per_pixel,
+		&texture->w_no.line_len, &texture->w_no.endian);
+	if (!texture->w_no.addr)
 		return_error("Missing texture1");
 	// //WALL SOUTH
 	// cub->w_so.img = mlx_xpm_file_to_image(cub->mlx, data->texture.north,

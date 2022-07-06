@@ -38,6 +38,7 @@ typedef struct s_texture
 	int	endian;
 	int	*width;
 	int	*height;
+	t_pic	w_no;
 } t_texture;
 
 typedef struct s_cub
@@ -57,7 +58,7 @@ typedef struct s_cub
 	int	h;
 	int	x;
 	int	y;
-	t_pic	w_no;
+
 	t_pic	w_so;
 	t_pic	w_ea;
 	t_pic	w_we;
@@ -73,32 +74,21 @@ typedef struct s_data
 	t_cub		cub;
 }	t_data;
 
-typedef struct s_coord {
-	int	x;
-	int	y;
-}	t_coord;
-
 //PARSING
-int	ft_check_extension(char *file, char *extension);
+/** global_parsing.c **/
 int	ft_parsing(t_data *data, char *file);
 int ft_parse_element(t_data *data, char *file);
-int	ft_check_line(char *line, t_data *data);
-char	**ft_add_line_in_map(char *line, char **map, t_data *data);
+
+/** parse_map. **/
+int	ft_check_extension(char *file, char *extension);
+int	ft_is_map(char *line);
+char	**ft_fill_map(t_data *data, char *file, char *get_line);
 
 /** parse_texture.c **/
-void	ft_parse_color(char **format_color, t_data *data);
-int ft_check_digits(char **format_color);
-int	ft_check_if_color(char **line, t_data *data);
-int	ft_parse_texture(char **split_line, t_data *data);
-int	ft_check_if_texture(char **line, t_data *data);
 int ft_is_texture(char **split_line);
-
-void ft_init_texture(t_data *data);
-void ft_init_cub(t_data *data);
-int	ft_errors(char *str);
-char	**ft_init_tab(t_data *data);
-void	ft_read_map(t_data *data, char *file);
-
+int ft_is_color(char **split_line);
+int	ft_parse_texture(char **split_line, t_data *data);
+int	ft_parse_color(char **format_color, t_data *data);
 
 /** check_map.c **/
 int	ft_check_map(t_cub cub);
@@ -108,14 +98,25 @@ int ft_is_start(char c);
 int is_valid_char(char c);
 
 /** check_texture.c **/
+int ft_check_digits(char **format_color);
+int	ft_color_is_full(t_texture texture);
+int	ft_texture_is_full(t_texture texture);
+int	ft_check_texture(t_texture texture);
 int	is_valid_texture(char **split_line);
+int	is_valid_color(char **split_line);
+
+/** init.c **/
+void ft_init_texture(t_data *data);
+void ft_init_cub(t_data *data);
+char	**ft_init_tab(t_data *data);
+void	ft_read_map(t_data *data, char *file);
 
 //GAME
 int		keycode(int key, t_cub *cub);
 int		init_cub(t_cub *cub);
 void	init_struct(t_cub *cub);
 int		draw_window(t_cub *cub, t_texture *texture, t_data *data);
-int	put_img(t_cub *cub);
+int	put_img(t_cub *cub, t_texture *texture);
 int	fill_wall_north(char **split_line, t_data *data);
 
 //ERROR
