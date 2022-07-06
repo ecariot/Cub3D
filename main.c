@@ -6,7 +6,7 @@
 /*   By: mbascuna <mbascuna@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/01 14:51:05 by emcariot          #+#    #+#             */
-/*   Updated: 2022/07/05 17:02:10 by mbascuna         ###   ########.fr       */
+/*   Updated: 2022/07/06 10:55:48 by mbascuna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,7 @@ char	**ft_init_tab(t_data *data)
 	tab = (char **)malloc(sizeof(char *) * (data->cub.line + 1));
 	if (!tab)
 		return (NULL);
+
 	tab[data->cub.line] = NULL;
 	while (data->cub.line > 0)
 	{

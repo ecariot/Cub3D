@@ -6,7 +6,7 @@
 /*   By: mbascuna <mbascuna@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/05 13:26:25 by emcariot          #+#    #+#             */
-/*   Updated: 2022/07/05 15:51:48 by mbascuna         ###   ########.fr       */
+/*   Updated: 2022/07/06 12:08:32 by mbascuna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,8 +85,9 @@ char	**ft_add_line_in_map(char *line, char **map, t_data *data);
 void	ft_parse_color(char **format_color, t_data *data);
 int ft_check_digits(char **format_color);
 int	ft_check_if_color(char **line, t_data *data);
-void	ft_parse_texture(char **format_texture, t_data *data);
+int	ft_parse_texture(char **split_line, t_data *data);
 int	ft_check_if_texture(char **line, t_data *data);
+int ft_is_texture(char **split_line);
 
 void ft_init_texture(t_data *data);
 void ft_init_cub(t_data *data);
@@ -94,12 +95,16 @@ int	ft_errors(char *str);
 char	**ft_init_tab(t_data *data);
 void	ft_read_map(t_data *data, char *file);
 
+
 /** check_map.c **/
-int	ft_check_map(t_data *data);
+int	ft_check_map(t_cub cub);
 int	ft_check_if_close(char **map);
 int ft_check_char(char **map);
 int ft_is_start(char c);
 int is_valid_char(char c);
+
+/** check_texture.c **/
+int	is_valid_texture(char **split_line);
 
 //GAME
 int		keycode(int key, t_cub *cub);

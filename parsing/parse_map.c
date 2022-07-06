@@ -6,7 +6,7 @@
 /*   By: mbascuna <mbascuna@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/05 13:22:00 by mbascuna          #+#    #+#             */
-/*   Updated: 2022/07/05 17:09:26 by mbascuna         ###   ########.fr       */
+/*   Updated: 2022/07/06 13:03:42 by mbascuna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,28 @@ int	ft_color_is_full(t_data *data)
 	return (0);
 }
 
-int ft_parse_element(t_data *data, char *file)
+char	**ft_fill_map(t_data *data, char *file, int nb_line, char *get_line)
+{
+	int line;
+	int i = 0;
+	(void)file;
+
+	data->cub.line -= nb_line - 1;
+	line = data->cub.line;
+	data->cub.map = ft_init_tab(data);
+	while (i < line - 1)
+	{
+		data->cub.map[i] = ft_strdup(get_line);
+		free(get_line);
+		get_line = ft_get_next_line(data->fd);
+		i++;
+	}
+	free(get_line);
+	close(data->fd);
+	return(data->cub.map);
+}
+
+int ft_parse_elements(t_data *data, char *file)
 {
 	char **split_line;
 	char *get_line;
@@ -80,80 +101,58 @@ int ft_parse_element(t_data *data, char *file)
 	{
 		get_line = ft_get_next_line(data->fd);
 		split_line = ft_split_many(get_line, " ,");
-		if (!ft_strcmp(split_line[0], "SO") || !ft_strcmp(split_line[0], "NO") ||
-			!ft_strcmp(split_line[0], "WE") || !ft_strcmp(split_line[0], "EA"))
-			{
-				if (!ft_check_if_texture(split_line, data))
-					return (0);
-			}
+		if (!split_line)
+		{
+			printf("HELLO\n");
+			ft_free_tab(split_line);
+		}
+		if (ft_is_texture(split_line))
+		{
+			if (is_valid_texture(split_line))
+				return (1);
+			if (!ft_parse_texture(split_line, data))
+				return (ft_errors("Texture already exist"));
+		}
 		else if (!ft_strncmp(split_line[0], "F", 2) || !ft_strncmp(split_line[0], "C", 2))
 		{
 			if (!ft_check_if_color(split_line, data))
-				return (0);
+				return (1);
 		}
-		else if (ft_color_is_full(data) && ft_texture_is_full(data) && get_line[0] != '\n')
+		else if (ft_color_is_full(data) && get_line[0] != '\n')
 		{
-			close(data->fd);
-			return (nb_line);
+			data->cub.map = ft_fill_map(data, file, nb_line, get_line);
+			return (0);
 		}
 		nb_line++;
 		free(get_line);
 	}
 	close(data->fd);
-	return (nb_line);
+	return (0);
 }
 
-char	**ft_fill_map(t_data *data, char *file, int nb_line)
-{
-	char	*get_line;
-	int line;
-	int i = 0;
-	(void)file;
-
-	printf("nb line : %d data->cub.line : %d\n", nb_line, data->cub.line);
-	data->cub.line -= nb_line;
-	line = data->cub.line;
-	data->cub.map = ft_init_tab(data);
-	data->fd = open(file, O_RDONLY, 0);
-	if (data->fd == -1)
-		return (NULL);
-	while (i < line)
-	{
-		get_line = ft_get_next_line(data->fd);
-		data->cub.map[i] = ft_strdup(get_line);
-		i++;
-		free(get_line);
-	}
-	close(data->fd);
-	return(data->cub.map);
-}
 
 int	ft_parsing(t_data *data, char *file)
 {
-	int i;
-	int nb_line;
+	// int i;
 
-	i = 0;
-	nb_line = 0;
-	if (!(nb_line = ft_parse_element(data, file)))
+	// i = 0;
+	if (ft_parse_elements(data, file))
 	{
 		close(data->fd);
-		return (ft_errors("Invalid Elements"));
+		return (1);
 	}
-	else
-		data->cub.map = ft_fill_map(data, file, nb_line);
-	if (!ft_check_map(data))
+	if (!ft_check_map(data->cub))
 	{
-		return (ft_errors("Invalid Maps"));
+		return (1);
 	}
-	printf("TEXTURE :\nNorth : %sSouth : %sWest : %sEast : %s", data->texture.north, data->texture.south, data->texture.east, data->texture.west);
-	printf("COLOR FLOOR :\nfloor-R : %d\nfloor-G : %d\nfloor-B : %d\n", data->texture.floor_r, data->texture.floor_g, data->texture.floor_b);
-	printf("COLOR CEILING :\nceiling-R : %d\nceiling-G : %d\nceiling-B : %d\n", data->texture.ceiling_r, data->texture.ceiling_g, data->texture.ceiling_b);
-	printf("MAP :\n");
-	while (data->cub.map[i])
-	{
-		printf("map : %s", data->cub.map[i]);
-		i++;
-	}
+	// printf("TEXTURE :\nNorth : %sSouth : %sWest : %sEast : %s", data->texture.north, data->texture.south, data->texture.west, data->texture.east);
+	// printf("COLOR FLOOR :\nfloor-R : %d\nfloor-G : %d\nfloor-B : %d\n", data->texture.floor_r, data->texture.floor_g, data->texture.floor_b);
+	// printf("COLOR CEILING :\nceiling-R : %d\nceiling-G : %d\nceiling-B : %d\n", data->texture.ceiling_r, data->texture.ceiling_g, data->texture.ceiling_b);
+	// printf("MAP :\n");
+	// while (data->cub.map[i])
+	// {
+	// 	printf("map : %s", data->cub.map[i]);
+	// 	i++;
+	// }
 	return (0);
 }
