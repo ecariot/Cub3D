@@ -1,15 +1,3 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   cub.h                                              :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: emcariot <emcariot@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/07/05 13:26:25 by emcariot          #+#    #+#             */
-/*   Updated: 2022/07/06 12:47:24 by emcariot         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #ifndef CUB_H
 # define CUB_H
 
@@ -101,8 +89,9 @@ char	**ft_add_line_in_map(char *line, char **map, t_data *data);
 void	ft_parse_color(char **format_color, t_data *data);
 int ft_check_digits(char **format_color);
 int	ft_check_if_color(char **line, t_data *data);
-void	ft_parse_texture(char **format_texture, t_data *data);
+int	ft_parse_texture(char **split_line, t_data *data);
 int	ft_check_if_texture(char **line, t_data *data);
+int ft_is_texture(char **split_line);
 
 void ft_init_texture(t_data *data);
 void ft_init_cub(t_data *data);
@@ -111,12 +100,23 @@ char	**ft_init_tab(t_data *data);
 void	ft_read_map(t_data *data, char *file);
 
 
+/** check_map.c **/
+int	ft_check_map(t_cub cub);
+int	ft_check_if_close(char **map);
+int ft_check_char(char **map);
+int ft_is_start(char c);
+int is_valid_char(char c);
+
+/** check_texture.c **/
+int	is_valid_texture(char **split_line);
+
 //GAME
 int		keycode(int key, t_cub *cub);
 int		init_cub(t_cub *cub);
 void	init_struct(t_cub *cub);
-int		draw_window(t_cub *cub);
+int		draw_window(t_cub *cub, t_texture *texture, t_data *data);
 int	put_img(t_cub *cub);
+int	fill_wall_north(char **split_line, t_data *data);
 
 //ERROR
 int		ft_errors(char *str);

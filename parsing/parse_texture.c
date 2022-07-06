@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_texture.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mbascuna <mbascuna@student.42.fr>          +#+  +:+       +#+        */
+/*   By: emcariot <emcariot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/04 13:38:15 by mbascuna          #+#    #+#             */
-/*   Updated: 2022/07/05 12:13:45 by mbascuna         ###   ########.fr       */
+/*   Updated: 2022/07/06 15:20:12 by emcariot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,17 +71,36 @@ int	ft_check_if_color(char **line, t_data *data)
 	return (1);
 }
 
-void	ft_parse_texture(char **format_texture, t_data *data)
+int	ft_parse_texture(char **split_line, t_data *data)
 {
-	if (!ft_strcmp(format_texture[0], "SO"))
-		data->texture.south = ft_strdup(format_texture[1]);
-	else if (!ft_strcmp(format_texture[0], "NO"))
-		data->texture.north = ft_strdup(format_texture[1]);
-	else if (!ft_strcmp(format_texture[0], "WE"))
-		data->texture.west = ft_strdup(format_texture[1]);
-	else if (!ft_strcmp(format_texture[0], "EA"))
-		data->texture.east = ft_strdup(format_texture[1]);
-	ft_free_tab(format_texture);
+	if (!ft_strcmp(split_line[0], "SO") && data->texture.south == NULL)
+		data->texture.south = ft_strdup(split_line[1]);
+	else if (!ft_strcmp(split_line[0], "NO") && data->texture.north == NULL)
+		data->texture.north = ft_strdup(split_line[1]);
+	else if (!ft_strcmp(split_line[0], "WE") && data->texture.west == NULL)
+		data->texture.west = ft_strdup(split_line[1]);
+	else if (!ft_strcmp(split_line[0], "EA") && data->texture.east == NULL)
+		data->texture.east = ft_strdup(split_line[1]);
+	else
+	{
+		ft_free_tab(split_line);
+		return (0);
+	}
+	ft_free_tab(split_line);
+	return (1);
+}
+
+int ft_is_texture(char **split_line)
+{
+	if (split_line[0][0] == '\n')
+		return (0);
+	if (!ft_strncmp(split_line[0], "SO", 2) || !ft_strncmp(split_line[0], "NO", 2) ||
+			!ft_strncmp(split_line[0], "WE", 2) || !ft_strncmp(split_line[0], "EA", 2))
+			{
+				return (1);
+			}
+	else
+		return (0);
 }
 
 int	ft_check_if_texture(char **line, t_data *data)
@@ -97,6 +116,7 @@ int	ft_check_if_texture(char **line, t_data *data)
 	// 	ft_free_tab(format_texture);
 	// 	return (0);
 	// }
+	(void)data;
 	if (!line || line[2] != NULL || line[1] == NULL)
 	{
 		ft_free_tab(line);
@@ -107,6 +127,6 @@ int	ft_check_if_texture(char **line, t_data *data)
 	// 	ft_free_tab(format_texture);
 	// 	return (2);
 	// }
-	ft_parse_texture(line, data);
+	// ft_parse_texture(line, data);
 	return (1);
 }

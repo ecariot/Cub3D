@@ -1,3 +1,14 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: emcariot <emcariot@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/07/01 14:51:05 by emcariot          #+#    #+#             */
+/*   Updated: 2022/07/06 15:19:16 by emcariot         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "../includes/cub.h"
 
@@ -33,9 +44,10 @@ char	**ft_init_tab(t_data *data)
 {
 	char **tab;
 
-	tab = (char **)malloc(sizeof(char *) * data->cub.line + 1);
+	tab = (char **)malloc(sizeof(char *) * (data->cub.line + 1));
 	if (!tab)
 		return (NULL);
+
 	tab[data->cub.line] = NULL;
 	while (data->cub.line > 0)
 	{
@@ -67,12 +79,12 @@ int main(int ac, char **av)
 	ft_read_map(&data, av[1]);
 	// data.fd = open(av[1], O_RDONLY);
 	ft_parsing(&data, av[1]);
-	if (!(draw_window(&data.cub)))
+	printf("NORTHWALL = %s\n", data.texture.north);
+	if (!(draw_window(&data.cub, &data.texture, &data)))
 	{
 		//free
 		return (-1);
 	}
-	printf("mlx = %p", data.cub.mlx);
 	mlx_hook(data.cub.mlx_win, 17, 1L << 2, close_window, &data.cub);
 	mlx_hook(data.cub.mlx_win, 2, 1L << 0, keycode, &data.cub);
 	mlx_loop_hook(data.cub.mlx, put_img, &data.cub);
