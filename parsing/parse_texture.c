@@ -26,13 +26,13 @@ int	ft_parse_color(char **split_line, t_data *data)
 int	ft_parse_texture(char **split_line, t_data *data)
 {
 	if (!ft_strcmp(split_line[0], "SO") && data->texture.south == NULL)
-		data->texture.south = ft_strdup(split_line[1]);
+		data->texture.south = ft_strdup_no_n(split_line[1]);
 	else if (!ft_strcmp(split_line[0], "NO") && data->texture.north == NULL)
-		data->texture.north = ft_strdup(split_line[1]);
+		data->texture.north = ft_strdup_no_n(split_line[1]);
 	else if (!ft_strcmp(split_line[0], "WE") && data->texture.west == NULL)
-		data->texture.west = ft_strdup(split_line[1]);
+		data->texture.west = ft_strdup_no_n(split_line[1]);
 	else if (!ft_strcmp(split_line[0], "EA") && data->texture.east == NULL)
-		data->texture.east = ft_strdup(split_line[1]);
+		data->texture.east = ft_strdup_no_n(split_line[1]);
 	else
 	{
 		ft_free_tab(split_line);

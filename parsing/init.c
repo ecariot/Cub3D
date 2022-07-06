@@ -46,7 +46,7 @@ void	ft_read_map(t_data *data, char *file)
 		if (ft_is_map(get_line))
 			data->cub.line++;
 		if (ft_strlen(get_line) > (size_t)data->cub.col)
-			data->cub.col = ft_strlen(get_line);
+			data->cub.col = ft_strlen(get_line) - 1;
 	}
 	close(fd);
 }
@@ -64,7 +64,6 @@ char	**ft_init_tab(t_data *data)
 	while (tmp > 0)
 	{
 		tmp--;
-		printf("data.col : %d\n", data->cub.col);
 		tab[tmp] = (char *)malloc(sizeof(char) * (data->cub.col));
 		if (!tab[tmp])
 		{

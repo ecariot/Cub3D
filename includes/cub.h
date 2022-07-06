@@ -38,7 +38,6 @@ typedef struct s_texture
 	int	endian;
 	int	*width;
 	int	*height;
-	t_pic	w_no;
 } t_texture;
 
 typedef struct s_cub
@@ -59,6 +58,7 @@ typedef struct s_cub
 	int	x;
 	int	y;
 
+	t_pic	w_no;
 	t_pic	w_so;
 	t_pic	w_ea;
 	t_pic	w_we;
@@ -125,5 +125,6 @@ int		return_error(char *str);
 
 //UTILS
 int	close_window(t_cub *cub);
+char	*ft_strdup_no_n(const char *s1);
 
 #endif

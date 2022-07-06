@@ -6,7 +6,7 @@
 /*   By: mbascuna <mbascuna@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/06 13:55:06 by mbascuna          #+#    #+#             */
-/*   Updated: 2022/07/06 15:12:37 by mbascuna         ###   ########.fr       */
+/*   Updated: 2022/07/06 15:46:05 by mbascuna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,6 @@ int ft_parse_elements(t_data *data, char *file)
 		}
 		free(get_line);
 		get_line = ft_get_next_line(data->fd);
-
 	}
 	close(data->fd);
 	return (0);
