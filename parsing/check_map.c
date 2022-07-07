@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_map.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mbascuna <mbascuna@student.42.fr>          +#+  +:+       +#+        */
+/*   By: emcariot <emcariot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/05 14:35:57 by mbascuna          #+#    #+#             */
-/*   Updated: 2022/07/07 13:30:17 by mbascuna         ###   ########.fr       */
+/*   Updated: 2022/07/07 16:50:11 by emcariot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,7 @@ int	ft_check_if_close(char **map)
 	return (1);
 }
 
-int	ft_check_player(char **map, t_cub *cub)
+int	ft_check_player(char **map, t_data *data)
 {
 	int x;
 	int y;
@@ -91,11 +91,13 @@ int	ft_check_player(char **map, t_cub *cub)
 		{
 			if (ft_is_start(map[x][y]) && map[x][y] != '0')
 			{
-				if (cub->player == 0)
+				if (data->cub.player == '\0')
 				{
-					cub->pos.x = x;
-					cub->pos.y = y;
-					cub->player = 1;
+					data->cub.pos.x = x;
+					data->cub.pos.y = y;
+					data->cub.player = map[x][y];
+					printf("player = %c\n", data->cub.player);
+					printf("char  = %c\n", map[x][y]);
 				}
 				else
 					return (0);
@@ -107,13 +109,13 @@ int	ft_check_player(char **map, t_cub *cub)
 	return (1);
 }
 
-int	ft_check_map(t_cub cub)
+int	ft_check_map(t_data *data)
 {
-	if (!(ft_check_char(cub.map)))
+	if (!(ft_check_char(data->cub.map)))
 		return (ft_errors("Wrong char in map"));
-	if (!(ft_check_if_close(cub.map)))
+	if (!(ft_check_if_close(data->cub.map)))
 		return (ft_errors("Map is not closed"));
-	if (!(ft_check_player(cub.map, &cub)))
+	if (!(ft_check_player(data->cub.map, data)))
 		return (ft_errors("Too Many Players"));
 	return (1);
 }

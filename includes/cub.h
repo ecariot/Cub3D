@@ -11,6 +11,14 @@
 # include "../mlx_linux/mlx.h"
 # include "../mlx_linux/mlx_int.h"
 
+typedef enum e_side_wall
+{
+	NORTH,
+	SOUTH,
+	EAST,
+	WEST
+}	t_side_wall;
+
 typedef struct s_pic
 {
 	void	*img;
@@ -63,20 +71,17 @@ typedef struct s_cub
 	int	win_height;
 	int line;
 	int col;
-	int player;
+	char player;
 	int camerax;
 	double wallx;
 	double	wall_len;
-	// int	w;
-	// int	h;
-	// int	x;
-	// int	y;
 	int	hit;
 	t_pic	screen;
 	t_pic	w_no;
 	t_pic	w_so;
 	t_pic	w_ea;
 	t_pic	w_we;
+	t_side_wall		side_wall;
 }	t_cub;
 
 
@@ -107,7 +112,7 @@ int	ft_parse_texture(char **split_line, t_data *data);
 int	ft_parse_color(char **format_color, t_data *data);
 
 /** check_map.c **/
-int	ft_check_map(t_cub cub);
+int	ft_check_map(t_data *data);
 int	ft_check_if_close(char **map);
 int ft_check_char(char **map);
 int ft_is_start(char c);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   global_parsing.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mbascuna <mbascuna@student.42.fr>          +#+  +:+       +#+        */
+/*   By: emcariot <emcariot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/06 13:55:06 by mbascuna          #+#    #+#             */
-/*   Updated: 2022/07/06 15:46:05 by mbascuna         ###   ########.fr       */
+/*   Updated: 2022/07/07 16:50:29 by emcariot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ int	ft_parsing(t_data *data, char *file)
 		close(data->fd);
 		return (1);
 	}
-	if (!ft_check_map(data->cub))
+	if (!ft_check_map(data))
 	{
 		return (1);
 	}

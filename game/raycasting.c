@@ -39,12 +39,20 @@ int	perform_dda(t_cub *cub)
 			cub->sidedist.x += cub->deltadist.x;
 			cub->tab.x += cub->step.x;
 			side = 0;
+			if (cub->raydir.x < 0)
+				cub->side_wall = SOUTH;
+			else
+				cub->side_wall = NORTH;
 		}
 		else
 		{
 			cub->sidedist.y += cub->deltadist.y;
 			cub->tab.y += cub->step.y;
 			side = 1;
+			if (cub->raydir.y < 0)
+				cub->side_wall = WEST;
+			else
+				cub->side_wall = EAST;
 		}
 		if (cub->map[(int)cub->tab.x][(int)cub->tab.y] > 0)
 			cub->hit = 1;
@@ -52,13 +60,13 @@ int	perform_dda(t_cub *cub)
 	return (side);
 }
 
-int wall_pixel_put(t_cub *cub)
-{
-	//savoir quel mur afficher  ?
-	// je pense qu'il faut recuperer la face a afficher dans perform_dda
-		// => return mur et pas side
+// int wall_pixel_put(t_cub *cub)
+// {
+// 	//savoir quel mur afficher  ?
+// 	// je pense qu'il faut recuperer la face a afficher dans perform_dda
+// 		// => return mur et pas side
 
-}
+// }
 
 int init_raycasting(t_cub *cub)
 {
@@ -98,6 +106,7 @@ int init_raycasting(t_cub *cub)
 		}
 		//calcule la hauteur du nmur a dessier
 		cub->wall_len = (double)cub->win_height / perpWallDist;
+		printf("WALL SIDE = %d\n", cub->side_wall);
 		//tant que i n'a pas atteint le pixel de fin a dessiner bah tu dessines -> coder wall_pixel
 		// while (i < (cub->win_height / 2 + cub->wall_len / 2))
 		//{

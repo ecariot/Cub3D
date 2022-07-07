@@ -17,7 +17,7 @@ void ft_init_texture(t_data *data)
 
 void ft_init_cub(t_data *data)
 {
-	data->cub.player = 0;
+	data->cub.player = '\0';
 	data->cub.line = 0;
 	data->cub.col = 0;
 	data->cub.win_width = 0;
@@ -88,4 +88,30 @@ char	**ft_init_tab(t_data *data)
 		}
 	}
 	return (tab);
+}
+
+void	init_player(t_cub *cub)
+{
+	printf("player dans INIT = %c\n", cub->player);
+	if (cub->player == 'N')
+	{
+		cub->dir.x = -1;
+		cub->plane.y = 0.66;
+	}
+	if (cub->player == 'S')
+	{
+		cub->dir.x = 1;
+		cub->plane.y = -0.66;
+	}
+	if (cub->player == 'E')
+	{
+		cub->dir.y = 1;
+		cub->plane.x = 0.66;
+	}
+	if (cub->player == 'W')
+	{
+		cub->dir.y = -1;
+		cub->plane.x = -0.66;
+	}
+
 }
