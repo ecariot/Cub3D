@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_game.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: emcariot <emcariot@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mbascuna <mbascuna@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/05 13:24:53 by emcariot          #+#    #+#             */
-/*   Updated: 2022/07/06 16:20:18 by emcariot         ###   ########.fr       */
+/*   Updated: 2022/07/07 15:14:54 by mbascuna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,8 @@ void draw_map(t_cub *cub)
 
 int	put_img(t_cub *cub)
 {
-	draw_map(cub);
+	init_raycasting(cub);
+	// draw_map(cub);
 	return (1);
 }
 
@@ -31,7 +32,10 @@ int	draw_window(t_cub *cub, t_data *data)
 	cub->mlx = mlx_init();
 	if (!cub->mlx)
 		return_error("Erreur");
-	cub->mlx_win = mlx_new_window(cub->mlx, 2000, 1500, "Cub3d");
+	mlx_get_screen_size(cub->mlx, &cub->win_width, &cub->win_height);
+	cub->mlx_win = mlx_new_window(cub->mlx,  cub->win_width, cub->win_height, "Cub3d");
+	cub->screen.img = mlx_new_image(cub->mlx, cub->win_width, cub->win_height);
+	cub->screen.addr = mlx_get_data_addr(cub->screen.img, &cub->screen.bits_per_pixel, &cub->screen.line_len, &cub->screen.endian);
 	cub->w_no.img = mlx_xpm_file_to_image(cub->mlx, data->texture.north,
 		&cub->w_no.width, &cub->w_no.height);
 	if (!cub->w_no.img)

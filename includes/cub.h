@@ -34,30 +34,45 @@ typedef struct s_texture
 	int	ceiling_r;
 	int	ceiling_g;
 	int	ceiling_b;
-	int fd;
-	int	endian;
-	int	*width;
-	int	*height;
+	// int fd;
+	// int	endian;
+	// int	*width;
+	// int	*height;
 } t_texture;
+
+typedef struct	s_coord
+{
+	double x;
+	double y;
+} t_coord;
 
 typedef struct s_cub
 {
 	void	*mlx;
 	void	*mlx_win;
 	char	**map;
-	int	posX;
-	int	posY;
-	int	dirX;
-	int	dirY;
-	int	width;
-	int	height;
+	t_coord	pos;
+	t_coord	tab;
+	t_coord	dir;
+	t_coord	raydir;
+	t_coord	sidedist;
+	t_coord	deltadist;
+	t_coord	step;
+	t_coord plane;
+	int	win_width;
+	int	win_height;
 	int line;
 	int col;
-	int	w;
-	int	h;
 	int player;
-	int	x;
-	int	y;
+	int camerax;
+	double wallx;
+	double	wall_len;
+	// int	w;
+	// int	h;
+	// int	x;
+	// int	y;
+	int	hit;
+	t_pic	screen;
 	t_pic	w_no;
 	t_pic	w_so;
 	t_pic	w_ea;
@@ -119,6 +134,12 @@ void	init_struct(t_cub *cub);
 int		draw_window(t_cub *cub, t_data *data);
 int	put_img(t_cub *cub);
 int	fill_wall_north(char **split_line, t_data *data);
+
+/** raycasting.c **/
+int init_raycasting(t_cub *cub);
+int	perform_dda(t_cub *cub);
+void init_step_and_side(t_cub *cub);
+
 
 //ERROR
 int		ft_errors(char *str);

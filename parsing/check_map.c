@@ -6,7 +6,7 @@
 /*   By: mbascuna <mbascuna@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/05 14:35:57 by mbascuna          #+#    #+#             */
-/*   Updated: 2022/07/06 16:31:59 by mbascuna         ###   ########.fr       */
+/*   Updated: 2022/07/07 13:30:17 by mbascuna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,6 @@ int ft_is_start(char c)
 	else
 		return (0);
 }
-
-
 
 int ft_check_char(char **map)
 {
@@ -94,7 +92,11 @@ int	ft_check_player(char **map, t_cub *cub)
 			if (ft_is_start(map[x][y]) && map[x][y] != '0')
 			{
 				if (cub->player == 0)
+				{
+					cub->pos.x = x;
+					cub->pos.y = y;
 					cub->player = 1;
+				}
 				else
 					return (0);
 			}
