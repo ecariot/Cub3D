@@ -6,7 +6,7 @@
 /*   By: emcariot <emcariot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/05 14:35:57 by mbascuna          #+#    #+#             */
-/*   Updated: 2022/07/07 16:50:11 by emcariot         ###   ########.fr       */
+/*   Updated: 2022/07/08 11:02:29 by emcariot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,8 +96,6 @@ int	ft_check_player(char **map, t_data *data)
 					data->cub.pos.x = x;
 					data->cub.pos.y = y;
 					data->cub.player = map[x][y];
-					printf("player = %c\n", data->cub.player);
-					printf("char  = %c\n", map[x][y]);
 				}
 				else
 					return (0);
