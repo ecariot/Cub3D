@@ -3,22 +3,22 @@
 /*                                                        :::      ::::::::   */
 /*   init_game.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mbascuna <mbascuna@student.42.fr>          +#+  +:+       +#+        */
+/*   By: emcariot <emcariot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/05 13:24:53 by emcariot          #+#    #+#             */
-/*   Updated: 2022/07/07 15:14:54 by mbascuna         ###   ########.fr       */
+/*   Updated: 2022/07/11 11:27:55 by emcariot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub.h"
 
-void draw_map(t_cub *cub)
-{
-	mlx_put_image_to_window(cub->mlx, cub->mlx_win, cub->w_no.img, 600, 600);
-	mlx_put_image_to_window(cub->mlx, cub->mlx_win, cub->w_so.img, 50, 50);
-	mlx_put_image_to_window(cub->mlx, cub->mlx_win, cub->w_ea.img, 200, 200);
-	mlx_put_image_to_window(cub->mlx, cub->mlx_win, cub->w_we.img, 400, 400);
-}
+// void draw_map(t_cub *cub)
+// {
+// 	// mlx_put_image_to_window(cub->mlx, cub->mlx_win, cub->w_no.img, 600, 600);
+// 	// mlx_put_image_to_window(cub->mlx, cub->mlx_win, cub->w_so.img, 50, 50);
+// 	// mlx_put_image_to_window(cub->mlx, cub->mlx_win, cub->w_ea.img, 200, 200);
+// 	// mlx_put_image_to_window(cub->mlx, cub->mlx_win, cub->w_we.img, 400, 400);
+// }
 
 int	put_img(t_cub *cub)
 {

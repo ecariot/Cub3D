@@ -14,9 +14,9 @@
 typedef enum e_side_wall
 {
 	NORTH,
-	SOUTH,
 	EAST,
-	WEST
+	WEST,
+	SOUTH
 }	t_side_wall;
 
 typedef struct s_pic
@@ -139,6 +139,7 @@ void	init_struct(t_cub *cub);
 int		draw_window(t_cub *cub, t_data *data);
 int	put_img(t_cub *cub);
 int	fill_wall_north(char **split_line, t_data *data);
+void	init_player(t_cub *cub);
 
 /** raycasting.c **/
 int init_raycasting(t_cub *cub);
