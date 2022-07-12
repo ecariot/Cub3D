@@ -21,7 +21,7 @@ OBJS	= ${SRCS:.c=.o}
 
 RM	= rm -f
 
-CC	= gcc -fno-stack-protector
+CC	= gcc
 
 FLAGS	= -Wall -Wextra -Werror -g3
 FLAGS_LIB = -lXext -lX11
@@ -29,7 +29,7 @@ FLAGS_LIB = -lXext -lX11
 all:		${NAME}
 
 .c.o:
-			${CC} ${FLAGS} -I${INCL} -I${MLX_DIR} -c $< -o ${<:.c=.o}
+			${CC} ${FLAGS} -I${INCL} -c $< -o ${<:.c=.o}
 
 ${LIBFT}:
 			@echo "\033[35m----Building libft----"
@@ -43,7 +43,7 @@ ${MLX}:
 
 ${NAME}:	${OBJS} ${LIBFT} ${MLX}
 			@echo "\033[34m----Compiling----"
-			@${CC} ${FLAGS} ${OBJS} -L ${MLX_DIR} -lmlx -lm ${FLAGS_LIB} -o ${NAME} ${LIBFT} ${MLX}
+			@${CC} ${FLAGS} ${OBJS} -L ${MLX_DIR} -lmlx -lm ${FLAGS_LIB} -o ${NAME} ${LIBFT}
 			@echo "OK"
 
 clean:

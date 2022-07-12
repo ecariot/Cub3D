@@ -59,6 +59,8 @@ typedef struct s_cub
 	void	*mlx;
 	void	*mlx_win;
 	char	**map;
+	int	win_width;
+	int	win_height;
 	t_coord	pos;
 	t_coord	tab;
 	t_coord	dir;
@@ -67,12 +69,10 @@ typedef struct s_cub
 	t_coord	deltadist;
 	t_coord	step;
 	t_coord plane;
-	int	win_width;
-	int	win_height;
 	int line;
 	int col;
 	char player;
-	int camerax;
+	double camerax;
 	double wallx;
 	double	wall_len;
 	int	hit;
@@ -131,6 +131,7 @@ void ft_init_texture(t_data *data);
 void ft_init_cub(t_data *data);
 char	**ft_init_tab(t_data *data);
 void	ft_read_map(t_data *data, char *file);
+void	init_player(t_cub *cub);
 
 //GAME
 int		keycode(int key, t_cub *cub);

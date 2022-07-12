@@ -22,20 +22,20 @@ void ft_init_cub(t_data *data)
 	data->cub.col = 0;
 	data->cub.win_width = 0;
 	data->cub.win_height = 0;
-	data->cub.dir.x = 0;
-	data->cub.dir.y = 0;
-	data->cub.pos.x = 0;
-	data->cub.pos.y = 0;
-	data->cub.plane.x = 0;
-	data->cub.plane.y = 0;
-	data->cub.raydir.x = 0;
-	data->cub.raydir.y = 0;
-	data->cub.sidedist.x = 0;
-	data->cub.sidedist.y = 0;
-	data->cub.step.x = 0;
-	data->cub.step.y = 0;
-	data->cub.tab.x = 0;
-	data->cub.tab.y = 0;
+	data->cub.dir.x = 0.0;
+	data->cub.dir.y = 0.0;
+	data->cub.pos.x = 0.0;
+	data->cub.pos.y = 0.0;
+	data->cub.plane.x = 0.0;
+	data->cub.plane.y = 0.0;
+	data->cub.raydir.x = 0.0;
+	data->cub.raydir.y = 0.0;
+	data->cub.sidedist.x = 0.0;
+	data->cub.sidedist.y = 0.0;
+	data->cub.step.x = 0.0;
+	data->cub.step.y = 0.0;
+	data->cub.tab.x = 0.0;
+	data->cub.tab.y = 0.0;
 	data->cub.camerax = 0;
 	data->cub.wallx = 0.0;
 	data->cub.hit = 0;
@@ -92,26 +92,24 @@ char	**ft_init_tab(t_data *data)
 
 void	init_player(t_cub *cub)
 {
-	printf("player dans INIT = %c\n", cub->player);
 	if (cub->player == 'N')
 	{
-		cub->dir.x = -1;
-		cub->plane.y = 0.66;
+		cub->dir.y = -1.0;
+		cub->plane.x = 0.66;
 	}
 	if (cub->player == 'S')
 	{
-		cub->dir.x = 1;
-		cub->plane.y = -0.66;
+		cub->dir.y = 1.0;
+		cub->plane.x = -0.66;
 	}
 	if (cub->player == 'E')
 	{
-		cub->dir.y = 1;
-		cub->plane.x = 0.66;
+		cub->dir.x = -1.0;
+		cub->plane.y = 0.66;
 	}
 	if (cub->player == 'W')
 	{
-		cub->dir.y = -1;
-		cub->plane.x = -0.66;
+		cub->dir.x = 1.0;
+		cub->plane.y = -0.66;
 	}
-
 }
