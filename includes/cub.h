@@ -59,29 +59,29 @@ typedef struct s_cub
 	void	*mlx;
 	void	*mlx_win;
 	char	**map;
-	t_coord	pos;
-	t_coord	tab;
+	t_coord	pos; //the box the player is
+	t_coord	tab; //the box we're in
 	t_coord	dir;
 	t_coord	raydir;
-	t_coord	sidedist;
-	t_coord	deltadist;
-	t_coord	step;
+	t_coord	sidedist; //longueur du rayon depuis le joueur
+	t_coord	deltadist; //longueur du rayon d'une case a une autre
+	t_coord	step; //la direction vers laquelle aller
 	t_coord plane;
-	int	win_width;
-	int	win_height;
-	int line;
-	int col;
-	char player;
-	int camerax;
+	int	win_width; //largeur de la fenetre
+	int	win_height; //hauteur de la fenetre
+	int line; //nb de lignes dans la map
+	int col; // nb de col dans la map
+	char player; // N S E W
+	int camerax; // angle de depart du player
 	double wallx;
 	double	wall_len;
-	int	hit;
+	int	hit; // le mur est il hit ?
 	t_pic	screen;
 	t_pic	w_no;
 	t_pic	w_so;
 	t_pic	w_ea;
 	t_pic	w_we;
-	t_side_wall		side_wall;
+	t_side_wall		side_wall; // NS or EW ?
 }	t_cub;
 
 

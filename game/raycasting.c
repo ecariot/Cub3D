@@ -59,7 +59,7 @@ int	perform_dda(t_cub *cub)
 		if (cub->map[(int)cub->tab.x][(int)cub->tab.y] == '1')
 		{
 			cub->hit = 1;
-			printf("side = %d\n", side);
+			// printf("side = %d\n", side);
 			// printf("MAP = %c\n", cub->map[(int)cub->tab.x][(int)cub->tab.y]);
 		}
 	}
@@ -97,6 +97,7 @@ void wall_pixel_put(t_cub *cub, int x, int y)
 	px2 = print_wall->line_len * y2 + x2 * print_wall->bits_per_pixel / 8;
 	cub->screen.addr[px] = (char)print_wall->addr[px2];
 	cub->screen.addr[px + 1] = (char)print_wall->addr[px2 + 1];
+	// printf("PLAYER VOIT LE NORTH\n");
 	cub->screen.addr[px + 2] = (char)print_wall->addr[px2 + 2];
 }
 
@@ -133,7 +134,6 @@ int init_raycasting(t_cub *cub)
 			perpWallDist = (cub->sidedist.x - cub->deltadist.x);
 		else
 			perpWallDist = (cub->sidedist.y - cub->deltadist.y);
-
 		if (!side)
 			cub->wallx = cub->pos.y + perpWallDist * cub->raydir.y;
 		else
