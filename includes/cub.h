@@ -140,7 +140,7 @@ void	init_struct(t_cub *cub);
 int		draw_window(t_cub *cub, t_data *data);
 int	put_img(t_cub *cub);
 int	fill_wall_north(char **split_line, t_data *data);
-
+void wall_pixel_put(t_cub *cub, int x, int y);
 /** raycasting.c **/
 int init_raycasting(t_cub *cub);
 int	perform_dda(t_cub *cub);

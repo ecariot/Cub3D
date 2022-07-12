@@ -23,6 +23,7 @@ int main(int ac, char **av)
 	ft_read_map(&data, av[1]);
 	// data.fd = open(av[1], O_RDONLY);
 	ft_parsing(&data, av[1]);
+	printf("ca passe le parsing\n");
 	if (!(draw_window(&data.cub, &data)))
 	{
 		//free

@@ -22,8 +22,8 @@ void init_step_and_side(t_cub *cub)
 		cub->step.y = 1.0;
 		cub->sidedist.y = (cub->tab.y + 1.0 - cub->pos.y) * cub->deltadist.y;
 	}
-	printf("sidedist.x : %f    pos.x : %f   tab.x : %f    deltadist.x : %f \n", cub->sidedist.x, cub->pos.x, cub->tab.x, cub->deltadist.x);
-	printf("sidedist.y : %f    pos.y : %f   tab.y : %f    deltadist.y : %f\n", cub->sidedist.y, cub->pos.y, cub->tab.y, cub->deltadist.y);
+	// printf("sidedist.x : %f    pos.x : %f   tab.x : %f    deltadist.x : %f \n", cub->sidedist.x, cub->pos.x, cub->tab.x, cub->deltadist.x);
+	// printf("sidedist.y : %f    pos.y : %f   tab.y : %f    deltadist.y : %f\n", cub->sidedist.y, cub->pos.y, cub->tab.y, cub->deltadist.y);
 }
 
 int	perform_dda(t_cub *cub)
@@ -64,18 +64,19 @@ int	perform_dda(t_cub *cub)
 t_pic *recup_wall(t_cub *cub)
 {
 	if (cub->side_wall == NORTH)
-		return (&cub->w_no);
-	if (cub->side_wall == SOUTH)
-		return (&cub->w_so);
-	if (cub->side_wall == EAST)
 		return (&cub->w_ea);
-	if (cub->side_wall == WEST)
+	if (cub->side_wall == SOUTH)
 		return (&cub->w_we);
+	if (cub->side_wall == EAST)
+		return (&cub->w_so);
+	if (cub->side_wall == WEST)
+		return (&cub->w_no);
 	return (&cub->w_no);
 }
 
 void wall_pixel_put(t_cub *cub, int x, int y)
 {
+	// printf("je pass le dda algo\n");
 	int	px;
 	int	px2;
 	int	x2;
@@ -105,9 +106,10 @@ int init_raycasting(t_cub *cub)
 	x = 0;
 	side = 0;
 	init_player(cub);
-	printf("player = %c\n", cub->player);
+	printf("PLAYER = %c\n", cub->player);
 	while (x < cub->win_width)
 	{
+		printf("hello ici\n");
 		//init variable de raycasting
 		cub->camerax = 2.0 * x / cub->win_width - 1.0;
 		cub->raydir.x = cub->dir.x + cub->plane.x * cub->camerax;
@@ -125,17 +127,17 @@ int init_raycasting(t_cub *cub)
 		if (!side)
 		{
 			perpWallDist = (cub->sidedist.x - cub->deltadist.x);
-			printf("cub->sidedist.x : %f   cub->deltadist.x : %f\n", cub->sidedist.x, cub->deltadist.x);
+			// printf("cub->sidedist.x : %f   cub->deltadist.x : %f\n", cub->sidedist.x, cub->deltadist.x);
 			cub->wallx = cub->pos.y + perpWallDist * cub->raydir.y;
 		}
 		else
 		{
 			perpWallDist = (cub->sidedist.y - cub->deltadist.y);
-			printf("cub->sidedist.y : %f   cub->deltadist.y : %f\n", cub->sidedist.y, cub->deltadist.y);
+			// printf("cub->sidedist.y : %f   cub->deltadist.y : %f\n", cub->sidedist.y, cub->deltadist.y);
 			cub->wallx = cub->pos.x + perpWallDist * cub->raydir.x;
 		}
 		cub->wallx -= floor((cub->wallx));
-		printf("perpwalldist : %f\n", perpWallDist);
+		// printf("perpwalldist : %f\n", perpWallDist);
 		if (perpWallDist < 1.0)
 			perpWallDist = 1;
 		//calcule la hauteur du nmur a dessier
@@ -148,7 +150,9 @@ int init_raycasting(t_cub *cub)
 		}
 		x++;
 	}
+	printf("X = %d\n", x);
 	mlx_put_image_to_window(cub->mlx, cub->mlx_win, cub->screen.img, 0, 0);
+	printf("jai termine la fonction du ratcasting\n");
 	return (0);
 }
 

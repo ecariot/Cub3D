@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_game.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mbascuna <mbascuna@student.42.fr>          +#+  +:+       +#+        */
+/*   By: emcariot <emcariot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/05 13:24:53 by emcariot          #+#    #+#             */
-/*   Updated: 2022/07/07 15:14:54 by mbascuna         ###   ########.fr       */
+/*   Updated: 2022/07/12 13:35:37 by emcariot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,8 @@ int	draw_window(t_cub *cub, t_data *data)
 	cub->mlx_win = mlx_new_window(cub->mlx,  cub->win_width, cub->win_height, "Cub3d");
 	cub->screen.img = mlx_new_image(cub->mlx, cub->win_width, cub->win_height);
 	cub->screen.addr = mlx_get_data_addr(cub->screen.img, &cub->screen.bits_per_pixel, &cub->screen.line_len, &cub->screen.endian);
+
+
 	cub->w_no.img = mlx_xpm_file_to_image(cub->mlx, data->texture.north,
 		&cub->w_no.width, &cub->w_no.height);
 	if (!cub->w_no.img)
@@ -44,6 +46,8 @@ int	draw_window(t_cub *cub, t_data *data)
 		&cub->w_no.line_len, &cub->w_no.endian);
 	if (!cub->w_no.addr)
 		return_error("Missing texture2");
+
+
 	cub->w_so.img = mlx_xpm_file_to_image(cub->mlx, data->texture.south,
 		&cub->w_so.width, &cub->w_so.height);
 	if (!cub->w_so.img)
@@ -52,6 +56,8 @@ int	draw_window(t_cub *cub, t_data *data)
 		&cub->w_so.line_len, &cub->w_so.endian);
 	if (!cub->w_so.addr)
 		return_error("Missing texture4");
+
+
 	cub->w_ea.img = mlx_xpm_file_to_image(cub->mlx, data->texture.east,
 		&cub->w_ea.width, &cub->w_ea.height);
 	if (!cub->w_ea.img)
@@ -60,6 +66,8 @@ int	draw_window(t_cub *cub, t_data *data)
 		&cub->w_ea.line_len, &cub->w_ea.endian);
 	if (!cub->w_ea.addr)
 		return_error("Missing texture6");
+
+
 	cub->w_we.img = mlx_xpm_file_to_image(cub->mlx, data->texture.west,
 		&cub->w_we.width, &cub->w_we.height);
 	if (!cub->w_we.img)

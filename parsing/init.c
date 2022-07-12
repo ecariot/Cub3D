@@ -109,7 +109,7 @@ void	init_player(t_cub *cub)
 	}
 	if (cub->player == 'W')
 	{
-		cub->dir.x = 1.0;
+		cub->dir.x = -1.0;
 		cub->plane.y = -0.66;
 	}
 }
