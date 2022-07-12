@@ -23,7 +23,7 @@ int main(int ac, char **av)
 	ft_read_map(&data, av[1]);
 	// data.fd = open(av[1], O_RDONLY);
 	ft_parsing(&data, av[1]);
-	printf("player = %c\n", data.cub.player);
+	// printf("player = %c\n", data.cub.player);
 	if (!(draw_window(&data.cub, &data)))
 	{
 		//free
@@ -33,5 +33,6 @@ int main(int ac, char **av)
 	mlx_hook(data.cub.mlx_win, 2, 1L << 0, keycode, &data.cub);
 	mlx_loop_hook(data.cub.mlx, put_img, &data.cub);
 	mlx_loop(data.cub.mlx);
+	free_textures(&data.cub);
 	return (0);
 }

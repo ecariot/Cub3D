@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   moves.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mbascuna <mbascuna@student.42.fr>          +#+  +:+       +#+        */
+/*   By: emcariot <emcariot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/04 15:11:27 by emcariot          #+#    #+#             */
-/*   Updated: 2022/07/05 13:53:31 by mbascuna         ###   ########.fr       */
+/*   Updated: 2022/07/12 12:20:46 by emcariot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,5 +24,6 @@ int	keycode(int key, t_cub *cub)
 	// 	//move right
 	// if (key == 113)
 	// 	//move left
-	return (0);
+	// printf("je suis arrivee au bout de keycode\n");
+	return (1);
 }

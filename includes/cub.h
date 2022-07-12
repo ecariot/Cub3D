@@ -76,6 +76,7 @@ typedef struct s_cub
 	double wallx;
 	double	wall_len;
 	int	hit; // le mur est il hit ?
+	double	fov; //angle de vision du player
 	t_pic	screen;
 	t_pic	w_no;
 	t_pic	w_so;
@@ -152,7 +153,9 @@ int		ft_errors(char *str);
 int		return_error(char *str);
 
 //UTILS
-int	close_window(t_cub *cub);
+int		close_window(t_cub *cub);
 char	*ft_strdup_no_n(const char *s1);
+int	free_textures(t_cub *cub);
+void	free_map(char **map);
 
 #endif

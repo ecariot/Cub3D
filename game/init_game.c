@@ -6,24 +6,26 @@
 /*   By: emcariot <emcariot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/05 13:24:53 by emcariot          #+#    #+#             */
-/*   Updated: 2022/07/11 11:27:55 by emcariot         ###   ########.fr       */
+/*   Updated: 2022/07/12 12:20:34 by emcariot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub.h"
 
-// void draw_map(t_cub *cub)
-// {
-// 	// mlx_put_image_to_window(cub->mlx, cub->mlx_win, cub->w_no.img, 600, 600);
-// 	// mlx_put_image_to_window(cub->mlx, cub->mlx_win, cub->w_so.img, 50, 50);
-// 	// mlx_put_image_to_window(cub->mlx, cub->mlx_win, cub->w_ea.img, 200, 200);
-// 	// mlx_put_image_to_window(cub->mlx, cub->mlx_win, cub->w_we.img, 400, 400);
-// }
+void draw_map(t_cub *cub)
+{
+	mlx_put_image_to_window(cub->mlx, cub->mlx_win, cub->w_no.img, 0, 0);
+	mlx_put_image_to_window(cub->mlx, cub->mlx_win, cub->w_so.img, 150, 150);
+	mlx_put_image_to_window(cub->mlx, cub->mlx_win, cub->w_ea.img, 300, 300);
+	mlx_put_image_to_window(cub->mlx, cub->mlx_win, cub->w_we.img, 600, 600);
+	// printf("je suis arrivee au bout de draw_map\n");
+}
 
 int	put_img(t_cub *cub)
 {
-	init_raycasting(cub);
-	// draw_map(cub);
+	// init_raycasting(cub);
+	draw_map(cub);
+	// printf("je suis arrivee au bout de putimg\n");
 	return (1);
 }
 
@@ -68,5 +70,6 @@ int	draw_window(t_cub *cub, t_data *data)
 		&cub->w_we.line_len, &cub->w_we.endian);
 	if (!cub->w_we.addr)
 		return_error("Missing texture8");
+	// printf("je suis arrivee au bout de la fonction\n");
 	return (1);
 }
