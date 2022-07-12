@@ -1,0 +1,17 @@
+PLAYER SUD
+
+camerax : -0.561719   raydir.x : 0.370734   raydir.y : 1.000000  deltadist.x : 2.697349  deltadist.y : 1.000000
+sidedist.x : 2.697349    pos.x : 6.000000   tab.x : 6.000000    deltadist.x : 2.697349
+sidedist.y : 1.000000    pos.y : 10.000000   tab.y : 10.000000    deltadist.y : 1.000000
+cub->sidedist.y : 3.000000   cub->deltadist.y : 1.000000   cub->wallx : 6.741469
+perpwalldist : 2.000000
+camerax : -0.560937   raydir.x : 0.370219   raydir.y : 1.000000  deltadist.x : 2.701106  deltadist.y : 1.000000
+sidedist.x : 2.701106    pos.x : 6.000000   tab.x : 6.000000    deltadist.x : 2.701106
+sidedist.y : 1.000000    pos.y : 10.000000   tab.y : 10.000000    deltadist.y : 1.000000
+cub->sidedist.y : 3.000000   cub->deltadist.y : 1.000000   cub->wallx : 6.740437
+perpwalldist : 2.000000
+camerax : -0.560156   raydir.x : 0.369703   raydir.y : 1.000000  deltadist.x : 2.704873  deltadist.y : 1.000000
+sidedist.x : 2.704873    pos.x : 6.000000   tab.x : 6.000000    deltadist.x : 2.704873
+sidedist.y : 1.000000    pos.y : 10.000000   tab.y : 10.000000    deltadist.y : 1.000000
+cub->sidedist.y : 3.000000   cub->deltadist.y : 1.000000   cub->wallx : 6.739406
+perpwalldist : 2.000000

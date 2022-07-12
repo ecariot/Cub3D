@@ -40,6 +40,7 @@ void ft_init_cub(t_data *data)
 	data->cub.wallx = 0.0;
 	data->cub.hit = 0;
 	data->cub.map = NULL;
+	data->cub.side_wall = 0;
 	// data->cub.w_no.height = 0;
 	// data->cub.w_no.width = 0;
 }
@@ -94,22 +95,26 @@ void	init_player(t_cub *cub)
 {
 	if (cub->player == 'N')
 	{
+		cub->dir.x = 0.0;
 		cub->dir.y = -1.0;
 		cub->plane.x = 0.66;
 	}
 	if (cub->player == 'S')
 	{
+		cub->dir.x = 0.0;
 		cub->dir.y = 1.0;
 		cub->plane.x = -0.66;
 	}
-	if (cub->player == 'E')
-	{
-		cub->dir.x = -1.0;
-		cub->plane.y = 0.66;
-	}
 	if (cub->player == 'W')
 	{
-		cub->dir.x = 1.0;
+		cub->dir.x = -1.0;
+		cub->dir.y = 0.0;
 		cub->plane.y = -0.66;
+	}
+	if (cub->player == 'E')
+	{
+		cub->dir.x = 1.0;
+		cub->dir.y = 0.0;
+		cub->plane.y = 0.66;
 	}
 }

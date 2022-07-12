@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   global_parsing.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: emcariot <emcariot@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mbascuna <mbascuna@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/06 13:55:06 by mbascuna          #+#    #+#             */
-/*   Updated: 2022/07/07 16:50:29 by emcariot         ###   ########.fr       */
+/*   Updated: 2022/07/12 15:18:08 by mbascuna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ int ft_parse_elements(t_data *data, char *file)
 		{
 			while (i < data->cub.line)
 			{
-				data->cub.map[i] = ft_strdup(get_line);
+				data->cub.map[i] = ft_strdup_no_n(get_line);
 				free(get_line);
 				get_line = ft_get_next_line(data->fd);
 				i++;
@@ -81,9 +81,16 @@ int	ft_parsing(t_data *data, char *file)
 	printf("COLOR FLOOR :\nfloor-R : %d\nfloor-G : %d\nfloor-B : %d\n", data->texture.floor_r, data->texture.floor_g, data->texture.floor_b);
 	printf("COLOR CEILING :\nceiling-R : %d\nceiling-G : %d\nceiling-B : %d\n", data->texture.ceiling_r, data->texture.ceiling_g, data->texture.ceiling_b);
 	printf("MAP :\n");
+	int j = 0;
 	while (data->cub.map[i])
 	{
-		printf("map : %s", data->cub.map[i]);
+		j = 0;
+		while (data->cub.map[i][j])
+		{
+			printf("%c", data->cub.map[i][j]);
+			j++;
+		}
+		printf("\n");
 		i++;
 	}
 	return (0);
