@@ -92,7 +92,20 @@ void wall_pixel_put(t_cub *cub, int x, int y)
 	cub->screen.addr[px] = print_wall->addr[px2];
 }
 
-int init_raycasting(t_cub *cub)
+int	create_trgb(int t, int r, int g, int b)
+{
+	return (t << 24 | r << 16 | g << 8 | b);
+}
+
+void	my_mlx_pixel_put(t_data *data, t_cub *cub, int x, int y)
+{
+	char	*dst;
+
+	dst = cub->screen.addr + cub->screen.line_len * y + x * cub->screen.bits_per_pixel / 8;
+	*(unsigned int*)dst = create_trgb(0, data->texture.floor_r, data->texture.floor_g, data->texture.floor_b);
+}
+
+int init_raycasting(t_cub *cub, t_data *data)
 {
 	int x;
 	int y;
@@ -135,6 +148,12 @@ int init_raycasting(t_cub *cub)
 		while (y < (cub->win_height / 2 + cub->wall_len / 2))
 		{
 			wall_pixel_put(cub, x, y);
+			y++;
+		}
+		y = cub->win_height / 2 + cub->wall_len / 2;
+		while (y < (cub->win_height))
+		{
+			my_mlx_pixel_put(data, cub, x, y);
 			y++;
 		}
 		x++;

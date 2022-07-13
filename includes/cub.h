@@ -138,11 +138,11 @@ int		keycode(int key, t_cub *cub);
 int		init_cub(t_cub *cub);
 void	init_struct(t_cub *cub);
 int		draw_window(t_cub *cub, t_data *data);
-int	put_img(t_cub *cub);
+int	put_img(t_data *data);
 int	fill_wall_north(char **split_line, t_data *data);
 
 /** raycasting.c **/
-int init_raycasting(t_cub *cub);
+int init_raycasting(t_cub *cub, t_data *data);
 int	perform_dda(t_cub *cub);
 void init_step_and_side(t_cub *cub);
 
