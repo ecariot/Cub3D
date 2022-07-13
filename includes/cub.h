@@ -76,6 +76,12 @@ typedef struct s_cub
 	double wallx;
 	double	wall_len;
 	int	hit;
+	int	rotate_r;
+	int	rotate_l;
+	int left;
+	int right;
+	int down;
+	int forward;
 	t_pic	screen;
 	t_pic	w_no;
 	t_pic	w_so;
@@ -134,7 +140,6 @@ void	ft_read_map(t_data *data, char *file);
 void	init_player(t_cub *cub);
 
 //GAME
-int		keycode(int key, t_cub *cub);
 int		init_cub(t_cub *cub);
 void	init_struct(t_cub *cub);
 int		draw_window(t_cub *cub, t_data *data);
@@ -149,6 +154,9 @@ int	create_trgb(int t, int r, int g, int b);
 void	draw_ceiling(t_cub *cub, t_data *data, int x, int y);
 void	rotate_left(t_cub *cub);
 void	rotate_right(t_cub *cub);
+int	go_one(int key, t_data *data);
+int	keycode(int key, t_cub *cub);
+int	reset_key(int key, t_data *data);
 
 //ERROR
 int		ft_errors(char *str);

@@ -6,24 +6,15 @@
 /*   By: emcariot <emcariot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/13 11:26:19 by mbascuna          #+#    #+#             */
-/*   Updated: 2022/07/13 13:39:36 by emcariot         ###   ########.fr       */
+/*   Updated: 2022/07/13 17:04:59 by emcariot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub.h"
 
-void draw_map(t_cub *cub)
-{
-	mlx_put_image_to_window(cub->mlx, cub->mlx_win, cub->w_no.img, 600, 600);
-	mlx_put_image_to_window(cub->mlx, cub->mlx_win, cub->w_so.img, 50, 50);
-	mlx_put_image_to_window(cub->mlx, cub->mlx_win, cub->w_ea.img, 200, 200);
-	mlx_put_image_to_window(cub->mlx, cub->mlx_win, cub->w_we.img, 400, 400);
-}
-
 int	put_img(t_data *data)
 {
 	init_raycasting(&data->cub, data);
-	// draw_map(cub);
 	return (1);
 }
 
