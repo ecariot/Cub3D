@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_game.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mbascuna <mbascuna@student.42.fr>          +#+  +:+       +#+        */
+/*   By: emcariot <emcariot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/05 13:24:53 by emcariot          #+#    #+#             */
-/*   Updated: 2022/07/07 15:14:54 by mbascuna         ###   ########.fr       */
+/*   Updated: 2022/07/13 11:06:38 by emcariot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,9 @@ void draw_map(t_cub *cub)
 	mlx_put_image_to_window(cub->mlx, cub->mlx_win, cub->w_we.img, 400, 400);
 }
 
-int	put_img(t_cub *cub)
+int	put_img(t_data *data)
 {
-	init_raycasting(cub);
+	init_raycasting(&data->cub, data);
 	// draw_map(cub);
 	return (1);
 }

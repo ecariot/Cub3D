@@ -32,7 +32,7 @@ int main(int ac, char **av)
 	}
 	mlx_hook(data.cub.mlx_win, 17, 1L << 2, close_window, &data.cub);
 	mlx_hook(data.cub.mlx_win, 2, 1L << 0, keycode, &data.cub);
-	mlx_loop_hook(data.cub.mlx, put_img, &data.cub);
+	mlx_loop_hook(data.cub.mlx, put_img, &data);
 	mlx_loop(data.cub.mlx);
 	return (0);
 }

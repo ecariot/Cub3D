@@ -4,6 +4,7 @@ SRCS		=	parsing/parse_map.c game/init_game.c \
 				parsing/parse_texture.c  game/moves.c\
 				parsing/init.c parsing/check_map.c parsing/check_texture.c\
 				parsing/global_parsing.c game/raycasting.c \
+				game/raycasting_utils.c \
 
 OBJS        = ${SRCS:.c=.o}
 

@@ -92,7 +92,7 @@ void wall_pixel_put(t_cub *cub, int x, int y)
 	cub->screen.addr[px] = print_wall->addr[px2];
 }
 
-int init_raycasting(t_cub *cub)
+int init_raycasting(t_cub *cub, t_data *data)
 {
 	int x;
 	int y;
@@ -129,6 +129,12 @@ int init_raycasting(t_cub *cub)
 		if (perpWallDist < 1.0)
 			perpWallDist = 1;
 		cub->wall_len = (double)cub->win_height / perpWallDist;
+		y = 0;
+		while (y < (-cub->wall_len / 2 + cub->win_height / 2))
+		{
+			draw_ceiling(cub, data, x, y);
+			y++;
+		}
 		y = -cub->wall_len / 2 + cub->win_height / 2;
 		if (y < 0)
 			y = 0;
