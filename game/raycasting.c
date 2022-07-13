@@ -92,11 +92,6 @@ void wall_pixel_put(t_cub *cub, int x, int y)
 	cub->screen.addr[px] = print_wall->addr[px2];
 }
 
-int	create_trgb(int t, int r, int g, int b)
-{
-	return (t << 24 | r << 16 | g << 8 | b);
-}
-
 void	my_mlx_pixel_put(t_data *data, t_cub *cub, int x, int y)
 {
 	char	*dst;
