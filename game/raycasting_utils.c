@@ -13,3 +13,29 @@ void	draw_ceiling(t_cub *cub, t_data *data, int x, int y)
 	*(unsigned int *)dst = create_trgb(0, data->texture.ceiling_r,
 	data->texture.ceiling_g, data->texture.ceiling_b);
 }
+
+void	rotate_right(t_cub *cub)
+{
+	double	tmp;
+	double	tmp_plane;
+
+	tmp = cub->dir.x;
+	cub->dir.x = cub->dir.x * cos(0.88) - cub->dir.y * sin(0.88);
+	cub->dir.y = tmp * sin(0.88) + cub->dir.y * cos(0.88);
+	tmp_plane = cub->plane.x;
+	cub->plane.x = cub->plane.x * cos(0.88) - cub->plane.y * sin(0.88);
+	cub->plane.y = tmp_plane * sin(0.88) + cub->plane.y * cos(0.88);
+}
+
+void	rotate_left(t_cub *cub)
+{
+	double	tmp;
+	double	tmp_plane;
+
+	tmp = cub->dir.x;
+	cub->dir.x = cub->dir.x * cos(-0.88) - cub->dir.y * sin(-0.88);
+	cub->dir.y = tmp * sin(-0.88) + cub->dir.y * cos(-0.88);
+	tmp_plane = cub->plane.x;
+	cub->plane.x = cub->plane.x * cos(-0.88) - cub->plane.y * sin(-0.88);
+	cub->plane.y = tmp_plane * sin(-0.88) + cub->plane.y * cos(-0.88);
+}

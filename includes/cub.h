@@ -147,6 +147,8 @@ int	perform_dda(t_cub *cub);
 void init_step_and_side(t_cub *cub);
 int	create_trgb(int t, int r, int g, int b);
 void	draw_ceiling(t_cub *cub, t_data *data, int x, int y);
+void	rotate_left(t_cub *cub);
+void	rotate_right(t_cub *cub);
 
 //ERROR
 int		ft_errors(char *str);

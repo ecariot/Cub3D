@@ -6,7 +6,7 @@
 /*   By: emcariot <emcariot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/04 15:11:27 by emcariot          #+#    #+#             */
-/*   Updated: 2022/07/13 12:27:39 by emcariot         ###   ########.fr       */
+/*   Updated: 2022/07/13 14:31:53 by emcariot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,48 +32,56 @@ int	check_next_step(int x, int y, char **map)
 	return (0);
 }
 
-int	move_right(t_cub *cub)
+void	move_down(t_cub *cub)
 {
-	int	move;
+	int posy;
+	int posx;
 
-	move = check_next_step(cub->pos.x, cub->pos.y + 1, cub->map);
-	if (move == 1)
-		return (0);
-	cub->pos.y += 0.5;
-	return (1);
+	posy = floor(cub->pos.y + cub->dir.y * 0.1);
+	posx = floor(cub->pos.x + cub->dir.x * 0.1);
+	if (cub->map[posy][posx] == '1')
+		return ;
+	cub->pos.y += (cub->dir.y * 0.1);
+	cub->pos.x += (cub->dir.x * 0.1);
 }
 
-int	move_left(t_cub *cub)
+void	move_forward(t_cub *cub)
 {
-	int	move;
+	int posy;
+	int posx;
 
-	move = check_next_step(cub->pos.x, cub->pos.y - 1, cub->map);
-	if (move == 1)
-		return (0);
-	cub->pos.y -= 0.5;
-	return (1);
+	posy = floor(cub->pos.y - cub->dir.y * 0.1);
+	posx = floor(cub->pos.x - cub->dir.x * 0.1);
+	if (cub->map[posy][posx] == '1')
+		return ;
+	cub->pos.y -= (cub->dir.y * 0.1);
+	cub->pos.x -= (cub->dir.x * 0.1);
 }
 
-int	move_forward(t_cub *cub)
+void	move_left(t_cub *cub)
 {
-	int	move;
+	int posy;
+	int posx;
 
-	move = check_next_step(cub->pos.x - 1, cub->pos.y, cub->map);
-	if (move == 1)
-		return (0);
-	cub->pos.x -= 0.5;
-	return (1);
+	posy = floor(cub->pos.y - cub->plane.y * 0.1);
+	posx = floor(cub->pos.x - cub->plane.x * 0.1);
+	if (cub->map[posy][posx] == '1')
+		return ;
+	cub->pos.y -= (cub->plane.y * 0.1);
+	cub->pos.x -= (cub->plane.x * 0.1);
 }
 
-int	move_down(t_cub *cub)
+void	move_right(t_cub *cub)
 {
-	int	move;
+	int posy;
+	int posx;
 
-	move = check_next_step(cub->pos.x + 1, cub->pos.y, cub->map);
-	if (move == 1)
-		return (0);
-	cub->pos.x += 0.5;
-	return (1);
+	posy = floor(cub->pos.y + cub->plane.y * 0.1);
+	posx = floor(cub->pos.x + cub->plane.x * 0.1);
+	if (cub->map[posy][posx] == '1')
+		return ;
+	cub->pos.y += (cub->plane.y * 0.1);
+	cub->pos.x += (cub->plane.x * 0.1);
 }
 
 int	keycode(int key, t_cub *cub)
@@ -88,5 +96,9 @@ int	keycode(int key, t_cub *cub)
 		move_forward(cub);
 	if (key == 119)
 		move_down(cub);
+	if (key == 65363)
+		rotate_right(cub);
+	if (key == 65361)
+		rotate_left(cub);
 	return (0);
 }
