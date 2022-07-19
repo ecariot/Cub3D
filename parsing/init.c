@@ -58,16 +58,18 @@ void	ft_read_map(t_data *data, char *file)
 	get_line = ft_get_next_line(fd);
 	if (!get_line)
 		ft_errors("Error : file");
-	data->cub.col = ft_strlen(get_line);
+	// data->cub.col = ft_strlen(get_line);
 	data->cub.line = 0;
 	while (get_line)
 	{
 		free(get_line);
 		get_line = ft_get_next_line(fd);
 		if (ft_is_map(get_line))
+		{
 			data->cub.line++;
-		if (ft_strlen(get_line) > (size_t)data->cub.col)
-			data->cub.col = ft_strlen(get_line) - 1;
+			if ((ft_strlen(get_line) > (size_t)data->cub.col))
+				data->cub.col = ft_strlen(get_line) - 1;
+		}
 	}
 	close(fd);
 }
