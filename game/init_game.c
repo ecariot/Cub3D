@@ -3,27 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   init_game.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mbascuna <mbascuna@student.42.fr>          +#+  +:+       +#+        */
+/*   By: emcariot <emcariot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/13 11:26:19 by mbascuna          #+#    #+#             */
-/*   Updated: 2022/07/13 11:26:22 by mbascuna         ###   ########.fr       */
+/*   Updated: 2022/07/13 17:04:59 by emcariot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub.h"
 
-void draw_map(t_cub *cub)
-{
-	mlx_put_image_to_window(cub->mlx, cub->mlx_win, cub->w_no.img, 600, 600);
-	mlx_put_image_to_window(cub->mlx, cub->mlx_win, cub->w_so.img, 50, 50);
-	mlx_put_image_to_window(cub->mlx, cub->mlx_win, cub->w_ea.img, 200, 200);
-	mlx_put_image_to_window(cub->mlx, cub->mlx_win, cub->w_we.img, 400, 400);
-}
-
 int	put_img(t_data *data)
 {
 	init_raycasting(&data->cub, data);
-	// draw_map(cub);
 	return (1);
 }
 
@@ -33,7 +24,7 @@ int	draw_window(t_cub *cub, t_data *data)
 	if (!cub->mlx)
 		return_error("Erreur");
 	mlx_get_screen_size(cub->mlx, &cub->win_width, &cub->win_height);
-	cub->mlx_win = mlx_new_window(cub->mlx,  cub->win_width, cub->win_height, "Cub3d");
+	cub->mlx_win = mlx_new_window(cub->mlx,  cub->win_width, cub->win_height, "Welcome to Saint Tropez");
 	cub->screen.img = mlx_new_image(cub->mlx, cub->win_width, cub->win_height);
 	cub->screen.addr = mlx_get_data_addr(cub->screen.img, &cub->screen.bits_per_pixel, &cub->screen.line_len, &cub->screen.endian);
 	cub->w_no.img = mlx_xpm_file_to_image(cub->mlx, data->texture.north,
