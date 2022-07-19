@@ -1,6 +1,6 @@
 NO ./textures/ocean_textures/farground.xpm
 SO ./textures/grass.xpm
-EA ./textures/purplestone.xpm
+EA ./textures/marine.xpm
 WE ./textures/ocean_textures/bla.xpm
 
 F 237,195,24
