@@ -4,7 +4,7 @@ void	move_down(t_cub *cub)
 {
 	int posy;
 	int posx;
-	int moveSpeed = 0.1;
+	double moveSpeed = 0.1;
 
 	posy = floor(cub->pos.y + cub->dir.y * moveSpeed);
 	posx = floor(cub->pos.x + cub->dir.x * moveSpeed);
@@ -18,7 +18,7 @@ void	move_forward(t_cub *cub)
 {
 	int posy;
 	int posx;
-	int moveSpeed = 0.1;
+	double moveSpeed = 0.1;
 
 	posy = floor(cub->pos.y - cub->dir.y * moveSpeed);
 	posx = floor(cub->pos.x - cub->dir.x * moveSpeed);
@@ -32,7 +32,7 @@ void	move_left(t_cub *cub)
 {
 	int posy;
 	int posx;
-	int moveSpeed = 0.1;
+	double moveSpeed = 0.1;
 
 
 	posy = floor(cub->pos.y - cub->plane.y * moveSpeed);
@@ -47,7 +47,7 @@ void	move_right(t_cub *cub)
 {
 	int posy;
 	int posx;
-	int moveSpeed = 0.1;
+	double moveSpeed = 0.1;
 
 
 	posy = floor(cub->pos.y + cub->plane.y * moveSpeed);
