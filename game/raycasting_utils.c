@@ -18,24 +18,30 @@ void	rotate_right(t_cub *cub)
 {
 	double	tmp;
 	double	tmp_plane;
+	//  double frameTime = (time - oldTime) / 1000.0;
+	//  double rotSpeed = frameTime * 3.0;
+	double rotSpeed = (20.0 / 1000.0) * 3.0;
 
 	tmp = cub->dir.x;
-	cub->dir.x = cub->dir.x * cos(0.88) - cub->dir.y * sin(0.88);
-	cub->dir.y = tmp * sin(0.88) + cub->dir.y * cos(0.88);
+	cub->dir.x = cub->dir.x * cos(rotSpeed) - cub->dir.y * sin(rotSpeed);
+	cub->dir.y = tmp * sin(rotSpeed) + cub->dir.y * cos(rotSpeed);
 	tmp_plane = cub->plane.x;
-	cub->plane.x = cub->plane.x * cos(0.88) - cub->plane.y * sin(0.88);
-	cub->plane.y = tmp_plane * sin(0.88) + cub->plane.y * cos(0.88);
+	cub->plane.x = cub->plane.x * cos(rotSpeed) - cub->plane.y * sin(rotSpeed);
+	cub->plane.y = tmp_plane * sin(rotSpeed) + cub->plane.y * cos(rotSpeed);
 }
 
 void	rotate_left(t_cub *cub)
 {
 	double	tmp;
 	double	tmp_plane;
+	//  double frameTime = (time - oldTime) / 1000.0;
+	//  double rotSpeed = frameTime * 3.0;
+	double rotSpeed = (20.0 / 1000.0) * 3.0;
 
 	tmp = cub->dir.x;
-	cub->dir.x = cub->dir.x * cos(-0.88) - cub->dir.y * sin(-0.88);
-	cub->dir.y = tmp * sin(-0.88) + cub->dir.y * cos(-0.88);
+	cub->dir.x = cub->dir.x * cos(-rotSpeed) - cub->dir.y * sin(-rotSpeed);
+	cub->dir.y = tmp * sin(-rotSpeed) + cub->dir.y * cos(-rotSpeed);
 	tmp_plane = cub->plane.x;
-	cub->plane.x = cub->plane.x * cos(-0.88) - cub->plane.y * sin(-0.88);
-	cub->plane.y = tmp_plane * sin(-0.88) + cub->plane.y * cos(-0.88);
+	cub->plane.x = cub->plane.x * cos(-rotSpeed) - cub->plane.y * sin(-rotSpeed);
+	cub->plane.y = tmp_plane * sin(-rotSpeed) + cub->plane.y * cos(-rotSpeed);
 }

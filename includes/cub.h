@@ -11,6 +11,14 @@
 # include "../mlx_linux/mlx.h"
 # include "../mlx_linux/mlx_int.h"
 
+# define ESC 65307
+# define W 119
+# define S 115
+# define A 97
+# define D 100
+# define LEFT 65361
+# define RIGHT 65363
+
 typedef enum e_side_wall
 {
 	NORTH,

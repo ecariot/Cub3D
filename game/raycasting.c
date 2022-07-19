@@ -87,12 +87,12 @@ void wall_pixel_put(t_cub *cub, int x, int y)
 		x2 = print_wall->width - x2 - 1;
 	y2 = (int)((double)y * (double)print_wall->height / cub->wall_len);
 	px2 = print_wall->line_len * y2 + x2 * print_wall->bits_per_pixel / 8;
-	cub->screen.addr[px + 2] = print_wall->addr[px2 + 2];
-	cub->screen.addr[px + 1] = print_wall->addr[px2 + 1];
-	cub->screen.addr[px] = print_wall->addr[px2];
+	cub->screen.addr[px + 2] = (char)print_wall->addr[px2 + 2];
+	cub->screen.addr[px + 1] = (char)print_wall->addr[px2 + 1];
+	cub->screen.addr[px] = (char)print_wall->addr[px2];
 }
 
-void	my_mlx_pixel_put(t_data *data, t_cub *cub, int x, int y)
+void	floor_pixel_put(t_data *data, t_cub *cub, int x, int y)
 {
 	char	*dst;
 
@@ -119,6 +119,7 @@ int init_raycasting(t_cub *cub, t_data *data)
 		cub->raydir.y = cub->dir.y + cub->plane.y * cub->camerax;
 		cub->tab.x = (int)cub->pos.x;
 		cub->tab.y = (int)cub->pos.y;
+		// if (cub->raydir.x == 0) ->	cub->deltadist.x = 1e30;
 		cub->deltadist.x = fabs(1.0 / cub->raydir.x);
 		cub->deltadist.y = fabs(1.0 / cub->raydir.y);
 		cub->hit = 0;
@@ -147,15 +148,18 @@ int init_raycasting(t_cub *cub, t_data *data)
 		y = -cub->wall_len / 2 + cub->win_height / 2;
 		if (y < 0)
 			y = 0;
-		while (y < (cub->win_height / 2 + cub->wall_len / 2))
+		int draw_end;
+		draw_end = cub->win_height / 2 + cub->wall_len / 2;
+		if (draw_end >= cub->win_height)
+			draw_end = cub->win_height;
+		while (y < draw_end)
 		{
 			wall_pixel_put(cub, x, y);
 			y++;
 		}
-		y = cub->win_height / 2 + cub->wall_len / 2;
 		while (y < (cub->win_height))
 		{
-			my_mlx_pixel_put(data, cub, x, y);
+			floor_pixel_put(data, cub, x, y);
 			y++;
 		}
 		x++;

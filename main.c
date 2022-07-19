@@ -21,15 +21,11 @@ int main(int ac, char **av)
 		return (1);
 	}
 	ft_read_map(&data, av[1]);
+	if (ft_parsing(&data, av[1]))
+		return (0);
 	// data.fd = open(av[1], O_RDONLY);
-	if (!ft_parsing(&data, av[1]))
-	{
-		if (!(draw_window(&data.cub, &data)))
-		{
-			//free
-			return (-1);
-		}
-	}
+	if (!(draw_window(&data.cub, &data)))
+		return (-1);
 	mlx_hook(data.cub.mlx_win, 17, 1L << 2, close_window, &data.cub);
 	mlx_hook(data.cub.mlx_win, 2, 1L << 0, keycode, &data.cub);
 	mlx_loop_hook(data.cub.mlx, put_img, &data);
