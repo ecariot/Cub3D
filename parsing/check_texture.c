@@ -6,7 +6,7 @@
 /*   By: mbascuna <mbascuna@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/06 09:56:21 by mbascuna          #+#    #+#             */
-/*   Updated: 2022/07/06 14:48:05 by mbascuna         ###   ########.fr       */
+/*   Updated: 2022/07/19 15:21:40 by mbascuna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int ft_check_digits(char **format_color)
 	while (format_color[i])
 	{
 		tmp = ft_atoi(format_color[i]);
-		if (tmp > 255 || tmp < 0 || !tmp)
+		if (tmp > 255 || tmp < 0)
 			return (0);
 		i++;
 	}
