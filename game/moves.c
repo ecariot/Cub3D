@@ -6,31 +6,11 @@
 /*   By: emcariot <emcariot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/04 15:11:27 by emcariot          #+#    #+#             */
-/*   Updated: 2022/07/13 17:05:58 by emcariot         ###   ########.fr       */
+/*   Updated: 2022/07/19 10:28:27 by emcariot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub.h"
-
-int	check_next_step(int x, int y, char **map)
-{
-	int	i;
-	int	j;
-
-	i = 0;
-	while (map[i])
-	{
-		j = 0;
-		while (map[i][j])
-		{
-			if (map[i][j] == '1' && x == j && y == i)
-				return (1);
-			j++;
-		}
-		i++;
-	}
-	return (0);
-}
 
 void	move_down(t_cub *cub)
 {
