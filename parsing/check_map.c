@@ -6,7 +6,7 @@
 /*   By: mbascuna <mbascuna@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/05 14:35:57 by mbascuna          #+#    #+#             */
-/*   Updated: 2022/07/19 16:26:41 by mbascuna         ###   ########.fr       */
+/*   Updated: 2022/07/19 16:35:51 by mbascuna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,7 +107,7 @@ int	ft_check_player(char **map, t_data *data)
 	return (1);
 }
 
-char **ft_replace_space(char **map, t_data *data)
+char **ft_replace_space_inside(char **map, t_data *data)
 {
 	int y;
 	int x;
@@ -129,7 +129,7 @@ char **ft_replace_space(char **map, t_data *data)
 
 int	ft_check_map(t_data *data)
 {
-	data->cub.map = ft_replace_space(data->cub.map, data);
+	data->cub.map = ft_replace_space_inside(data->cub.map, data);
 	if (!(ft_check_char(data->cub.map)))
 		return (ft_errors("Wrong char in map"));
 	if (!(ft_check_if_close(data->cub.map)))
