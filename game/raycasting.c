@@ -119,10 +119,10 @@ int init_raycasting(t_cub *cub, t_data *data)
 		cub->raydir.y = cub->dir.y + cub->plane.y * cub->camerax;
 		cub->tab.x = (int)cub->pos.x;
 		cub->tab.y = (int)cub->pos.y;
+		cub->hit = 0;
 		// if (cub->raydir.x == 0) ->	cub->deltadist.x = 1e30;
 		cub->deltadist.x = fabs(1.0 / cub->raydir.x);
 		cub->deltadist.y = fabs(1.0 / cub->raydir.y);
-		cub->hit = 0;
 		init_step_and_side(cub);
 		side = perform_dda(cub);
 		if (!side)
