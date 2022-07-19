@@ -6,7 +6,7 @@
 /*   By: mbascuna <mbascuna@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/04 15:11:27 by emcariot          #+#    #+#             */
-/*   Updated: 2022/07/19 11:02:25 by mbascuna         ###   ########.fr       */
+/*   Updated: 2022/07/19 14:38:01 by mbascuna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void	move_down(t_cub *cub)
 {
 	int posy;
 	int posx;
-	int moveSpeed = 0.1;
+	double moveSpeed = 0.1;
 
 	posy = floor(cub->pos.y + cub->dir.y * moveSpeed);
 	posx = floor(cub->pos.x + cub->dir.x * moveSpeed);
@@ -30,7 +30,7 @@ void	move_forward(t_cub *cub)
 {
 	int posy;
 	int posx;
-	int moveSpeed = 0.1;
+	double moveSpeed = 0.1;
 
 	posy = floor(cub->pos.y - cub->dir.y * moveSpeed);
 	posx = floor(cub->pos.x - cub->dir.x * moveSpeed);
@@ -44,8 +44,7 @@ void	move_left(t_cub *cub)
 {
 	int posy;
 	int posx;
-	int moveSpeed = 0.1;
-
+	double moveSpeed = 0.1;
 
 	posy = floor(cub->pos.y - cub->plane.y * moveSpeed);
 	posx = floor(cub->pos.x - cub->plane.x * moveSpeed);
@@ -59,7 +58,7 @@ void	move_right(t_cub *cub)
 {
 	int posy;
 	int posx;
-	int moveSpeed = 0.1;
+	double moveSpeed = 0.1;
 
 
 	posy = floor(cub->pos.y + cub->plane.y * moveSpeed);

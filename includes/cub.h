@@ -59,7 +59,9 @@ typedef struct s_texture
 typedef struct	s_coord
 {
 	double x;
+	double x1;
 	double y;
+	double y1;
 } t_coord;
 
 typedef struct s_cub
@@ -173,5 +175,12 @@ int		return_error(char *str);
 //UTILS
 int	close_window(t_cub *cub);
 char	*ft_strdup_no_n(const char *s1);
+
+
+void	deal_key(t_cub *cub);
+int	bind_hook(int key, t_cub *cub);
+int	bind_hook_release(int key, t_cub *cub);
+
+
 
 #endif

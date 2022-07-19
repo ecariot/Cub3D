@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_game.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: emcariot <emcariot@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mbascuna <mbascuna@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/13 11:26:19 by mbascuna          #+#    #+#             */
-/*   Updated: 2022/07/13 17:04:59 by emcariot         ###   ########.fr       */
+/*   Updated: 2022/07/19 14:38:21 by mbascuna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ int	draw_window(t_cub *cub, t_data *data)
 	if (!cub->mlx)
 		return_error("Erreur");
 	mlx_get_screen_size(cub->mlx, &cub->win_width, &cub->win_height);
-	cub->mlx_win = mlx_new_window(cub->mlx,  cub->win_width, cub->win_height, "Welcome to Saint Tropez");
+	cub->mlx_win = mlx_new_window(cub->mlx, cub->win_width, cub->win_height, "Welcome to Saint Tropez");
 	cub->screen.img = mlx_new_image(cub->mlx, cub->win_width, cub->win_height);
 	cub->screen.addr = mlx_get_data_addr(cub->screen.img, &cub->screen.bits_per_pixel, &cub->screen.line_len, &cub->screen.endian);
 	cub->w_no.img = mlx_xpm_file_to_image(cub->mlx, data->texture.north,
