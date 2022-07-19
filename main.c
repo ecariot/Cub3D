@@ -24,6 +24,7 @@ int main(int ac, char **av)
 	if (ft_parsing(&data, av[1]))
 		return (0);
 	// data.fd = open(av[1], O_RDONLY);
+	init_player(&data.cub);
 	if (!(draw_window(&data.cub, &data)))
 		return (-1);
 	mlx_hook(data.cub.mlx_win, 17, 1L << 2, close_window, &data.cub);

@@ -18,8 +18,6 @@ void	rotate_right(t_cub *cub)
 {
 	double	tmp;
 	double	tmp_plane;
-	//  double frameTime = (time - oldTime) / 1000.0;
-	//  double rotSpeed = frameTime * 3.0;
 	double rotSpeed = (20.0 / 1000.0) * 3.0;
 
 	tmp = cub->dir.x;
@@ -34,8 +32,6 @@ void	rotate_left(t_cub *cub)
 {
 	double	tmp;
 	double	tmp_plane;
-	//  double frameTime = (time - oldTime) / 1000.0;
-	//  double rotSpeed = frameTime * 3.0;
 	double rotSpeed = (20.0 / 1000.0) * 3.0;
 
 	tmp = cub->dir.x;

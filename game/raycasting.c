@@ -110,7 +110,6 @@ int init_raycasting(t_cub *cub, t_data *data)
 
 	x = 0;
 	side = 0;
-	init_player(cub);
 	while (x < cub->win_width)
 	{
 		//init variable de raycasting
@@ -128,13 +127,15 @@ int init_raycasting(t_cub *cub, t_data *data)
 		if (!side)
 		{
 			perpWallDist = (cub->sidedist.x - cub->deltadist.x);
-			cub->wallx = cub->pos.y + perpWallDist * cub->raydir.y;
 		}
 		else
 		{
 			perpWallDist = (cub->sidedist.y - cub->deltadist.y);
-			cub->wallx = cub->pos.x + perpWallDist * cub->raydir.x;
 		}
+		if (!side)
+			cub->wallx = cub->pos.y + perpWallDist * cub->raydir.y;
+		else
+			cub->wallx = cub->pos.x + perpWallDist * cub->raydir.x;
 		cub->wallx -= floor((cub->wallx));
 		if (perpWallDist < 1.0)
 			perpWallDist = 1;

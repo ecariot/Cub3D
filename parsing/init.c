@@ -23,7 +23,7 @@ void ft_init_cub(t_data *data)
 	data->cub.win_width = 0;
 	data->cub.win_height = 0;
 	data->cub.dir.x = 0.0;
-	data->cub.dir.y = 0.0;
+	data->cub.dir.y = -1;
 	data->cub.pos.x = 0.0;
 	data->cub.pos.y = 0.0;
 	data->cub.plane.x = 0.0;
