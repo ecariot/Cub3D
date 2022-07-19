@@ -6,7 +6,7 @@
 /*   By: mbascuna <mbascuna@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/06 13:55:06 by mbascuna          #+#    #+#             */
-/*   Updated: 2022/07/19 09:25:44 by mbascuna         ###   ########.fr       */
+/*   Updated: 2022/07/19 15:36:53 by mbascuna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ int ft_parse_elements(t_data *data, char *file)
 			if (is_valid_color(split_line))
 				return (1);
 			if (ft_parse_color(split_line, data))
-				return (ft_errors("Color already exist"));
+				return (1);
 		}
 		else if (ft_is_map(get_line) && get_line[0] != '\n')
 		{
@@ -69,11 +69,11 @@ int	ft_parsing(t_data *data, char *file)
 		close(data->fd);
 		return (1);
 	}
-	if (!ft_check_map(data))
+	if (ft_check_map(data))
 	{
 		return (1);
 	}
-	if (!ft_check_texture(data->texture))
+	if (ft_check_texture(data->texture))
 	{
 		return (1);
 	}

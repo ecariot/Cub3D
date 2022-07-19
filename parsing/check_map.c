@@ -1,15 +1,3 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   check_map.c                                        :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: emcariot <emcariot@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/07/05 14:35:57 by mbascuna          #+#    #+#             */
-/*   Updated: 2022/07/19 15:37:43 by emcariot         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #include "../includes/cub.h"
 
 int is_valid_char(char c)
@@ -115,7 +103,5 @@ int	ft_check_map(t_data *data)
 		return (ft_errors("Map is not closed"));
 	if (!(ft_check_player(data->cub.map, data)))
 		return (ft_errors("Too Many Players"));
-	return (1);
+	return (0);
 }
-
-
