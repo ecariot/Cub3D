@@ -29,7 +29,6 @@ int	perform_dda(t_cub *cub)
 	int	side;
 
 	side = 0;
-	cub->side_wall = 0;
 	while (cub->hit == 0)
 	{
 		if (cub->sidedist.x < cub->sidedist.y)
@@ -92,14 +91,13 @@ void wall_pixel_put(t_cub *cub, int x, int y)
 	cub->screen.addr[px] = (char)print_wall->addr[px2];
 }
 
-void	floor_pixel_put(t_data *data, t_cub *cub, int x, int y)
+void    floor_pixel_put(t_data *data, t_cub *cub, int x, int y)
 {
-	char	*dst;
+    char    *dst;
 
-	dst = cub->screen.addr + cub->screen.line_len * y + x * cub->screen.bits_per_pixel / 8;
-	*(unsigned int*)dst = create_trgb(0, data->texture.floor_r, data->texture.floor_g, data->texture.floor_b);
+    dst = cub->screen.addr + cub->screen.line_len * y + x * cub->screen.bits_per_pixel / 8;
+    *(unsigned int*)dst = create_trgb(0, data->texture.floor_r, data->texture.floor_g, data->texture.floor_b);
 }
-
 
 int init_raycasting(t_cub *cub, t_data *data)
 {
@@ -107,14 +105,14 @@ int init_raycasting(t_cub *cub, t_data *data)
 	int y;
 	int side;
 	double perpWallDist;
+	int draw_end;
 
 	x = 0;
 	side = 0;
-	init_player(cub);
 	while (x < cub->win_width)
 	{
 		//init variable de raycasting
-		cub->camerax = 2.0 * x / cub->win_width - 1.0;
+		cub->camerax = 2.0 * x / (double)cub->win_width - 1.0;
 		cub->raydir.x = cub->dir.x + cub->plane.x * cub->camerax;
 		cub->raydir.y = cub->dir.y + cub->plane.y * cub->camerax;
 		cub->tab.x = (int)cub->pos.x;
@@ -148,7 +146,6 @@ int init_raycasting(t_cub *cub, t_data *data)
 		y = -cub->wall_len / 2 + cub->win_height / 2;
 		if (y < 0)
 			y = 0;
-		int draw_end;
 		draw_end = cub->win_height / 2 + cub->wall_len / 2;
 		if (draw_end >= cub->win_height)
 			draw_end = cub->win_height;
