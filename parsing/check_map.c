@@ -6,7 +6,7 @@
 /*   By: mbascuna <mbascuna@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/05 14:35:57 by mbascuna          #+#    #+#             */
-/*   Updated: 2022/07/12 09:02:10 by mbascuna         ###   ########.fr       */
+/*   Updated: 2022/07/19 15:36:45 by mbascuna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,7 +115,7 @@ int	ft_check_map(t_data *data)
 		return (ft_errors("Map is not closed"));
 	if (!(ft_check_player(data->cub.map, data)))
 		return (ft_errors("Too Many Players"));
-	return (1);
+	return (0);
 }
 
 
