@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_texture.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mbascuna <mbascuna@student.42.fr>          +#+  +:+       +#+        */
+/*   By: emcariot <emcariot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/06 09:56:21 by mbascuna          #+#    #+#             */
-/*   Updated: 2022/07/19 15:35:58 by mbascuna         ###   ########.fr       */
+/*   Updated: 2022/07/19 16:42:47 by emcariot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,13 +63,38 @@ int	is_valid_texture(char **split_line)
 	return (0);
 }
 
+int	is_valid_digit(char **split_line)
+{
+	int i = 1;
+	int j;
+
+	while (split_line[i])
+	{
+		j = 0;
+		// printf("split_line = %s\n", split_line[i]);
+		while (split_line[i][j])
+		{
+			if (!ft_isdigit(split_line[i][j]) && split_line[i][j] != '\n')
+			{
+				// printf("char = %c\n", split_line[i][j]);
+				return (1);
+			}
+			j++;
+		}
+		i++;
+	}
+	return (0);
+}
+
 int	is_valid_color(char **split_line)
 {
+	if (is_valid_digit(split_line) == 1)
+		return (ft_errors("Wrong char in colors"));
 	if (ft_strlen_tab(split_line) < 4)
 		return (ft_errors("Color is missing"));
 	if (ft_strlen_tab(split_line) > 4)
 		return (ft_errors("Too Much color"));
-	if (!ft_check_digits(split_line))
+	else if (!ft_check_digits(split_line))
 		return (ft_errors("Color must be between 0 and 255"));
 	return (0);
 }
