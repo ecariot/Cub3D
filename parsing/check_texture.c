@@ -6,7 +6,7 @@
 /*   By: mbascuna <mbascuna@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/06 09:56:21 by mbascuna          #+#    #+#             */
-/*   Updated: 2022/07/19 15:21:40 by mbascuna         ###   ########.fr       */
+/*   Updated: 2022/07/19 15:35:58 by mbascuna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ int	ft_check_texture(t_texture texture)
 		return (ft_errors("Texture is missing"));
 	if (!ft_color_is_full(texture))
 		return (ft_errors("Color is missing"));
-	return (1);
+	return (0);
 }
 
 int	is_valid_texture(char **split_line)
