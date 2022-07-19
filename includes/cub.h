@@ -175,12 +175,6 @@ int		return_error(char *str);
 //UTILS
 int	close_window(t_cub *cub);
 char	*ft_strdup_no_n(const char *s1);
-
-
-void	deal_key(t_cub *cub);
-int	bind_hook(int key, t_cub *cub);
-int	bind_hook_release(int key, t_cub *cub);
-
-
+char	*ft_strdup_replace_space(const char *s1, t_data *data);
 
 #endif
