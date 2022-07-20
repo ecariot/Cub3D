@@ -49,7 +49,7 @@ void ft_init_cub(t_data *data)
 	// data->cub.forward = 0;
 }
 
-void	ft_read_map(t_data *data, char *file)
+int	ft_read_map(t_data *data, char *file)
 {
 	char	*get_line;
 	int		fd;
@@ -57,7 +57,10 @@ void	ft_read_map(t_data *data, char *file)
 	fd = open(file, O_RDONLY);
 	get_line = ft_get_next_line(fd);
 	if (!get_line)
-		ft_errors("Error : file");
+	{
+		ft_errors("Empty file");
+		return 1;
+	}
 	data->cub.col = ft_strlen(get_line);
 	data->cub.line = 0;
 	while (get_line)
@@ -70,6 +73,7 @@ void	ft_read_map(t_data *data, char *file)
 			data->cub.col = ft_strlen(get_line) - 1;
 	}
 	close(fd);
+	return 0;
 }
 
 char	**ft_init_tab(t_data *data)
@@ -78,6 +82,10 @@ char	**ft_init_tab(t_data *data)
 	int tmp;
 
 	tmp = data->cub.line;
+	if (!tmp)
+	{
+		ft_errors("Empty map");
+	}
 	tab = (char **)malloc(sizeof(char *) * (data->cub.line + 1));
 	if (!tab)
 		return (NULL);

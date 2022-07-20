@@ -146,7 +146,7 @@ int	is_valid_color(char **split_line);
 void ft_init_texture(t_data *data);
 void ft_init_cub(t_data *data);
 char	**ft_init_tab(t_data *data);
-void	ft_read_map(t_data *data, char *file);
+int	ft_read_map(t_data *data, char *file);
 void	init_player(t_cub *cub);
 
 //GAME

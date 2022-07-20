@@ -20,7 +20,8 @@ int main(int ac, char **av)
 		close(data.fd);
 		return (1);
 	}
-	ft_read_map(&data, av[1]);
+	if (ft_read_map(&data, av[1]) == 1)
+		return (1);
 	if (ft_parsing(&data, av[1]))
 		return (0);
 	init_player(&data.cub);
