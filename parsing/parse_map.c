@@ -24,6 +24,8 @@ int	ft_is_map(char *line)
 	int i;
 
 	i = 0;
+	if (!line)
+		return (0);
 	len = ft_strlen(line);
 	if (!len)
 		return (0);
