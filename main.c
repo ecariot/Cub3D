@@ -14,6 +14,14 @@ int	put_img(t_data *data)
 	return (1);
 }
 
+void	ft_free_texture(t_data *data)
+{
+	free(data->texture.south);
+	free(data->texture.north);
+	free(data->texture.east);
+	free(data->texture.west);
+}
+
 int main(int ac, char **av)
 {
 	t_data	data;
@@ -40,6 +48,7 @@ int main(int ac, char **av)
 	mlx_loop_hook(data.cub.mlx, put_img, &data);
 	mlx_hook(data.cub.mlx_win, 3, 1L << 1, keycode_zero, &data.cub);
 	mlx_loop(data.cub.mlx);
+	ft_free_texture(&data);
 	return (0);
 }
 
