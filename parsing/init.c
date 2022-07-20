@@ -84,13 +84,11 @@ char	**ft_init_tab(t_data *data)
 	int tmp;
 
 	tmp = data->cub.line;
-	if (!tmp)
-	{
-		ft_errors("Empty map");
-	}
 	tab = (char **)malloc(sizeof(char *) * (data->cub.line + 1));
 	if (!tab)
+	{
 		return (NULL);
+	}
 	tab[tmp] = NULL;
 	while (tmp > 0)
 	{
