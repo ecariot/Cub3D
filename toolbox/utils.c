@@ -5,6 +5,7 @@ int	close_window(t_cub *cub)
 	ft_free_tab(cub->map);
 	if (cub->mlx_win)
 		mlx_destroy_window(cub->mlx, cub->mlx_win);
+	// free_texture(cub);
 	return (mlx_loop_end(cub->mlx));
 }
 
@@ -59,13 +60,10 @@ int	free_texture(t_cub *cub)
 		mlx_destroy_image(cub->mlx, cub->w_ea.img);
 	if (cub->w_we.img)
 		mlx_destroy_image(cub->mlx, cub->w_we.img);
-	if (cub->mlx_win)
-		mlx_destroy_window(cub->mlx, cub->mlx_win);
 	if (cub->mlx)
-	{
-		mlx_destroy_display(cub->mlx);
-		free(cub->mlx);
-	}
-	ft_free_tab(cub->map);
+	// {
+	// 	mlx_destroy_display(cub->mlx);
+	// 	free(cub->mlx);
+	// }
 	return (1);
 }

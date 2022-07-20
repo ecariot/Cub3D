@@ -39,7 +39,7 @@ int main(int ac, char **av)
 	init_player(&data.cub);
 	if (!(draw_window(&data.cub, &data)))
 	{
-		free_texture(&data.cub);
+		// free_texture(&data.cub);
 		return (-1);
 	}
 	mlx_hook(data.cub.mlx_win, 2, 1L << 0, keycode, &data.cub);
