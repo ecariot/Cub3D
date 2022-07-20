@@ -41,12 +41,12 @@ void ft_init_cub(t_data *data)
 	data->cub.hit = 0;
 	data->cub.map = NULL;
 	data->cub.side_wall = 0;
-	// data->cub.rotate_r = 0;
-	// data->cub.rotate_l = 0;
-	// data->cub.left = 0;
-	// data->cub.right = 0;
-	// data->cub.down = 0;
-	// data->cub.forward = 0;
+	data->cub.rotate_r = 0;
+	data->cub.rotate_l = 0;
+	data->cub.left = 0;
+	data->cub.right = 0;
+	data->cub.down = 0;
+	data->cub.forward = 0;
 }
 
 int	ft_read_map(t_data *data, char *file)

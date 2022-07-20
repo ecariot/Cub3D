@@ -3,20 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   init_game.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mbascuna <mbascuna@student.42.fr>          +#+  +:+       +#+        */
+/*   By: emcariot <emcariot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/13 11:26:19 by mbascuna          #+#    #+#             */
-/*   Updated: 2022/07/19 14:38:21 by mbascuna         ###   ########.fr       */
+/*   Updated: 2022/07/20 13:17:02 by emcariot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub.h"
-
-int	put_img(t_data *data)
-{
-	init_raycasting(&data->cub, data);
-	return (1);
-}
 
 int	draw_window(t_cub *cub, t_data *data)
 {
