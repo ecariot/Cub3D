@@ -100,7 +100,7 @@ char **ft_replace_space_inside(char **map, t_data *data)
 	int x;
 
 	y = 0;
-	while (map[y])
+	while (y < data->cub.line)
 	{
 		x = 0;
 		while (x <= data->cub.col)
@@ -108,25 +108,13 @@ char **ft_replace_space_inside(char **map, t_data *data)
 			if (ft_isspace(map[y][x]))
 			{
 				if (y != 0 && map[y - 1][x] == '0')
-				{
-					printf("ici");
 					return (NULL);
-				}
 				else if (x != 0 && map[y][x - 1] == '0')
-				{
-					printf("ici2");
 					return (NULL);
-				}
-				else if (y != data->cub.line && (map[y + 1][x] == '0' || map[y + 1][x] == '\0'))
-				{
-					printf("ici3");
+				else if (x != data->cub.col && (map[y][x + 1] == '0'))
 					return (NULL);
-				}
-				else if (x != data->cub.col && (map[y][x + 1] == '0' ||  map[y][x + 1] == '\0'))
-				{
-					printf("ici4");
+				else if (y != (data->cub.line - 1) && (map[y + 1][x] == '0'))
 					return (NULL);
-				}
 				else
 					map[y][x] = '1';
 			}
@@ -145,7 +133,7 @@ int	ft_check_map(t_data *data)
 		return (ft_errors("No player"));
 	data->cub.map = ft_replace_space_inside(data->cub.map, data);
 	if (!data->cub.map)
-		return (ft_errors("Map is not closed"));
+		return (ft_errors("Map is not closed1"));
 	if (!(ft_check_char(data->cub.map)))
 		return (ft_errors("Wrong char in map"));
 	if (!(ft_check_if_close(data->cub.map)))
