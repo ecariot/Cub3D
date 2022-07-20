@@ -30,12 +30,8 @@ int main(int ac, char **av)
 		return (ft_errors("Wrong nb of args"));
 	ft_init_texture(&data);
 	ft_init_cub(&data);
-	data.fd = open(av[1], O_RDONLY);
 	if (ft_check_extension(av[1], ".cub") != 0)
-	{
-		close(data.fd);
 		return (1);
-	}
 	if (ft_read_map(&data, av[1]) == 1)
 		return (1);
 	if (ft_parsing(&data, av[1]))
