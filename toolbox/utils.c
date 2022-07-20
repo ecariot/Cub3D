@@ -2,6 +2,9 @@
 
 int	close_window(t_cub *cub)
 {
+	ft_free_tab(cub->map);
+	if (cub->mlx_win)
+		mlx_destroy_window(cub->mlx, cub->mlx_win);
 	return (mlx_loop_end(cub->mlx));
 }
 

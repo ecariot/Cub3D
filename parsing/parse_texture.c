@@ -17,10 +17,10 @@ int	ft_parse_color(char **split_line, char **split_color, t_data *data)
 	}
 	else
 	{
+		ft_free_tab(split_color);
 		ft_free_tab(split_line);
 		return (1);
 	}
-	ft_free_tab(split_line);
 	ft_free_tab(split_color);
 	return(0);
 }
@@ -40,7 +40,6 @@ int	ft_parse_texture(char **split_line, t_data *data)
 		ft_free_tab(split_line);
 		return (1);
 	}
-	ft_free_tab(split_line);
 	return (0);
 }
 
