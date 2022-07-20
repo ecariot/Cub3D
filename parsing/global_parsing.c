@@ -15,6 +15,7 @@ int ft_parse_elements(t_data *data, char *file)
 	while (get_line)
 	{
 		split_line = ft_split_many(get_line, " ");
+		// printf("split_line[0] : %s\n", split_line[0]);
 		if (ft_is_texture(split_line))
 		{
 			if (is_valid_texture(split_line))
@@ -36,7 +37,7 @@ int ft_parse_elements(t_data *data, char *file)
 			split_color = ft_split_many(split_line[1], " ,");
 			if (is_valid_color(split_color))
 				return (1);
-			if (ft_parse_color(split_line, data))
+			if (ft_parse_color(split_line, split_color, data))
 				return (1);
 		}
 		else if (ft_is_map(get_line) && get_line[0] != '\n')
@@ -44,8 +45,6 @@ int ft_parse_elements(t_data *data, char *file)
 			while (i < data->cub.line)
 			{
 				data->cub.map[i] = ft_replace_space_end(get_line, data);
-				if (!data->cub.map[i])
-					return (ft_errors("open map"));
 				free(get_line);
 				get_line = ft_get_next_line(data->fd);
 				i++;
