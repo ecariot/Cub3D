@@ -20,7 +20,7 @@ void	ft_free_struct(t_data *data)
 	free(data->texture.north);
 	free(data->texture.east);
 	free(data->texture.west);
-	// ft_free_tab(data->cub.map);
+	ft_free_tab(data->cub.map);
 }
 
 int main(int ac, char **av)
@@ -50,6 +50,7 @@ int main(int ac, char **av)
 	mlx_loop(data.cub.mlx);
 	free_texture(&data.cub);
 	ft_free_struct(&data);
+	free(data.cub.mlx);
 	// ft_free_tab(data.cub.map);
 	return (0);
 }
