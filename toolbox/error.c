@@ -6,7 +6,7 @@
 /*   By: emcariot <emcariot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/04 14:12:44 by emcariot          #+#    #+#             */
-/*   Updated: 2022/07/05 10:21:51 by emcariot         ###   ########.fr       */
+/*   Updated: 2022/07/20 15:19:46 by emcariot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,6 @@
 
 int	return_error(char *str)
 {
-	printf("Error: %s\n", str);
-	return (1);
+	printf("Error: \n%s\n", str);
+	exit (0);
 }

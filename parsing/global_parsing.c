@@ -61,9 +61,9 @@ int ft_parse_elements(t_data *data, char *file)
 
 int	ft_parsing(t_data *data, char *file)
 {
-	int i;
+	// int i;
 
-	i = 0;
+	// i = 0;
 	if (ft_parse_elements(data, file))
 	{
 		close(data->fd);
@@ -81,18 +81,18 @@ int	ft_parsing(t_data *data, char *file)
 	printf("TEXTURE :\nNorth : %sSouth : %sWest : %sEast : %s", data->texture.north, data->texture.south, data->texture.west, data->texture.east);
 	printf("COLOR FLOOR :\nfloor-R : %d\nfloor-G : %d\nfloor-B : %d\n", data->texture.floor_r, data->texture.floor_g, data->texture.floor_b);
 	printf("COLOR CEILING :\nceiling-R : %d\nceiling-G : %d\nceiling-B : %d\n", data->texture.ceiling_r, data->texture.ceiling_g, data->texture.ceiling_b);
-	printf("MAP :\n");
-	int j = 0;
-	while (data->cub.map[i])
-	{
-		j = 0;
-		while (data->cub.map[i][j])
-		{
-			printf("%c", data->cub.map[i][j]);
-			j++;
-		}
-		printf("\n");
-		i++;
-	}
+	// printf("MAP :\n");
+	// int j = 0;
+	// while (data->cub.map[i])
+	// {
+	// 	j = 0;
+	// 	while (data->cub.map[i][j])
+	// 	{
+	// 		printf("%c", data->cub.map[i][j]);
+	// 		j++;
+	// 	}
+	// 	printf("\n");
+	// 	i++;
+	// }
 	return (0);
 }

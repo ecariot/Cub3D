@@ -1,10 +1,10 @@
-NO ./textures/ocean_textures/farground.xpm
-SO ./textures/grass.xpm
-WE  ./textures/purplestone.xpm
-EA ./textures/ocean_textures/bla.xpm
+NO ./textures/grass.xpm
+SO ./textures/purplestone.xpm
+WE  ./textures/red.xpm
+EA ./textures/ocean_textures/foreground.xpm
 
-F 70,,,,56,,,,04
-C 17,,,,, 55,,,,, 99
+F 200, 112, 3
+C 150, 8, 45
                              1111111111111
      111111                  1000000000001
      100001      11111111111110000000000011111
