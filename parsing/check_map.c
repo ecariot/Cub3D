@@ -105,7 +105,7 @@ char **ft_replace_space_inside(char **map, t_data *data)
 		x = 0;
 		while (x <= data->cub.col)
 		{
-			if (ft_isspace(map[y][x]) || ft_is_start(map[y][x]))
+			if (ft_isspace(map[y][x]))
 			{
 				if (y != 0 && map[y - 1][x] == '0')
 					return (NULL);
