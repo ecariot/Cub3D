@@ -2,6 +2,7 @@
 
 int	ft_parse_color(char **split_line, t_data *data)
 {
+
 	if (!ft_strcmp(split_line[0], "F") && !ft_color_is_full(data->texture))
 	{
 		data->texture.floor_r = ft_atoi(split_line[1]);

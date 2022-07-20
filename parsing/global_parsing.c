@@ -1,15 +1,3 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   global_parsing.c                                   :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: mbascuna <mbascuna@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/07/06 13:55:06 by mbascuna          #+#    #+#             */
-/*   Updated: 2022/07/20 10:33:54 by mbascuna         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #include "../includes/cub.h"
 
 int ft_parse_elements(t_data *data, char *file)
@@ -84,6 +72,7 @@ int	ft_parsing(t_data *data, char *file)
 	{
 		return (1);
 	}
+
 	if (ft_check_texture(data->texture))
 	{
 		return (1);
