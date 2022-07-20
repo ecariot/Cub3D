@@ -86,20 +86,18 @@ char	**ft_init_tab(t_data *data)
 	tmp = data->cub.line;
 	tab = (char **)malloc(sizeof(char *) * (data->cub.line + 1));
 	if (!tab)
-	{
 		return (NULL);
-	}
 	tab[tmp] = NULL;
-	while (tmp > 0)
-	{
-		tmp--;
-		tab[tmp] = (char *)malloc(sizeof(char) * (data->cub.col));
-		if (!tab[tmp])
-		{
-			ft_free_tab(tab);
-			return (NULL);
-		}
-	}
+	// while (tmp > 0)
+	// {
+	// 	tmp--;
+	// 	tab[tmp] = (char *)malloc(sizeof(char) * (data->cub.col));
+	// 	if (!tab[tmp])
+	// 	{
+	// 		ft_free_tab(tab);
+	// 		return (NULL);
+	// 	}
+	// }
 	return (tab);
 }
 

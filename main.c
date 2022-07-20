@@ -14,13 +14,6 @@ int	put_img(t_data *data)
 	return (1);
 }
 
-void	ft_free_struct(t_data *data)
-{
-	free(data->texture.south);
-	free(data->texture.north);
-	free(data->texture.east);
-	free(data->texture.west);
-}
 
 int main(int ac, char **av)
 {
@@ -42,13 +35,12 @@ int main(int ac, char **av)
 		// free_texture(&data.cub);
 		return (-1);
 	}
-	mlx_hook(data.cub.mlx_win, 2, 1L << 0, keycode, &data.cub);
-	mlx_hook(data.cub.mlx_win, 17, 0, close_window, &data.cub);
+	mlx_hook(data.cub.mlx_win, 2, 1L << 0, keycode, &data);
+	mlx_hook(data.cub.mlx_win, 17, 0, close_window, &data);
 	mlx_loop_hook(data.cub.mlx, put_img, &data);
-	mlx_hook(data.cub.mlx_win, 3, 1L << 1, keycode_zero, &data.cub);
+	mlx_hook(data.cub.mlx_win, 3, 1L << 1, keycode_zero, &data);
 	mlx_loop(data.cub.mlx);
-	free_texture(&data.cub);
-	ft_free_struct(&data);
+	// free_texture(&data.cub);
 	// ft_free_tab(data.cub.map);
 	return (0);
 }

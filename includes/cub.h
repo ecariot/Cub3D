@@ -155,7 +155,8 @@ void	init_struct(t_cub *cub);
 int		draw_window(t_cub *cub, t_data *data);
 int	fill_wall_north(char **split_line, t_data *data);
 void	action_key(t_cub *cub);
-int	keycode_zero(int key, t_cub *cub);
+int	keycode(int key, t_data *data);
+int	keycode_zero(int key, t_data *data);
 
 /** raycasting.c **/
 int init_raycasting(t_cub *cub, t_data *data);
@@ -166,7 +167,6 @@ void	draw_ceiling(t_cub *cub, t_data *data, int x, int y);
 void	rotate_left(t_cub *cub);
 void	rotate_right(t_cub *cub);
 int	go_one(int key, t_data *data);
-int	keycode(int key, t_cub *cub);
 int	reset_key(int key, t_data *data);
 
 //ERROR
@@ -174,7 +174,8 @@ int		ft_errors(char *str);
 int		return_error(char *str);
 
 //UTILS
-int	close_window(t_cub *cub);
+int	close_window(t_data *data);
+// int	close_window(t_cub *cub);
 char	*ft_strdup_no_n(const char *s1);
 char	*ft_replace_space_end(const char *s1, t_data *data);
 int	free_texture(t_cub *cub);

@@ -23,6 +23,7 @@ int	ft_check_extension(char *file, char *extension)
 	}
 	if (ft_strncmp(extension, file_extension, extension_len) != 0)
 		return (ft_errors("Wrong extension"));
+	close(fd);
 	return (0);
 }
 
