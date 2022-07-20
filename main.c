@@ -49,6 +49,7 @@ int main(int ac, char **av)
 	mlx_loop(data.cub.mlx);
 	free_texture(&data.cub);
 	ft_free_struct(&data);
+	// ft_free_tab(data.cub.map);
 	return (0);
 }
 

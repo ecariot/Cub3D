@@ -60,10 +60,13 @@ int	free_texture(t_cub *cub)
 		mlx_destroy_image(cub->mlx, cub->w_ea.img);
 	if (cub->w_we.img)
 		mlx_destroy_image(cub->mlx, cub->w_we.img);
-	if (cub->mlx)
-	// {
-	// 	mlx_destroy_display(cub->mlx);
-	// 	free(cub->mlx);
-	// }
-	return (1);
+	if (cub->screen.img)
+		mlx_destroy_image(cub->mlx, cub->screen.img);
+    // if (cub->mlx)
+    // {
+    //     mlx_destroy_display(cub->mlx);
+    //     free(cub->mlx);
+    // }
+    // ft_free_tab(cub->map);
+    return (1);
 }
