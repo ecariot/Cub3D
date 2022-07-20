@@ -177,5 +177,6 @@ int		return_error(char *str);
 int	close_window(t_cub *cub);
 char	*ft_strdup_no_n(const char *s1);
 char	*ft_replace_space_end(const char *s1, t_data *data);
+int	free_texture(t_cub *cub);
 
 #endif

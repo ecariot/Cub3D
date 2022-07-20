@@ -3,8 +3,8 @@ SO ./textures/purplestone.xpm
 WE  ./textures/red.xpm
 EA ./textures/ocean_textures/foreground.xpm
 
-F 200, 112, 3
-C 150, 8, 45
+F 70,56,04
+C 17, 55, 250
                              1111111111111
      111111                  1000000000001
      100001      11111111111110000000000011111

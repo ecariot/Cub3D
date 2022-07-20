@@ -46,3 +46,23 @@ char	*ft_strdup_no_n(const char *s1)
 	return (str);
 }
 
+int	free_texture(t_cub *cub)
+{
+	if (cub->w_no.img)
+		mlx_destroy_image(cub->mlx, cub->w_no.img);
+	if (cub->w_so.img)
+		mlx_destroy_image(cub->mlx, cub->w_so.img);
+	if (cub->w_ea.img)
+		mlx_destroy_image(cub->mlx, cub->w_ea.img);
+	if (cub->w_we.img)
+		mlx_destroy_image(cub->mlx, cub->w_we.img);
+	if (cub->mlx_win)
+		mlx_destroy_window(cub->mlx, cub->mlx_win);
+	if (cub->mlx)
+	{
+		mlx_destroy_display(cub->mlx);
+		free(cub->mlx);
+	}
+	ft_free_tab(cub->map);
+	return (1);
+}

@@ -40,6 +40,7 @@ int main(int ac, char **av)
 	mlx_loop_hook(data.cub.mlx, put_img, &data);
 	mlx_hook(data.cub.mlx_win, 3, 1L << 1, keycode_zero, &data.cub);
 	mlx_loop(data.cub.mlx);
+	free_texture(&data.cub);
 	return (0);
 }
 
