@@ -107,9 +107,9 @@ char **ft_replace_space_inside(char **map, t_data *data)
 		{
 			if (ft_isspace(map[y][x]))
 			{
-				if (y != 0 && map[y - 1][x] == '0')
+				if (y != 0 &&(map[y - 1][x] == '0' || ft_is_start(map[y - 1][x])))
 					return (NULL);
-				else if (x != 0 && map[y][x - 1] == '0')
+				else if (x != 0 && (map[y][x - 1] == '0'|| ft_is_start(map[y][x - 1])))
 					return (NULL);
 				else if (x != data->cub.col && (map[y][x + 1] == '0'))
 					return (NULL);
