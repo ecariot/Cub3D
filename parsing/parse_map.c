@@ -8,6 +8,8 @@ int	ft_check_extension(char *file, char *extension)
 
 	fd = 0;
 	file_extension = ft_strrchr(file, '.');
+	if (!file_extension)
+		return (return_error("Wrong extension"));
 	extension_len = ft_strlen(file_extension);
 	if ((fd = open(file, O_DIRECTORY)) != -1)
 		return (ft_errors("Invalid : is a directory"));
