@@ -12,9 +12,15 @@ int	ft_check_extension(char *file, char *extension)
 		return (return_error("Wrong extension"));
 	extension_len = ft_strlen(file_extension);
 	if ((fd = open(file, O_DIRECTORY)) != -1)
+	{
+		close(fd);
 		return (ft_errors("Invalid : is a directory"));
+	}
 	if ((fd = open(file, O_RDONLY)) == -1)
+	{
+		close(fd);
 		return (ft_errors("Invalid File"));
+	}
 	if (ft_strncmp(extension, file_extension, extension_len) != 0)
 		return (ft_errors("Wrong extension"));
 	return (0);

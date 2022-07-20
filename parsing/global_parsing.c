@@ -51,6 +51,7 @@ int ft_parse_elements(t_data *data, char *file)
 			}
 			data->cub.map[i] = NULL;
 		}
+		ft_free_tab(split_line);
 		free(get_line);
 		get_line = ft_get_next_line(data->fd);
 	}
