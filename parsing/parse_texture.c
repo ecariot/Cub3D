@@ -46,7 +46,6 @@ int	ft_parse_texture(char **split_line, t_data *data)
 
 int ft_is_color(char **split_line)
 {
-	// if (split_line[0][0] == 'F' || split_line[0][0] == 'C')
 	if (!ft_strncmp(split_line[0], "F", 2) || !ft_strncmp(split_line[0], "C", 2))
 		return (1);
 	else

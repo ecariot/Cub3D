@@ -105,7 +105,7 @@ char **ft_replace_space_inside(char **map, t_data *data)
 		x = 0;
 		while (x <= data->cub.col)
 		{
-			if (ft_isspace(map[y][x]))
+			if (ft_isspace(map[y][x]) || ft_is_start(map[y][x]))
 			{
 				if (y != 0 && map[y - 1][x] == '0')
 					return (NULL);
@@ -127,10 +127,12 @@ char **ft_replace_space_inside(char **map, t_data *data)
 
 int	ft_check_map(t_data *data)
 {
+	if (data->cub.map[0] == NULL)
+		return (ft_errors("Empty map"));
 	if (!(ft_check_player(data->cub.map, data)))
 		return (ft_errors("Too Many Players"));
 	if (!data->cub.player)
-		return (ft_errors("Player problem"));
+		return (ft_errors("No Player"));
 	data->cub.map = ft_replace_space_inside(data->cub.map, data);
 	if (!data->cub.map)
 		return (ft_errors("Map is not closed1"));
