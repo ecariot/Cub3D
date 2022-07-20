@@ -1,12 +1,29 @@
 #include "../includes/cub.h"
 
-int	close_window(t_cub *cub)
+void	ft_free_struct(t_data *data)
 {
-	// ft_free_tab(cub->map);
-	if (cub->mlx_win)
-		mlx_destroy_window(cub->mlx, cub->mlx_win);
-	// free_texture(cub);
-	return (mlx_loop_end(cub->mlx));
+	free(data->texture.south);
+	free(data->texture.north);
+	free(data->texture.east);
+	free(data->texture.west);
+	ft_free_tab(data->cub.map);
+}
+
+
+int	close_window(t_data *data)
+{
+	ft_free_struct(data);
+	free_texture(&data->cub);
+	if (data->cub.mlx_win)
+		mlx_destroy_window(data->cub.mlx, data->cub.mlx_win);
+	if (data->cub.mlx)
+	{
+		mlx_destroy_display(data->cub.mlx);
+		free(data->cub.mlx);
+	}
+	exit(0);
+	// return (1);
+	return (mlx_loop_end(data->cub.mlx));
 }
 
 char	*ft_replace_space_end(const char *s1, t_data *data)
@@ -62,11 +79,5 @@ int	free_texture(t_cub *cub)
 		mlx_destroy_image(cub->mlx, cub->w_we.img);
 	if (cub->screen.img)
 		mlx_destroy_image(cub->mlx, cub->screen.img);
-    // if (cub->mlx)
-    // {
-    //     mlx_destroy_display(cub->mlx);
-    //     free(cub->mlx);
-    // }
-    // ft_free_tab(cub->map);
-    return (1);
+	return (1);
 }

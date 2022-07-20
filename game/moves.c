@@ -73,40 +73,40 @@ void	action_key(t_cub *cub)
 		rotate_left(cub);
 }
 
-int	keycode(int key, t_cub *cub)
+int	keycode(int key, t_data *data)
 {
 	if (key == ESC)
-		close_window(cub);
+		close_window(data);
 	if (key == D)
-		cub->right = 1;
+		data->cub.right = 1;
 	if (key == A)
-		cub->left = 1;
+		data->cub.left = 1;
 	if (key == S)
-		cub->forward = 1;
+		data->cub.forward = 1;
 	if (key == W)
-		cub->down = 1;
+		data->cub.down = 1;
 	if (key == RIGHT)
-		cub->rotate_r = 1;
+		data->cub.rotate_r = 1;
 	if (key == LEFT)
-		cub->rotate_l = 1;
+		data->cub.rotate_l = 1;
 	return (1);
 }
 
-int	keycode_zero(int key, t_cub *cub)
+int	keycode_zero(int key, t_data *data)
 {
 	if (key == D)
-		cub->right = 0;
+		data->cub.right = 0;
 	if (key == A)
-		cub->left = 0;
+		data->cub.left = 0;
 	if (key == S)
-		cub->forward = 0;
+		data->cub.forward = 0;
 	if (key == W)
-		cub->down = 0;
+		data->cub.down = 0;
 	if (key == RIGHT)
-		cub->rotate_r = 0;
+		data->cub.rotate_r = 0;
 	if (key == LEFT)
-		cub->rotate_l = 0;
+		data->cub.rotate_l = 0;
 	if (key == ESC)
-		close_window(cub);
+		close_window(data);
 	return (1);
 }
