@@ -66,36 +66,6 @@ int	ft_check_if_close(char **map)
 	return (1);
 }
 
-char	ft_hello_player(char **map, t_data *data)
-{
-	int x;
-	int y;
-
-	y = 0;
-	while (map[y])
-	{
-		x = 0;
-		while (map[y][x])
-		{
-			if (ft_is_start(map[y][x]) && map[y][x] != '0')
-			{
-				if (data->cub.player == '\0')
-				{
-					data->cub.pos.x = x;
-					data->cub.pos.y = y;
-					// data->cub.player = map[y][x];
-					// printf("PLAYER = %c\n", data->cub.player);
-				}
-				// else
-				// 	return (0);
-			}
-			x++;
-		}
-		y++;
-	}
-	return (data->cub.player);
-}
-
 int	ft_check_player(char **map, t_data *data)
 {
 	int x;
@@ -136,33 +106,36 @@ char **ft_replace_space_inside(char **map, t_data *data)
 		while (x <= data->cub.col)
 		{
 			if (ft_isspace(map[y][x]))
-				map[y][x] = '1';
+			{
+				if (y != 0 && map[y - 1][x] == '0')
+				{
+					printf("ici");
+					return (NULL);
+				}
+				else if (x != 0 && map[y][x - 1] == '0')
+				{
+					printf("ici2");
+					return (NULL);
+				}
+				else if (y != data->cub.line && (map[y + 1][x] == '0' || map[y + 1][x] == '\0'))
+				{
+					printf("ici3");
+					return (NULL);
+				}
+				else if (x != data->cub.col && (map[y][x + 1] == '0' ||  map[y][x + 1] == '\0'))
+				{
+					printf("ici4");
+					return (NULL);
+				}
+				else
+					map[y][x] = '1';
+			}
 			x++;
 		}
 		y++;
 	}
 	return (map);
 }
-
-// char **ft_replace_space_inside(char **map, t_data *data)
-// {
-// 	int y;
-// 	int x;
-
-// 	y = 0;
-// 	while (map[y])
-// 	{
-// 		x = 0;
-// 		while (x <= data->cub.col)
-// 		{
-// 			if (ft_isspace(map[y][x]))
-// 				map[y][x] = '1';
-// 			x++;
-// 		}
-// 		y++;
-// 	}
-// 	return (map);
-// }
 
 int	ft_check_map(t_data *data)
 {
@@ -171,6 +144,8 @@ int	ft_check_map(t_data *data)
 	if (!data->cub.player)
 		return (ft_errors("No player"));
 	data->cub.map = ft_replace_space_inside(data->cub.map, data);
+	if (!data->cub.map)
+		return (ft_errors("Map is not closed"));
 	if (!(ft_check_char(data->cub.map)))
 		return (ft_errors("Wrong char in map"));
 	if (!(ft_check_if_close(data->cub.map)))

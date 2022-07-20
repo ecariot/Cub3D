@@ -6,7 +6,7 @@
 /*   By: mbascuna <mbascuna@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/05 12:30:35 by emcariot          #+#    #+#             */
-/*   Updated: 2022/07/19 16:34:48 by mbascuna         ###   ########.fr       */
+/*   Updated: 2022/07/20 11:26:30 by mbascuna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ int	close_window(t_cub *cub)
 	return (mlx_loop_end(cub->mlx));
 }
 
-char	*ft_strdup_replace_space(const char *s1, t_data *data)
+char	*ft_replace_space_end(const char *s1, t_data *data)
 {
 	char	*str;
 	int		i;
@@ -33,7 +33,7 @@ char	*ft_strdup_replace_space(const char *s1, t_data *data)
 	}
 	while (i <  data->cub.col)
 	{
-		str[i] = '1';
+		str[i] = ' ';
 		i++;
 	}
 	str[i] = '\0';

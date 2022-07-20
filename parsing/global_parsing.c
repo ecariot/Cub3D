@@ -6,7 +6,7 @@
 /*   By: mbascuna <mbascuna@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/06 13:55:06 by mbascuna          #+#    #+#             */
-/*   Updated: 2022/07/20 10:33:54 by mbascuna         ###   ########.fr       */
+/*   Updated: 2022/07/20 10:59:46 by mbascuna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,9 @@ int ft_parse_elements(t_data *data, char *file)
 		{
 			while (i < data->cub.line)
 			{
-				data->cub.map[i] = ft_strdup_replace_space(get_line, data);
+				data->cub.map[i] = ft_replace_space_end(get_line, data);
+				if (!data->cub.map[i])
+					return (ft_errors("open map"));
 				free(get_line);
 				get_line = ft_get_next_line(data->fd);
 				i++;
