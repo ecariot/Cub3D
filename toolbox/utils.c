@@ -2,7 +2,7 @@
 
 int	close_window(t_cub *cub)
 {
-	ft_free_tab(cub->map);
+	// ft_free_tab(cub->map);
 	if (cub->mlx_win)
 		mlx_destroy_window(cub->mlx, cub->mlx_win);
 	// free_texture(cub);
