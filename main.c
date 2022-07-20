@@ -6,6 +6,14 @@ int	ft_errors(char *str)
 	return (1);
 }
 
+int	put_img(t_data *data)
+{
+	action_key(&data->cub);
+	init_raycasting(&data->cub, data);
+	action_key(&data->cub);
+	return (1);
+}
+
 int main(int ac, char **av)
 {
 	t_data	data;
@@ -30,6 +38,7 @@ int main(int ac, char **av)
 	mlx_hook(data.cub.mlx_win, 2, 1L << 0, keycode, &data.cub);
 	mlx_hook(data.cub.mlx_win, 17, 0, close_window, &data.cub);
 	mlx_loop_hook(data.cub.mlx, put_img, &data);
+	mlx_hook(data.cub.mlx_win, 3, 1L << 1, keycode_zero, &data.cub);
 	mlx_loop(data.cub.mlx);
 	return (0);
 }

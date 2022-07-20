@@ -129,6 +129,8 @@ int	ft_check_map(t_data *data)
 {
 	if (!(ft_check_player(data->cub.map, data)))
 		return (ft_errors("Too Many Players"));
+	if (!data->cub.player)
+		return (ft_errors("Player problem"));
 	data->cub.map = ft_replace_space_inside(data->cub.map, data);
 	if (!data->cub.map)
 		return (ft_errors("Map is not closed1"));
@@ -136,7 +138,5 @@ int	ft_check_map(t_data *data)
 		return (ft_errors("Wrong char in map"));
 	if (!(ft_check_if_close(data->cub.map)))
 		return (ft_errors("Map is not closed"));
-	if (!data->cub.player)
-		return (ft_errors("Player problem"));
 	return (0);
 }

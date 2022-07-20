@@ -153,8 +153,9 @@ void	init_player(t_cub *cub);
 int		init_cub(t_cub *cub);
 void	init_struct(t_cub *cub);
 int		draw_window(t_cub *cub, t_data *data);
-int	put_img(t_data *data);
 int	fill_wall_north(char **split_line, t_data *data);
+void	action_key(t_cub *cub);
+int	keycode_zero(int key, t_cub *cub);
 
 /** raycasting.c **/
 int init_raycasting(t_cub *cub, t_data *data);
