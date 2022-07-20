@@ -5,7 +5,7 @@ int ft_check_digits(char **format_color)
 	int i;
 	int tmp;
 
-	i = 1;
+	i = 0;
 	while (format_color[i])
 	{
 		tmp = ft_atoi(format_color[i]);
@@ -51,22 +51,20 @@ int	is_valid_texture(char **split_line)
 	return (0);
 }
 
-int	is_valid_digit(char **split_line)
+int	is_valid_digit(char **split_color)
 {
-	int i = 1;
+	int i = 0;
+	char *tmp;
 	int j;
 
-	while (split_line[i])
+	while (split_color[i])
 	{
+		tmp = ft_strtrim(split_color[i], ",");
 		j = 0;
-		// printf("split_line = %s\n", split_line[i]);
-		while (split_line[i][j])
+		while (tmp[j])
 		{
-			if (!ft_isdigit(split_line[i][j]) && split_line[i][j] != '\n')
-			{
-				// printf("char = %c\n", split_line[i][j]);
+			if (!ft_isdigit(tmp[j]) && tmp[j] != '\n')
 				return (1);
-			}
 			j++;
 		}
 		i++;
@@ -74,15 +72,15 @@ int	is_valid_digit(char **split_line)
 	return (0);
 }
 
-int	is_valid_color(char **split_line)
+int	is_valid_color(char **split_color)
 {
-	if (is_valid_digit(split_line) == 1)
+	if (is_valid_digit(split_color) == 1)
 		return (ft_errors("Wrong char in colors"));
-	if (ft_strlen_tab(split_line) < 4)
+	if (ft_strlen_tab(split_color) < 3)
 		return (ft_errors("Color is missing"));
-	if (ft_strlen_tab(split_line) > 4)
+	if (ft_strlen_tab(split_color) > 3)
 		return (ft_errors("Too Much color"));
-	else if (!ft_check_digits(split_line))
+	else if (!ft_check_digits(split_color))
 		return (ft_errors("Color must be between 0 and 255"));
 	return (0);
 }

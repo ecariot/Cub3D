@@ -6,7 +6,7 @@
 /*   By: mbascuna <mbascuna@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/06 13:55:06 by mbascuna          #+#    #+#             */
-/*   Updated: 2022/07/19 18:04:44 by mbascuna         ###   ########.fr       */
+/*   Updated: 2022/07/20 10:33:54 by mbascuna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 int ft_parse_elements(t_data *data, char *file)
 {
 	char **split_line;
+	char **split_color;
 	char *get_line;
 	int i = 0;
 
@@ -35,19 +36,17 @@ int ft_parse_elements(t_data *data, char *file)
 		}
 		else if (ft_is_color(split_line))
 		{
-			printf("split_line[0] : %s split_line[1] : %s\n", split_line[0], split_line[1]);
 			if (ft_strlen_tab(split_line) > 2)
 			{
-				printf("hell");
-				int i = 1;
+				int i = 2;
 				while (split_line[i])
 				{
 					split_line[1] = ft_strjoin(split_line[1], split_line[i]);
 					i++;
 				}
 			}
-			//si plusieurs split line de color , doit join aux virgules
-			if (is_valid_color(split_line))
+			split_color = ft_split_many(split_line[1], " ,");
+			if (is_valid_color(split_color))
 				return (1);
 			if (ft_parse_color(split_line, data))
 				return (1);
