@@ -66,11 +66,40 @@ int	ft_check_if_close(char **map)
 	return (1);
 }
 
-int	ft_check_player(char **map, t_data *data)
+char	ft_hello_player(char **map, t_data *data)
 {
 	int x;
 	int y;
 
+	y = 0;
+	while (map[y])
+	{
+		x = 0;
+		while (map[y][x])
+		{
+			if (ft_is_start(map[y][x]) && map[y][x] != '0')
+			{
+				if (data->cub.player == '\0')
+				{
+					data->cub.pos.x = x;
+					data->cub.pos.y = y;
+					// data->cub.player = map[y][x];
+					// printf("PLAYER = %c\n", data->cub.player);
+				}
+				// else
+				// 	return (0);
+			}
+			x++;
+		}
+		y++;
+	}
+	return (data->cub.player);
+}
+
+int	ft_check_player(char **map, t_data *data)
+{
+	int x;
+	int y;
 	y = 0;
 	while (map[y])
 	{
@@ -115,14 +144,36 @@ char **ft_replace_space_inside(char **map, t_data *data)
 	return (map);
 }
 
+// char **ft_replace_space_inside(char **map, t_data *data)
+// {
+// 	int y;
+// 	int x;
+
+// 	y = 0;
+// 	while (map[y])
+// 	{
+// 		x = 0;
+// 		while (x <= data->cub.col)
+// 		{
+// 			if (ft_isspace(map[y][x]))
+// 				map[y][x] = '1';
+// 			x++;
+// 		}
+// 		y++;
+// 	}
+// 	return (map);
+// }
+
 int	ft_check_map(t_data *data)
 {
+	if (!(ft_check_player(data->cub.map, data)))
+		return (ft_errors("Too Many Players"));
+	if (!data->cub.player)
+		return (ft_errors("No player"));
 	data->cub.map = ft_replace_space_inside(data->cub.map, data);
 	if (!(ft_check_char(data->cub.map)))
 		return (ft_errors("Wrong char in map"));
 	if (!(ft_check_if_close(data->cub.map)))
 		return (ft_errors("Map is not closed"));
-	if (!(ft_check_player(data->cub.map, data)))
-		return (ft_errors("Too Many Players"));
 	return (0);
 }
