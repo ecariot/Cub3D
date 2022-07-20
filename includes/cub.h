@@ -125,7 +125,7 @@ char	**ft_fill_map(t_data *data, char *file, char *get_line);
 int ft_is_texture(char **split_line);
 int ft_is_color(char **split_line);
 int	ft_parse_texture(char **split_line, t_data *data);
-int	ft_parse_color(char **format_color, t_data *data);
+int	ft_parse_color(char **format_color, char **split_color, t_data *data);
 
 /** check_map.c **/
 int	ft_check_map(t_data *data);

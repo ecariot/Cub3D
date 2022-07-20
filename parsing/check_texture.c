@@ -64,9 +64,12 @@ int	is_valid_digit(char **split_color)
 		while (tmp[j])
 		{
 			if (!ft_isdigit(tmp[j]) && tmp[j] != '\n')
+			{
 				return (1);
+			}
 			j++;
 		}
+		free(tmp);
 		i++;
 	}
 	return (0);
@@ -80,7 +83,7 @@ int	is_valid_color(char **split_color)
 		return (ft_errors("Color is missing"));
 	if (ft_strlen_tab(split_color) > 3)
 		return (ft_errors("Too Much color"));
-	else if (!ft_check_digits(split_color))
+	if (!ft_check_digits(split_color))
 		return (ft_errors("Color must be between 0 and 255"));
 	return (0);
 }
