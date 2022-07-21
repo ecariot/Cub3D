@@ -30,7 +30,7 @@ int main(int ac, char **av)
 	if (ft_parsing(&data, av[1]))
 	{
 		ft_free_struct(&data);
-		return (0);
+		return (1);
 	}
 	init_player(&data.cub);
 	if (!(draw_window(&data.cub, &data)))

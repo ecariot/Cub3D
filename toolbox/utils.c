@@ -6,14 +6,15 @@ void	ft_free_struct(t_data *data)
 	free(data->texture.north);
 	free(data->texture.east);
 	free(data->texture.west);
-	if (data->cub.map)
-		ft_free_tab(data->cub.map);
+	// if (data->cub.map)
+	// 	ft_free_tab(data->cub.map);
 }
 
 
 int	close_window(t_data *data)
 {
 	ft_free_struct(data);
+	ft_free_tab(data->cub.map);
 	free_texture(&data->cub);
 	if (data->cub.mlx_win)
 		mlx_destroy_window(data->cub.mlx, data->cub.mlx_win);

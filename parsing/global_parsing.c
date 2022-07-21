@@ -7,10 +7,9 @@ int ft_parse_elements(t_data *data, char *file)
 	char *get_line;
 	int i = 0;
 
-	data->cub.map = ft_init_tab(data);
 	data->fd = open(file, O_RDONLY, 0);
 	if (data->fd == -1)
-		return (0);
+		return (1);
 	get_line = ft_get_next_line(data->fd);
 	while (get_line)
 	{
@@ -20,12 +19,16 @@ int ft_parse_elements(t_data *data, char *file)
 		{
 			if (is_valid_texture(split_line))
 			{
-				ft_free_tab(split_line);
 				free(get_line);
+				ft_free_tab(split_line);
 				return (1);
 			}
 			if (ft_parse_texture(split_line, data))
-				return (ft_errors("Texture already exist"));
+			{
+				free(get_line);
+				ft_free_tab(split_line);
+				return (1);
+			}
 		}
 		else if (ft_is_color(split_line))
 		{
@@ -50,6 +53,7 @@ int ft_parse_elements(t_data *data, char *file)
 		}
 		else if (ft_is_map(get_line) && get_line[0] != '\n')
 		{
+			data->cub.map = ft_init_tab(data);
 			while (i < data->cub.line)
 			{
 				data->cub.map[i] = ft_replace_space_end(get_line, data);
@@ -75,13 +79,13 @@ int	ft_parsing(t_data *data, char *file)
 		close(data->fd);
 		return (1);
 	}
-	if (ft_check_map(data))
+	if (ft_check_texture(data->texture))
 	{
 		return (1);
 	}
-
-	if (ft_check_texture(data->texture))
+	if (ft_check_map(data))
 	{
+		ft_free_tab(data->cub.map);
 		return (1);
 	}
 	return (0);

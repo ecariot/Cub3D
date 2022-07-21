@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mbascuna <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: mbascuna <mbascuna@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/07 11:12:30 by mbascuna          #+#    #+#             */
-/*   Updated: 2022/03/24 11:58:45 by mbascuna         ###   ########.fr       */
+/*   Updated: 2022/07/21 11:20:36 by mbascuna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ static char	*ft_read_line(char *str)
 	{
 		line[i] = str[i];
 		i++;
-	}	
+	}
 	if (str[i] == '\n')
 	{
 		line[i] = str[i];
