@@ -1,10 +1,10 @@
-NO ./textures/ocean_textures/farground.xpm
-SO ./textures/grass.xpm
-EA ./textures/purplestone.xpm
-WE ./textures/ocean_textures/bla.xpm
+NO ./textures/backroom/girl.xpm
+SO ./textures/backroom/carpet1.xpm
+EA ./textures/backroom/ronce_jaune.xpm
+WE ./textures/backroom/monstre2.xpm
 
-F 135, 14, 12
-C 230, 173, 189
+F 158, 122, 116
+C 88, 85, 61
 
 
 11111111111111111111111111111111111111111111111111111111111111111111111111111111
