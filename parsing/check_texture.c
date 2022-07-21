@@ -1,9 +1,21 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   check_texture.c                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mbascuna <mbascuna@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/07/21 15:55:28 by mbascuna          #+#    #+#             */
+/*   Updated: 2022/07/21 16:00:16 by mbascuna         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../includes/cub.h"
 
-int ft_check_digits(char **format_color)
+int	ft_check_digits(char **format_color)
 {
-	int i;
-	int tmp;
+	int	i;
+	int	tmp;
 
 	i = 0;
 	while (format_color[i])
@@ -14,23 +26,6 @@ int ft_check_digits(char **format_color)
 		i++;
 	}
 	return (1);
-}
-
-int	ft_color_is_full(t_texture texture)
-{
-	if (texture.floor_b >= 0 && texture.floor_r >= 0 &&
-		texture.floor_r >= 0 && texture.ceiling_r >= 0 &&
-		texture.ceiling_g >= 0 && texture.ceiling_b >= 0)
-			return (1);
-	return (0);
-}
-
-int	ft_texture_is_full(t_texture texture)
-{
-	if (texture.north != NULL && texture.south != NULL &&
-		texture.west != NULL && texture.east != NULL)
-			return (1);
-	return (0);
 }
 
 int	ft_check_texture(t_texture texture)
@@ -55,10 +50,11 @@ int	is_valid_texture(char **split_line)
 
 int	is_valid_digit(char **split_color)
 {
-	int i = 0;
-	char *tmp;
-	int j;
+	int		i;
+	int		j;
+	char	*tmp;
 
+	i = 0;
 	while (split_color[i])
 	{
 		tmp = ft_strtrim(split_color[i], ",");
@@ -90,4 +86,3 @@ int	is_valid_color(char **split_color)
 		return (1);
 	return (0);
 }
-

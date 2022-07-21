@@ -1,8 +1,19 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   parse_texture.c                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mbascuna <mbascuna@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/07/21 16:23:35 by mbascuna          #+#    #+#             */
+/*   Updated: 2022/07/21 16:24:48 by mbascuna         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../includes/cub.h"
 
 int	ft_parse_color(char **split_line, char **split_color, t_data *data)
 {
-
 	if (!ft_strcmp(split_line[0], "F") && !ft_color_is_full(data->texture))
 	{
 		data->texture.floor_r = ft_atoi(split_color[0]);
@@ -16,13 +27,8 @@ int	ft_parse_color(char **split_line, char **split_color, t_data *data)
 		data->texture.ceiling_b = ft_atoi(split_color[2]);
 	}
 	else
-	{
-		// ft_free_tab(split_color);
-		// ft_free_tab(split_line);
 		return (1);
-	}
-	// ft_free_tab(split_color);
-	return(0);
+	return (0);
 }
 
 int	ft_parse_texture(char **split_line, t_data *data)
@@ -43,19 +49,22 @@ int	ft_parse_texture(char **split_line, t_data *data)
 	return (0);
 }
 
-int ft_is_color(char **split_line)
+int	ft_is_color(char **split_line)
 {
-	if (!ft_strncmp(split_line[0], "F", 2) || !ft_strncmp(split_line[0], "C", 2))
+	if (!ft_strncmp(split_line[0], "F", 2)
+		|| !ft_strncmp(split_line[0], "C", 2))
 		return (1);
 	else
 		return (0);
 }
 
-int ft_is_texture(char **split_line)
+int	ft_is_texture(char **split_line)
 {
-	if (!ft_strncmp(split_line[0], "SO", 2) || !ft_strncmp(split_line[0], "NO", 2) ||
-			!ft_strncmp(split_line[0], "WE", 2) || !ft_strncmp(split_line[0], "EA", 2))
-				return (1);
+	if (!ft_strncmp(split_line[0], "SO", 2)
+		|| !ft_strncmp(split_line[0], "NO", 2)
+		|| !ft_strncmp(split_line[0], "WE", 2)
+		|| !ft_strncmp(split_line[0], "EA", 2))
+		return (1);
 	else
 		return (0);
 }

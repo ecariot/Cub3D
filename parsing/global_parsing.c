@@ -1,33 +1,53 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   global_parsing.c                                   :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mbascuna <mbascuna@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/07/21 16:00:42 by mbascuna          #+#    #+#             */
+/*   Updated: 2022/07/21 16:12:27 by mbascuna         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../includes/cub.h"
 
-char **ft_formatted_color(char **split_line)
+void	work_on_color(char **split_line, t_data *data)
 {
-	char **split_color;
+	char	**split_color;
 
-	if (ft_strlen_tab(split_line) > 2)
-	{
-		int i = 2;
-		while (split_line[i])
-		{
-			split_line[1] = ft_strjoin(split_line[1], split_line[i]);
-			i++;
-		}
-	}
-	split_color = ft_split_many(split_line[1], " ,");
-	if (!split_color)
-	{
-		ft_free_tab(split_line);
-		return (NULL);
-	}
-	return (split_color);
+	split_color = ft_formatted_color(split_line);
+	if (!is_valid_color(split_color))
+		ft_parse_color(split_line, split_color, data);
+	ft_free_tab(split_color);
 }
 
-int ft_parse_elements(t_data *data, char *file)
+void	work_on_texture(char **split_line, t_data *data)
 {
-	char **split_line;
-	char **split_color;
-	char *get_line;
-	int i = 0;
+	if (!is_valid_texture(split_line))
+		ft_parse_texture(split_line, data);
+}
+
+char	*work_on_map(char *get_line, t_data *data)
+{
+	int	i;
+
+	i = 0;
+	while (i < data->cub.line)
+	{
+		data->cub.map[i] = ft_replace_space_end(get_line, data);
+		free(get_line);
+		get_line = ft_get_next_line(data->fd);
+		i++;
+	}
+	data->cub.map[i] = NULL;
+	return (get_line);
+}
+
+int	ft_parse_elements(t_data *data, char *file)
+{
+	char	**split_line;
+	char	*get_line;
 
 	data->fd = open(file, O_RDONLY, 0);
 	if (data->fd == -1)
@@ -38,28 +58,11 @@ int ft_parse_elements(t_data *data, char *file)
 	{
 		split_line = ft_split_many(get_line, " ");
 		if (ft_is_texture(split_line))
-		{
-			if (!is_valid_texture(split_line))
-				ft_parse_texture(split_line, data);
-		}
+			work_on_texture(split_line, data);
 		else if (ft_is_color(split_line))
-		{
-			split_color = ft_formatted_color(split_line);
-			if (!is_valid_color(split_color))
-				ft_parse_color(split_line, split_color, data);
-			ft_free_tab(split_color);
-		}
+			work_on_color(split_line, data);
 		else if (ft_is_map(get_line) && get_line[0] != '\n')
-		{
-			while (i < data->cub.line)
-			{
-				data->cub.map[i] = ft_replace_space_end(get_line, data);
-				free(get_line);
-				get_line = ft_get_next_line(data->fd);
-				i++;
-			}
-			data->cub.map[i] = NULL;
-		}
+			get_line = work_on_map(get_line, data);
 		free(get_line);
 		ft_free_tab(split_line);
 		get_line = ft_get_next_line(data->fd);
@@ -67,7 +70,6 @@ int ft_parse_elements(t_data *data, char *file)
 	close(data->fd);
 	return (0);
 }
-
 
 int	ft_parsing(t_data *data, char *file)
 {
