@@ -1,0 +1,15 @@
+NO ./textures/wall.xpm
+SO ./textures/purplestone.xpm
+EA ./textures/greystone.xpm
+WE ./textures/grass.xpm
+
+
+F 70,56,04
+C 17, 55, 250
+
+1111111111
+10000000001
+10000000001
+1000S000001
+10000000001
+1111111111

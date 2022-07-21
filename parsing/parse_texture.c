@@ -17,11 +17,11 @@ int	ft_parse_color(char **split_line, char **split_color, t_data *data)
 	}
 	else
 	{
-		ft_free_tab(split_color);
-		ft_free_tab(split_line);
+		// ft_free_tab(split_color);
+		// ft_free_tab(split_line);
 		return (1);
 	}
-	ft_free_tab(split_color);
+	// ft_free_tab(split_color);
 	return(0);
 }
 
@@ -37,8 +37,8 @@ int	ft_parse_texture(char **split_line, t_data *data)
 		data->texture.east = ft_strdup_no_n(split_line[1]);
 	else
 	{
-		// ft_free_tab(split_line);
-		return (ft_errors("Wrong Texture"));
+		data->texture.full = 1;
+		return (1);
 	}
 	return (0);
 }

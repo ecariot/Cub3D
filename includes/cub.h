@@ -50,6 +50,7 @@ typedef struct s_texture
 	int	ceiling_r;
 	int	ceiling_g;
 	int	ceiling_b;
+	int full;
 	// int fd;
 	// int	endian;
 	// int	*width;

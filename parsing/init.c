@@ -13,6 +13,7 @@ void ft_init_texture(t_data *data)
 	data->texture.south = NULL;
 	data->texture.east = NULL;
 	data->texture.west = NULL;
+	data->texture.full = 0;
 }
 
 void ft_init_cub(t_data *data)

@@ -35,6 +35,7 @@ int main(int ac, char **av)
 	init_player(&data.cub);
 	if (!(draw_window(&data.cub, &data)))
 	{
+		ft_free_tab(data.cub.map);
 		return (-1);
 	}
 	mlx_hook(data.cub.mlx_win, 2, 1L << 0, keycode, &data);
@@ -43,7 +44,6 @@ int main(int ac, char **av)
 	mlx_hook(data.cub.mlx_win, 3, 1L << 1, keycode_zero, &data);
 	mlx_loop(data.cub.mlx);
 	// free_texture(&data.cub);
-	// ft_free_tab(data.cub.map);
 	return (0);
 }
 

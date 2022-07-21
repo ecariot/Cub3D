@@ -6,7 +6,7 @@
 /*   By: mbascuna <mbascuna@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/13 11:26:19 by mbascuna          #+#    #+#             */
-/*   Updated: 2022/07/21 12:06:21 by mbascuna         ###   ########.fr       */
+/*   Updated: 2022/07/21 14:45:30 by mbascuna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,10 @@ int	draw_window(t_cub *cub, t_data *data)
 	cub->w_so.img = mlx_xpm_file_to_image(cub->mlx, data->texture.south,
 		&cub->w_so.width, &cub->w_so.height);
 	if (!cub->w_so.img)
+	{
+		// printf("data map : %s\n", data->cub.map[0]);
 		exit_error(data, "Missing texture south");
+	}
 	cub->w_so.addr = mlx_get_data_addr(cub->w_so.img, &cub->w_so.bits_per_pixel,
 		&cub->w_so.line_len, &cub->w_so.endian);
 	if (!cub->w_so.addr)

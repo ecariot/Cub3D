@@ -71,6 +71,7 @@ int	ft_check_player(char **map, t_data *data)
 	int x;
 	int y;
 	y = 0;
+
 	while (map[y])
 	{
 		x = 0;
@@ -139,7 +140,7 @@ char **ft_replace_space_inside(char **map, t_data *data)
 
 int	ft_check_map(t_data *data)
 {
-	if (!data->cub.map)
+	if (!data->cub.map || data->cub.map[0] == NULL)
 		return (ft_errors("Empty map"));
 	if (!(ft_check_player(data->cub.map, data)))
 		return (ft_errors("Too Many Players"));
@@ -147,9 +148,7 @@ int	ft_check_map(t_data *data)
 		return (ft_errors("No Player"));
 	data->cub.map = ft_replace_space_inside(data->cub.map, data);
 	if (!data->cub.map)
-	{
-		return (ft_errors("Map is not closed1"));
-	}
+		return (ft_errors("Map is not closed"));
 	if (!(ft_check_char(data->cub.map)))
 		return (ft_errors("Wrong char in map"));
 	if (!(ft_check_if_close(data->cub.map)))

@@ -1,5 +1,27 @@
 #include "../includes/cub.h"
 
+char **ft_formatted_color(char **split_line)
+{
+	char **split_color;
+
+	if (ft_strlen_tab(split_line) > 2)
+	{
+		int i = 2;
+		while (split_line[i])
+		{
+			split_line[1] = ft_strjoin(split_line[1], split_line[i]);
+			i++;
+		}
+	}
+	split_color = ft_split_many(split_line[1], " ,");
+	if (!split_color)
+	{
+		ft_free_tab(split_line);
+		return (NULL);
+	}
+	return (split_color);
+}
+
 int ft_parse_elements(t_data *data, char *file)
 {
 	char **split_line;
@@ -11,64 +33,24 @@ int ft_parse_elements(t_data *data, char *file)
 	if (data->fd == -1)
 		return (1);
 	get_line = ft_get_next_line(data->fd);
+	data->cub.map = ft_init_tab(data);
 	while (get_line)
 	{
 		split_line = ft_split_many(get_line, " ");
-		// printf("split_line[0] : %s\n", split_line[0]);
 		if (ft_is_texture(split_line))
 		{
-			if (is_valid_texture(split_line))
-			{
-				printf("hello\n");
-				free(get_line);
-				ft_free_tab(split_line);
-				return (1);
-			}
-			if (ft_parse_texture(split_line, data))
-			{
-				free(get_line);
-				ft_free_tab(split_line);
-				return (1);
-			}
+			if (!is_valid_texture(split_line))
+				ft_parse_texture(split_line, data);
 		}
 		else if (ft_is_color(split_line))
 		{
-			if (ft_strlen_tab(split_line) > 2)
-			{
-				int i = 2;
-				while (split_line[i])
-				{
-					split_line[1] = ft_strjoin(split_line[1], split_line[i]);
-					i++;
-				}
-			}
-			split_color = ft_split_many(split_line[1], " ,");
-			if (!split_color)
-			{
-				ft_free_tab(split_line);
-				free(get_line);
-				return (1);
-			}
-			if (is_valid_color(split_color))
-			{
-				// free_texture(&data->cub);
-				// ft_free_struct(data);
-				ft_free_tab(split_line);
-				ft_free_tab(split_color);
-				free(get_line);
-				return (1);
-			}
-			if (ft_parse_color(split_line, split_color, data))
-			{
-				// ft_free_tab(split_color);
-				ft_free_tab(split_line);
-				free(get_line);
-				return (1);
-			}
+			split_color = ft_formatted_color(split_line);
+			if (!is_valid_color(split_color))
+				ft_parse_color(split_line, split_color, data);
+			ft_free_tab(split_color);
 		}
 		else if (ft_is_map(get_line) && get_line[0] != '\n')
 		{
-			data->cub.map = ft_init_tab(data);
 			while (i < data->cub.line)
 			{
 				data->cub.map[i] = ft_replace_space_end(get_line, data);
