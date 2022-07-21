@@ -42,14 +42,28 @@ int ft_parse_elements(t_data *data, char *file)
 				}
 			}
 			split_color = ft_split_many(split_line[1], " ,");
-			if (is_valid_color(split_color))
+			if (!split_color)
 			{
 				ft_free_tab(split_line);
 				free(get_line);
 				return (1);
 			}
-			if (ft_parse_color(split_line, split_color, data))
+			if (is_valid_color(split_color))
+			{
+				// free_texture(&data->cub);
+				// ft_free_struct(data);
+				ft_free_tab(split_color);
+				free(get_line);
 				return (1);
+			}
+			if (ft_parse_color(split_line, split_color, data))
+			{
+				// ft_free_tab(split_color);
+				ft_free_tab(split_line);
+				free(get_line);
+				return (1);
+			}
+			// free(get_lin e);
 		}
 		else if (ft_is_map(get_line) && get_line[0] != '\n')
 		{
