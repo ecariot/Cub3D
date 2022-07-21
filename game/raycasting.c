@@ -1,82 +1,24 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   raycasting.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: emcariot <emcariot@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/07/21 14:05:25 by emcariot          #+#    #+#             */
+/*   Updated: 2022/07/21 15:20:30 by emcariot         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../includes/cub.h"
 
-void init_step_and_side(t_cub *cub)
+void	wall_pixel_put(t_cub *cub, int x, int y)
 {
-	if (cub->raydir.x < 0.)
-	{
-		cub->step.x = -1.0;
-		cub->sidedist.x = (cub->pos.x - cub->tab.x) * cub->deltadist.x;
-	}
-	else
-	{
-		cub->step.x = 1.0;
-		cub->sidedist.x = (cub->tab.x + 1.0 - cub->pos.x) * cub->deltadist.x;
-	}
-	if (cub->raydir.y < 0.)
-	{
-		cub->step.y = -1.0;
-		cub->sidedist.y = (cub->pos.y - cub->tab.y) * cub->deltadist.y;
-	}
-	else
-	{
-		cub->step.y = 1.0;
-		cub->sidedist.y = (cub->tab.y + 1.0 - cub->pos.y) * cub->deltadist.y;
-	}
-}
-
-int	perform_dda(t_cub *cub)
-{
-	int	side;
-
-	side = 0;
-	while (cub->hit == 0)
-	{
-		if (cub->sidedist.x < cub->sidedist.y)
-		{
-			cub->sidedist.x += cub->deltadist.x;
-			cub->tab.x += cub->step.x;
-			side = 0;
-			if (cub->raydir.x < 0.0)
-				cub->side_wall = NORTH;
-			else
-				cub->side_wall = SOUTH;
-		}
-		else
-		{
-			cub->sidedist.y += cub->deltadist.y;
-			cub->tab.y += cub->step.y;
-			side = 1;
-			if (cub->raydir.y < 0.0)
-				cub->side_wall = EAST;
-			else
-				cub->side_wall = WEST;
-		}
-		if (cub->map[(int)cub->tab.y][(int)cub->tab.x] == '1')
-			cub->hit = 1;
-	}
-	return (side);
-}
-
-t_pic *recup_wall(t_cub *cub)
-{
-	if (cub->side_wall == NORTH)
-		return (&cub->w_no);
-	if (cub->side_wall == SOUTH)
-		return (&cub->w_so);
-	if (cub->side_wall == EAST)
-		return (&cub->w_ea);
-	if (cub->side_wall == WEST)
-		return (&cub->w_we);
-	return (&cub->w_no);
-}
-
-void wall_pixel_put(t_cub *cub, int x, int y)
-{
-	int	px;
-	int	px2;
-	int	x2;
-	int	y2;
-	t_pic *print_wall;
+	int		px;
+	int		px2;
+	int		x2;
+	int		y2;
+	t_pic	*print_wall;
 
 	print_wall = recup_wall(cub);
 	px = cub->screen.line_len * y + x * cub->screen.bits_per_pixel / 8;
@@ -91,79 +33,77 @@ void wall_pixel_put(t_cub *cub, int x, int y)
 	cub->screen.addr[px] = (char)print_wall->addr[px2];
 }
 
-void    floor_pixel_put(t_data *data, t_cub *cub, int x, int y)
+void	init_camerax(t_cub *cub, int x)
 {
-    char    *dst;
-
-    dst = cub->screen.addr + cub->screen.line_len * y + x * cub->screen.bits_per_pixel / 8;
-    *(unsigned int*)dst = create_trgb(0, data->texture.floor_r, data->texture.floor_g, data->texture.floor_b);
+	cub->camerax = 2.0 * x / (double)cub->win_width - 1.0;
+	cub->raydir.x = cub->dir.x + cub->plane.x * cub->camerax;
+	cub->raydir.y = cub->dir.y + cub->plane.y * cub->camerax;
+	cub->tab.x = (int)cub->pos.x;
+	cub->tab.y = (int)cub->pos.y;
+	cub->hit = 0;
+	cub->deltadist.x = fabs(1.0 / cub->raydir.x);
+	cub->deltadist.y = fabs(1.0 / cub->raydir.y);
 }
 
-int init_raycasting(t_cub *cub, t_data *data)
+double	side_search(t_cub *cub, int x)
 {
-	int x;
-	int y;
-	int side;
-	double perpWallDist;
-	int draw_end;
+	int		side ;
+	double	perp_wall_dist;
+
+	side = 0;
+	perp_wall_dist = 0;
+	init_camerax(cub, x);
+	init_step_and_side(cub);
+	side = perform_dda(cub);
+	if (!side)
+	{
+		perp_wall_dist = (cub->sidedist.x - cub->deltadist.x);
+		cub->wallx = cub->pos.y + perp_wall_dist * cub->raydir.y;
+	}
+	else
+	{
+		perp_wall_dist = (cub->sidedist.y - cub->deltadist.y);
+		cub->wallx = cub->pos.x + perp_wall_dist * cub->raydir.x;
+	}
+	return (perp_wall_dist);
+}
+
+void	draw_game(t_data *data, t_cub *cub, int x, int y)
+{
+	int	draw_end;
+
+	while (y < (-cub->wall_len / 2 + cub->win_height / 2))
+		draw_ceiling(cub, data, x, y++);
+	y = -cub->wall_len / 2 + cub->win_height / 2;
+	if (y < 0)
+		y = 0;
+	draw_end = cub->win_height / 2 + cub->wall_len / 2;
+	if (draw_end >= cub->win_height)
+		draw_end = cub->win_height;
+	while (y < draw_end)
+		wall_pixel_put(cub, x, y++);
+	while (y < (cub->win_height))
+		floor_pixel_put(data, cub, x, y++);
+}
+
+int	init_raycasting(t_cub *cub, t_data *data)
+{
+	int		x;
+	int		y;
+	double	perp_wall_dist;
 
 	x = 0;
-	side = 0;
 	while (x < cub->win_width)
 	{
-		//init variable de raycasting
-		cub->camerax = 2.0 * x / (double)cub->win_width - 1.0;
-		cub->raydir.x = cub->dir.x + cub->plane.x * cub->camerax;
-		cub->raydir.y = cub->dir.y + cub->plane.y * cub->camerax;
-		cub->tab.x = (int)cub->pos.x;
-		cub->tab.y = (int)cub->pos.y;
-		cub->hit = 0;
-		// if (cub->raydir.x == 0) ->	cub->deltadist.x = 1e30;
-		cub->deltadist.x = fabs(1.0 / cub->raydir.x);
-		cub->deltadist.y = fabs(1.0 / cub->raydir.y);
-		init_step_and_side(cub);
-		side = perform_dda(cub);
-		if (!side)
-		{
-			perpWallDist = (cub->sidedist.x - cub->deltadist.x);
-			cub->wallx = cub->pos.y + perpWallDist * cub->raydir.y;
-		}
-		else
-		{
-			perpWallDist = (cub->sidedist.y - cub->deltadist.y);
-			cub->wallx = cub->pos.x + perpWallDist * cub->raydir.x;
-		}
+		perp_wall_dist = side_search(cub, x);
 		cub->wallx -= floor((cub->wallx));
-		if (perpWallDist < 1.0)
-			perpWallDist = 1;
-		cub->wall_len = (double)cub->win_height / perpWallDist;
+		if (perp_wall_dist < 1.0)
+			perp_wall_dist = 1;
+		cub->wall_len = (double)cub->win_height / perp_wall_dist;
 		y = 0;
-		while (y < (-cub->wall_len / 2 + cub->win_height / 2))
-		{
-			draw_ceiling(cub, data, x, y);
-			y++;
-		}
-		y = -cub->wall_len / 2 + cub->win_height / 2;
-		if (y < 0)
-			y = 0;
-		draw_end = cub->win_height / 2 + cub->wall_len / 2;
-		if (draw_end >= cub->win_height)
-			draw_end = cub->win_height;
-		while (y < draw_end)
-		{
-			wall_pixel_put(cub, x, y);
-			y++;
-		}
-		while (y < (cub->win_height))
-		{
-			floor_pixel_put(data, cub, x, y);
-			y++;
-		}
+		draw_game(data, cub, x, y);
 		x++;
 	}
 	mlx_put_image_to_window(cub->mlx, cub->mlx_win, cub->screen.img, 0, 0);
 	return (0);
 }
-
-
-

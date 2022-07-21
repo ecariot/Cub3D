@@ -82,3 +82,17 @@ int	free_texture(t_cub *cub)
 		mlx_destroy_image(cub->mlx, cub->screen.img);
 	return (1);
 }
+
+
+t_pic	*recup_wall(t_cub *cub)
+{
+	if (cub->side_wall == NORTH)
+		return (&cub->w_no);
+	if (cub->side_wall == SOUTH)
+		return (&cub->w_so);
+	if (cub->side_wall == EAST)
+		return (&cub->w_ea);
+	if (cub->side_wall == WEST)
+		return (&cub->w_we);
+	return (&cub->w_no);
+}
