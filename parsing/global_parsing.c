@@ -19,7 +19,11 @@ int ft_parse_elements(t_data *data, char *file)
 		if (ft_is_texture(split_line))
 		{
 			if (is_valid_texture(split_line))
+			{
+				ft_free_tab(split_line);
+				free(get_line);
 				return (1);
+			}
 			if (ft_parse_texture(split_line, data))
 				return (ft_errors("Texture already exist"));
 		}
