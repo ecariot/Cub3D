@@ -6,7 +6,8 @@ void	ft_free_struct(t_data *data)
 	free(data->texture.north);
 	free(data->texture.east);
 	free(data->texture.west);
-	ft_free_tab(data->cub.map);
+	if (data->cub.map)
+		ft_free_tab(data->cub.map);
 }
 
 
