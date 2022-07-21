@@ -59,6 +59,7 @@ int	ft_read_map(t_data *data, char *file)
 	if (!get_line)
 	{
 		ft_errors("Empty file");
+		close(fd);
 		return 1;
 	}
 	data->cub.col = ft_strlen(get_line);

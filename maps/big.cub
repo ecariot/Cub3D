@@ -1,4 +1,4 @@
-NO ./textures/grass.xpm
+NO ./textures/empty.xpm
 SO ./textures/purplestone.xpm
 WE  ./textures/red.xpm
 EA ./textures/ocean_textures/foreground.xpm

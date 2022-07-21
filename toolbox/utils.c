@@ -24,7 +24,6 @@ int	close_window(t_data *data)
 	}
 	exit(0);
 	// return (1);
-	return (mlx_loop_end(data->cub.mlx));
 }
 
 char	*ft_replace_space_end(const char *s1, t_data *data)

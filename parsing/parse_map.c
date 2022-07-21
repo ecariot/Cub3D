@@ -9,7 +9,7 @@ int	ft_check_extension(char *file, char *extension)
 	fd = 0;
 	file_extension = ft_strrchr(file, '.');
 	if (!file_extension)
-		return (return_error("Wrong extension"));
+		return (ft_errors("Wrong extension"));
 	extension_len = ft_strlen(file_extension);
 	if ((fd = open(file, O_DIRECTORY)) != -1)
 	{
@@ -22,7 +22,10 @@ int	ft_check_extension(char *file, char *extension)
 		return (ft_errors("Invalid File"));
 	}
 	if (ft_strncmp(extension, file_extension, extension_len) != 0)
+	{
+		close (fd);
 		return (ft_errors("Wrong extension"));
+	}
 	close(fd);
 	return (0);
 }

@@ -47,7 +47,9 @@ int	is_valid_texture(char **split_line)
 	if (split_line[1] == NULL || !split_line)
 		return (ft_errors("Texture is missing"));
 	if (split_line[2] != NULL)
+	{
 		return (ft_errors("Too much texture"));
+	}
 	return (0);
 }
 
