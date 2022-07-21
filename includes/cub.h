@@ -118,6 +118,12 @@ int	ft_parsing(t_data *data, char *file);
 int ft_parse_element(t_data *data, char *file);
 
 /** parse_map. **/
+int	ft_pick_player(char **map, t_data *data);
+char	**ft_replace_space_inside(char **map, t_data *data);
+int	ft_check_buddies(int y, int x, char **map, t_data *data);
+int	ft_is_map(char *line);
+int	ft_check_extension(char *file, char *extension);
+//////
 int	ft_check_extension(char *file, char *extension);
 int	ft_is_map(char *line);
 char	**ft_fill_map(t_data *data, char *file, char *get_line);
@@ -129,6 +135,13 @@ int	ft_parse_texture(char **split_line, t_data *data);
 int	ft_parse_color(char **format_color, char **split_color, t_data *data);
 
 /** check_map.c **/
+int	is_valid_char(char c);
+int	ft_is_start(char c);
+int	ft_check_char(char **map);
+int	ft_check_if_close(char **map);
+int	ft_check_map(t_data *data);
+
+//////
 int	ft_check_map(t_data *data);
 int	ft_check_if_close(char **map);
 int ft_check_char(char **map);

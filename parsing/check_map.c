@@ -1,6 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   check_map.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mbascuna <mbascuna@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/07/21 15:18:20 by mbascuna          #+#    #+#             */
+/*   Updated: 2022/07/21 15:30:00 by mbascuna         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../includes/cub.h"
 
-int is_valid_char(char c)
+int	is_valid_char(char c)
 {
 	if (c == 'N' || c == 'S' || c == '0' || c == '1'
 		|| c == 'W' || c == 'E' || c == '\n' || c == ' ')
@@ -9,7 +21,7 @@ int is_valid_char(char c)
 		return (0);
 }
 
-int ft_is_start(char c)
+int	ft_is_start(char c)
 {
 	if (c == '0' || c == 'N' || c == 'S' || c == 'E' || c == 'W')
 		return (1);
@@ -17,13 +29,13 @@ int ft_is_start(char c)
 		return (0);
 }
 
-int ft_check_char(char **map)
+int	ft_check_char(char **map)
 {
-	int y;
-	int x;
+	int	y;
+	int	x;
 
 	y = 0;
-	while(map[y])
+	while (map[y])
 	{
 		x = 0;
 		while (map[y][x])
@@ -39,8 +51,8 @@ int ft_check_char(char **map)
 
 int	ft_check_if_close(char **map)
 {
-	int y;
-	int x;
+	int	y;
+	int	x;
 
 	y = 0;
 	while (map[y])
@@ -50,42 +62,12 @@ int	ft_check_if_close(char **map)
 		{
 			if (ft_is_start(map[y][x]))
 			{
-				// check les bords
-				if (y == 0 || x == 0 || map[y + 1] == NULL || map[y][x + 1] == '\n')
+				if (y == 0 || x == 0
+					|| map[y + 1] == NULL || map[y][x + 1] == '\n')
 					return (0);
-				// check tes potes a l'interieur
-				if (map[y + 1][x] == ' '|| map[y - 1][x] == ' ' ||
-					map[y][x + 1] == ' ' || map[y][x - 1] == ' ' ||
-					map[y + 1][x] == '\0' || map[y][x + 1] == '\0')
-					return (0);
-			}
-			x++;
-		}
-		y++;
-	}
-	return (1);
-}
-
-int	ft_check_player(char **map, t_data *data)
-{
-	int x;
-	int y;
-	y = 0;
-
-	while (map[y])
-	{
-		x = 0;
-		while (map[y][x])
-		{
-			if (ft_is_start(map[y][x]) && map[y][x] != '0')
-			{
-				if (data->cub.player == '\0')
-				{
-					data->cub.pos.x = x;
-					data->cub.pos.y = y;
-					data->cub.player = map[y][x];
-				}
-				else
+				if (map[y + 1][x] == ' ' || map[y - 1][x] == ' '
+					|| map[y][x + 1] == ' ' || map[y][x - 1] == ' '
+					|| map[y + 1][x] == '\0' || map[y][x + 1] == '\0')
 					return (0);
 			}
 			x++;
@@ -93,56 +75,13 @@ int	ft_check_player(char **map, t_data *data)
 		y++;
 	}
 	return (1);
-}
-
-char **ft_replace_space_inside(char **map, t_data *data)
-{
-	int y;
-	int x;
-
-	y = 0;
-	while (y < data->cub.line)
-	{
-		x = 0;
-		while (x <= data->cub.col)
-		{
-			if (ft_isspace(map[y][x]))
-			{
-				if (y != 0 &&(map[y - 1][x] == '0' || ft_is_start(map[y - 1][x])))
-				{
-					ft_free_tab(map);
-					return (NULL);
-				}
-				else if (x != 0 && (map[y][x - 1] == '0'|| ft_is_start(map[y][x - 1])))
-				{
-					ft_free_tab(map);
-					return (NULL);
-				}
-				else if (x != data->cub.col && (map[y][x + 1] == '0'))
-				{
-					ft_free_tab(map);
-					return (NULL);
-				}
-				else if (y != (data->cub.line - 1) && (map[y + 1][x] == '0'))
-				{
-					ft_free_tab(map);
-					return (NULL);
-				}
-				else
-					map[y][x] = '1';
-			}
-			x++;
-		}
-		y++;
-	}
-	return (map);
 }
 
 int	ft_check_map(t_data *data)
 {
 	if (!data->cub.map || data->cub.map[0] == NULL)
 		return (ft_errors("Empty map"));
-	if (!(ft_check_player(data->cub.map, data)))
+	if (!(ft_pick_player(data->cub.map, data)))
 		return (ft_errors("Too Many Players"));
 	if (!data->cub.player)
 		return (ft_errors("No Player"));
