@@ -1,7 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   init.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: emcariot <emcariot@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/07/21 15:57:48 by emcariot          #+#    #+#             */
+/*   Updated: 2022/07/21 16:10:41 by emcariot         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "../includes/cub.h"
 
-void ft_init_texture(t_data *data)
+void	ft_init_texture(t_data *data)
 {
 	data->texture.floor_r = -1;
 	data->texture.floor_g = -1;
@@ -16,7 +27,27 @@ void ft_init_texture(t_data *data)
 	data->texture.full = 0;
 }
 
-void ft_init_cub(t_data *data)
+int	ft_init_cub_bis(t_data *data)
+{
+	data->cub.step.x = 0.0;
+	data->cub.step.y = 0.0;
+	data->cub.tab.x = 0.0;
+	data->cub.tab.y = 0.0;
+	data->cub.camerax = 0;
+	data->cub.wallx = 0.0;
+	data->cub.hit = 0;
+	data->cub.map = NULL;
+	data->cub.side_wall = 0;
+	data->cub.rotate_r = 0;
+	data->cub.rotate_l = 0;
+	data->cub.left = 0;
+	data->cub.right = 0;
+	data->cub.down = 0;
+	data->cub.forward = 0;
+	return (1);
+}
+
+int	ft_init_cub(t_data *data)
 {
 	data->cub.player = '\0';
 	data->cub.line = 0;
@@ -33,74 +64,14 @@ void ft_init_cub(t_data *data)
 	data->cub.raydir.y = 0.0;
 	data->cub.sidedist.x = 0.0;
 	data->cub.sidedist.y = 0.0;
-	data->cub.step.x = 0.0;
-	data->cub.step.y = 0.0;
-	data->cub.tab.x = 0.0;
-	data->cub.tab.y = 0.0;
-	data->cub.camerax = 0;
-	data->cub.wallx = 0.0;
-	data->cub.hit = 0;
-	data->cub.map = NULL;
-	data->cub.side_wall = 0;
-	data->cub.rotate_r = 0;
-	data->cub.rotate_l = 0;
-	data->cub.left = 0;
-	data->cub.right = 0;
-	data->cub.down = 0;
-	data->cub.forward = 0;
+	return (ft_init_cub_bis(data));
 }
 
-int	ft_read_map(t_data *data, char *file)
+void	init_player_e(t_cub *cub)
 {
-	char	*get_line;
-	int		fd;
-
-	fd = open(file, O_RDONLY);
-	get_line = ft_get_next_line(fd);
-	if (!get_line)
-	{
-		ft_errors("Empty file");
-		close(fd);
-		return 1;
-	}
-	data->cub.col = ft_strlen(get_line);
-	data->cub.line = 0;
-	while (get_line)
-	{
-		free(get_line);
-		get_line = ft_get_next_line(fd);
-		if (ft_is_map(get_line))
-		{
-			data->cub.line++;
-			if ((ft_strlen(get_line) > (size_t)data->cub.col))
-				data->cub.col = ft_strlen(get_line) - 1;
-		}
-	}
-	close(fd);
-	return 0;
-}
-
-char	**ft_init_tab(t_data *data)
-{
-	char **tab;
-	int tmp;
-
-	tmp = data->cub.line;
-	tab = (char **)malloc(sizeof(char *) * (data->cub.line + 1));
-	if (!tab)
-		return (NULL);
-	tab[tmp] = NULL;
-	// while (tmp > 0)
-	// {
-	// 	tmp--;
-	// 	tab[tmp] = (char *)malloc(sizeof(char) * (data->cub.col));
-	// 	if (!tab[tmp])
-	// 	{
-	// 		ft_free_tab(tab);
-	// 		return (NULL);
-	// 	}
-	// }
-	return (tab);
+	cub->dir.x = 1.0;
+	cub->dir.y = 0.0;
+	cub->plane.y = 0.66;
 }
 
 void	init_player(t_cub *cub)
@@ -124,9 +95,5 @@ void	init_player(t_cub *cub)
 		cub->plane.y = -0.66;
 	}
 	if (cub->player == 'E')
-	{
-		cub->dir.x = 1.0;
-		cub->dir.y = 0.0;
-		cub->plane.y = 0.66;
-	}
+		init_player_e(cub);
 }

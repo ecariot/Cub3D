@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: emcariot <emcariot@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/07/21 16:12:49 by emcariot          #+#    #+#             */
+/*   Updated: 2022/07/21 16:15:32 by emcariot         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../includes/cub.h"
 
 int	ft_errors(char *str)
@@ -14,8 +26,16 @@ int	put_img(t_data *data)
 	return (1);
 }
 
+void	hook(t_data data)
+{
+	mlx_hook(data.cub.mlx_win, 2, 1L << 0, keycode, &data);
+	mlx_hook(data.cub.mlx_win, 17, 0, close_window, &data);
+	mlx_loop_hook(data.cub.mlx, put_img, &data);
+	mlx_hook(data.cub.mlx_win, 3, 1L << 1, keycode_zero, &data);
+	mlx_loop(data.cub.mlx);
+}
 
-int main(int ac, char **av)
+int	main(int ac, char **av)
 {
 	t_data	data;
 
@@ -38,12 +58,6 @@ int main(int ac, char **av)
 		ft_free_tab(data.cub.map);
 		return (-1);
 	}
-	mlx_hook(data.cub.mlx_win, 2, 1L << 0, keycode, &data);
-	mlx_hook(data.cub.mlx_win, 17, 0, close_window, &data);
-	mlx_loop_hook(data.cub.mlx, put_img, &data);
-	mlx_hook(data.cub.mlx_win, 3, 1L << 1, keycode_zero, &data);
-	mlx_loop(data.cub.mlx);
-	// free_texture(&data.cub);
+	hook(data);
 	return (0);
 }
-
