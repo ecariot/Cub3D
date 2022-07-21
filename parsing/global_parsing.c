@@ -40,7 +40,11 @@ int ft_parse_elements(t_data *data, char *file)
 			}
 			split_color = ft_split_many(split_line[1], " ,");
 			if (is_valid_color(split_color))
+			{
+				ft_free_tab(split_line);
+				free(get_line);
 				return (1);
+			}
 			if (ft_parse_color(split_line, split_color, data))
 				return (1);
 		}
