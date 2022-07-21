@@ -1,6 +1,6 @@
 NONO ./textures/ocean_textures/farground.xpm
-SO ./textures/grass.xpm
-EA ./textures/purplestone.xpm
+SOSO ./textures/grass.xpm
+EAEA ./textures/purplestone.xpm
 WE ./textures/ocean_textures/bla.xpm
 
 F 135, 14, 12

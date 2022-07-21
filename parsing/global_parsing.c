@@ -99,7 +99,8 @@ int	ft_parsing(t_data *data, char *file)
 	}
 	if (ft_check_map(data))
 	{
-		ft_free_tab(data->cub.map);
+		if (data->cub.map)
+			ft_free_tab(data->cub.map);
 		return (1);
 	}
 	return (0);

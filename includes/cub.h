@@ -171,7 +171,8 @@ int	reset_key(int key, t_data *data);
 
 //ERROR
 int		ft_errors(char *str);
-int		exit_error(t_cub *cub, char *str);
+// int		exit_error(t_cub *cub, char *str);
+int		exit_error(t_data *data, char *str);
 
 //UTILS
 int	close_window(t_data *data);
