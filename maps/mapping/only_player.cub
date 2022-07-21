@@ -1,0 +1,10 @@
+NO ./textures/ocean_textures/farground.xpm
+SO ./textures/grass.xpm
+EA ./textures/purplestone.xpm
+WE ./textures/ocean_textures/bla.xpm
+
+F 135, 14, 12
+C 230, 173, 189
+
+E
+
