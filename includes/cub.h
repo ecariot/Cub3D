@@ -136,9 +136,8 @@ int		ft_parsing(t_data *data, char *file);
 
 /** init.c **/
 void	ft_init_texture(t_data *data);
-void	ft_init_cub(t_data *data);
-int		ft_read_map(t_data *data, char *file);
-char	**ft_init_tab(t_data *data);
+int		ft_init_cub_bis(t_data *data);
+int		ft_init_cub(t_data *data);
 void	init_player(t_cub *cub);
 
 /** parse_map.c **/
@@ -154,11 +153,16 @@ int		ft_parse_texture(char **split_line, t_data *data);
 int		ft_is_color(char **split_line);
 int		ft_is_texture(char **split_line);
 
+/** read_map.c **/
+int		ft_stop_read(int fd);
+int		ft_read_map(t_data *data, char *file);
+
 /** utils_parsing.c **/
 char	**ft_formatted_color(char **split_line);
 int		ft_color_is_full(t_texture texture);
 int		ft_texture_is_full(t_texture texture);
 char	**ft_replace_space_inside(char **map, t_data *data);
+char	**ft_init_tab(t_data *data);
 
 //GAME
 int		init_cub(t_cub *cub);

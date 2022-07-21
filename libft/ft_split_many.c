@@ -6,7 +6,7 @@
 /*   By: mbascuna <mbascuna@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/24 16:54:31 by emcariot          #+#    #+#             */
-/*   Updated: 2022/07/06 11:21:07 by mbascuna         ###   ########.fr       */
+/*   Updated: 2022/07/21 16:38:42 by mbascuna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,9 @@ int	count_words(char *str, char *charset)
 	i = 0;
 	while (str[i])
 	{
-		if ((include_charset(str[i], charset) == 0 && str[i + 1] == '\0') || (include_charset(str[i], charset) == 0
-			&& include_charset(str[i + 1], charset) == 1))
+		if ((include_charset(str[i], charset) == 0 && str[i + 1] == '\0')
+			|| (include_charset(str[i], charset) == 0
+				&& include_charset(str[i + 1], charset) == 1))
 			words++;
 		i++;
 	}
@@ -85,7 +86,6 @@ static char	**ft_free(char **split)
 
 char	**ft_split_many(char *str, char *charset)
 {
-	// char	**res;
 	int		words;
 	char	**split;
 

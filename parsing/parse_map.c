@@ -6,7 +6,7 @@
 /*   By: mbascuna <mbascuna@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/21 16:15:43 by mbascuna          #+#    #+#             */
-/*   Updated: 2022/07/21 16:23:15 by mbascuna         ###   ########.fr       */
+/*   Updated: 2022/07/21 16:43:22 by mbascuna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ int	ft_check_extension(char *file, char *extension)
 	if (check_if_directory(file))
 		return (ft_errors("Invalid : is a directory"));
 	fd = open(file, O_RDONLY);
-	if (fd != -1)
+	if (fd == -1)
 	{
 		close(fd);
 		return (ft_errors("Invalid File"));

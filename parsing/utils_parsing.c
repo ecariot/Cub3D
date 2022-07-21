@@ -6,7 +6,7 @@
 /*   By: mbascuna <mbascuna@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/21 16:12:03 by mbascuna          #+#    #+#             */
-/*   Updated: 2022/07/21 16:22:21 by mbascuna         ###   ########.fr       */
+/*   Updated: 2022/07/21 16:40:56 by mbascuna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,4 +75,17 @@ char	**ft_replace_space_inside(char **map, t_data *data)
 		y++;
 	}
 	return (map);
+}
+
+char	**ft_init_tab(t_data *data)
+{
+	char	**tab;
+	int		tmp;
+
+	tmp = data->cub.line;
+	tab = (char **)malloc(sizeof(char *) * (data->cub.line + 1));
+	if (!tab)
+		return (NULL);
+	tab[tmp] = NULL;
+	return (tab);
 }

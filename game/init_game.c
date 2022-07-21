@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_game.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mbascuna <mbascuna@student.42.fr>          +#+  +:+       +#+        */
+/*   By: emcariot <emcariot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/21 15:48:53 by mbascuna          #+#    #+#             */
-/*   Updated: 2022/07/21 15:48:56 by mbascuna         ###   ########.fr       */
+/*   Updated: 2022/07/21 15:53:37 by emcariot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +15,7 @@
 int	draw_window_bis(t_cub *cub, t_data *data)
 {
 	if (!cub->w_so.img)
-	{
-		// printf("data map : %s\n", data->cub.map[0]);
 		exit_error(data, "Missing texture south");
-	}
 	cub->w_so.addr = mlx_get_data_addr(cub->w_so.img, &cub->w_so.bits_per_pixel,
 			&cub->w_so.line_len, &cub->w_so.endian);
 	if (!cub->w_so.addr)
