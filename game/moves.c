@@ -1,112 +1,89 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   moves.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: emcariot <emcariot@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/07/21 13:46:30 by emcariot          #+#    #+#             */
+/*   Updated: 2022/07/21 14:12:44 by emcariot         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../includes/cub.h"
 
 void	move_down(t_cub *cub)
 {
-	int posy;
-	int posx;
-	double moveSpeed = 0.1;
+	int		posy;
+	int		posx;
+	double	move_speed;
 
-	posy = floor(cub->pos.y + cub->dir.y * moveSpeed);
-	posx = floor(cub->pos.x + cub->dir.x * moveSpeed);
+	move_speed = 0.1;
+	posy = floor(cub->pos.y + cub->dir.y * move_speed);
+	posx = floor(cub->pos.x + cub->dir.x * move_speed);
 	if (cub->map[posy][posx] == '1')
 		return ;
-	cub->pos.y += (cub->dir.y * moveSpeed);
-	cub->pos.x += (cub->dir.x * moveSpeed);
+	cub->pos.y += (cub->dir.y * move_speed);
+	cub->pos.x += (cub->dir.x * move_speed);
 }
 
 void	move_forward(t_cub *cub)
 {
-	int posy;
-	int posx;
-	double moveSpeed = 0.1;
+	int		posy;
+	int		posx;
+	double	move_speed;
 
-	posy = floor(cub->pos.y - cub->dir.y * moveSpeed);
-	posx = floor(cub->pos.x - cub->dir.x * moveSpeed);
+	move_speed = 0.1;
+	posy = floor(cub->pos.y - cub->dir.y * move_speed);
+	posx = floor(cub->pos.x - cub->dir.x * move_speed);
 	if (cub->map[posy][posx] == '1')
 		return ;
-	cub->pos.y -= (cub->dir.y * moveSpeed);
-	cub->pos.x -= (cub->dir.x * moveSpeed);
+	cub->pos.y -= (cub->dir.y * move_speed);
+	cub->pos.x -= (cub->dir.x * move_speed);
 }
 
 void	move_left(t_cub *cub)
 {
-	int posy;
-	int posx;
-	double moveSpeed = 0.1;
+	int		posy;
+	int		posx;
+	double	move_speed;
 
-	posy = floor(cub->pos.y - cub->plane.y * moveSpeed);
-	posx = floor(cub->pos.x - cub->plane.x * moveSpeed);
+	move_speed = 0.1;
+	posy = floor(cub->pos.y - cub->plane.y * move_speed);
+	posx = floor(cub->pos.x - cub->plane.x * move_speed);
 	if (cub->map[posy][posx] == '1')
 		return ;
-	cub->pos.y -= (cub->plane.y * moveSpeed);
-	cub->pos.x -= (cub->plane.x * moveSpeed);
+	cub->pos.y -= (cub->plane.y * move_speed);
+	cub->pos.x -= (cub->plane.x * move_speed);
 }
 
 void	move_right(t_cub *cub)
 {
-	int posy;
-	int posx;
-	double moveSpeed = 0.1;
+	int		posy;
+	int		posx;
+	double	move_speed;
 
-
-	posy = floor(cub->pos.y + cub->plane.y * moveSpeed);
-	posx = floor(cub->pos.x + cub->plane.x * moveSpeed);
+	move_speed = 0.1;
+	posy = floor(cub->pos.y + cub->plane.y * move_speed);
+	posx = floor(cub->pos.x + cub->plane.x * move_speed);
 	if (cub->map[posy][posx] == '1')
 		return ;
-	cub->pos.y += (cub->plane.y * moveSpeed);
-	cub->pos.x += (cub->plane.x * moveSpeed);
+	cub->pos.y += (cub->plane.y * move_speed);
+	cub->pos.x += (cub->plane.x * move_speed);
 }
 
-void	action_key(t_cub *cub)
+void	rotate_left(t_cub *cub)
 {
-	if (cub->right == 1)
-		move_right(cub);
-	if (cub->left == 1)
-		move_left(cub);
-	if (cub->forward == 1)
-		move_forward(cub);
-	if (cub->down == 1)
-		move_down(cub);
-	if (cub->rotate_r)
-		rotate_right(cub);
-	if (cub->rotate_l)
-		rotate_left(cub);
-}
+	double	tmp;
+	double	tmp_plane;
+	double	rot_speed;
 
-int	keycode(int key, t_data *data)
-{
-	if (key == ESC)
-		close_window(data);
-	if (key == D)
-		data->cub.right = 1;
-	if (key == A)
-		data->cub.left = 1;
-	if (key == S)
-		data->cub.forward = 1;
-	if (key == W)
-		data->cub.down = 1;
-	if (key == RIGHT)
-		data->cub.rotate_r = 1;
-	if (key == LEFT)
-		data->cub.rotate_l = 1;
-	return (1);
-}
-
-int	keycode_zero(int key, t_data *data)
-{
-	if (key == D)
-		data->cub.right = 0;
-	if (key == A)
-		data->cub.left = 0;
-	if (key == S)
-		data->cub.forward = 0;
-	if (key == W)
-		data->cub.down = 0;
-	if (key == RIGHT)
-		data->cub.rotate_r = 0;
-	if (key == LEFT)
-		data->cub.rotate_l = 0;
-	if (key == ESC)
-		close_window(data);
-	return (1);
+	rot_speed = (20.0 / 1000.0) * 3.0;
+	tmp = cub->dir.x;
+	cub->dir.x = cub->dir.x * cos(-rot_speed) - cub->dir.y * sin(-rot_speed);
+	cub->dir.y = tmp * sin(-rot_speed) + cub->dir.y * cos(-rot_speed);
+	tmp_plane = cub->plane.x;
+	cub->plane.x = cub->plane.x * cos(-rot_speed)
+		- cub->plane.y * sin(-rot_speed);
+	cub->plane.y = tmp_plane * sin(-rot_speed) + cub->plane.y * cos(-rot_speed);
 }
