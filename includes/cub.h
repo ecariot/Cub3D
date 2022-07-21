@@ -179,5 +179,6 @@ int	close_window(t_data *data);
 char	*ft_strdup_no_n(const char *s1);
 char	*ft_replace_space_end(const char *s1, t_data *data);
 int	free_texture(t_cub *cub);
+void	ft_free_struct(t_data *data);
 
 #endif
