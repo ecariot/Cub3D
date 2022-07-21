@@ -19,6 +19,7 @@ int ft_parse_elements(t_data *data, char *file)
 		{
 			if (is_valid_texture(split_line))
 			{
+				printf("hello\n");
 				free(get_line);
 				ft_free_tab(split_line);
 				return (1);
@@ -52,6 +53,7 @@ int ft_parse_elements(t_data *data, char *file)
 			{
 				// free_texture(&data->cub);
 				// ft_free_struct(data);
+				ft_free_tab(split_line);
 				ft_free_tab(split_color);
 				free(get_line);
 				return (1);
@@ -63,7 +65,6 @@ int ft_parse_elements(t_data *data, char *file)
 				free(get_line);
 				return (1);
 			}
-			// free(get_lin e);
 		}
 		else if (ft_is_map(get_line) && get_line[0] != '\n')
 		{
@@ -95,6 +96,8 @@ int	ft_parsing(t_data *data, char *file)
 	}
 	if (ft_check_texture(data->texture))
 	{
+		if (data->cub.map)
+			ft_free_tab(data->cub.map);
 		return (1);
 	}
 	if (ft_check_map(data))

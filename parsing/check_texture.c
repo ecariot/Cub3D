@@ -38,7 +38,7 @@ int	ft_check_texture(t_texture texture)
 	if (!ft_texture_is_full(texture))
 		return (ft_errors("Texture is missing"));
 	if (!ft_color_is_full(texture))
-		return (ft_errors("Color is missing"));
+		return (ft_errors("Color is missing 2"));
 	return (0);
 }
 
@@ -67,6 +67,7 @@ int	is_valid_digit(char **split_color)
 		{
 			if (!ft_isdigit(tmp[j]) && tmp[j] != '\n')
 			{
+				free(tmp);
 				return (1);
 			}
 			j++;
@@ -82,7 +83,7 @@ int	is_valid_color(char **split_color)
 	if (is_valid_digit(split_color) == 1)
 		return (ft_errors("Wrong char in colors"));
 	if (ft_strlen_tab(split_color) < 3)
-		return (ft_errors("Color is missing"));
+		return (ft_errors("Color is missing 1"));
 	if (ft_strlen_tab(split_color) > 3)
 		return (ft_errors("Too Much color"));
 	if (!ft_check_digits(split_color))
