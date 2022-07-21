@@ -169,6 +169,11 @@ void	rotate_left(t_cub *cub);
 void	rotate_right(t_cub *cub);
 int	go_one(int key, t_data *data);
 int	reset_key(int key, t_data *data);
+void	move_right(t_cub *cub);
+void	move_left(t_cub *cub);
+void	move_forward(t_cub *cub);
+void	move_down(t_cub *cub);
+void	floor_pixel_put(t_data *data, t_cub *cub, int x, int y);
 
 //ERROR
 int		ft_errors(char *str);
@@ -182,5 +187,6 @@ char	*ft_strdup_no_n(const char *s1);
 char	*ft_replace_space_end(const char *s1, t_data *data);
 int	free_texture(t_cub *cub);
 void	ft_free_struct(t_data *data);
+t_pic	*recup_wall(t_cub *cub);
 
 #endif
