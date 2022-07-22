@@ -6,7 +6,7 @@
 /*   By: mbascuna <mbascuna@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/21 16:10:13 by emcariot          #+#    #+#             */
-/*   Updated: 2022/07/21 16:34:25 by mbascuna         ###   ########.fr       */
+/*   Updated: 2022/07/22 10:42:54 by mbascuna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ int	ft_read_map(t_data *data, char *file)
 	fd = open(file, O_RDONLY);
 	get_line = ft_get_next_line(fd);
 	if (!get_line)
-		ft_stop_read(fd);
+		return (ft_stop_read(fd));
 	data->cub.col = ft_strlen(get_line);
 	data->cub.line = 0;
 	while (get_line)
