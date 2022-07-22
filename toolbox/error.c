@@ -6,7 +6,7 @@
 /*   By: mbascuna <mbascuna@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/21 16:32:14 by mbascuna          #+#    #+#             */
-/*   Updated: 2022/07/21 16:40:46 by mbascuna         ###   ########.fr       */
+/*   Updated: 2022/07/22 10:47:14 by mbascuna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int	exit_error(t_data *data, char *str)
 {
-	printf("Error: \n%s\n", str);
+	printf("Error\n%s\n", str);
 	if (data->cub.map)
 		ft_free_tab(data->cub.map);
 	ft_free_struct(data);

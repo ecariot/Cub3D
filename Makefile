@@ -10,7 +10,7 @@ SRCS		=	parsing/parse_map.c game/init_game.c \
 
 OBJS        = ${SRCS:.c=.o}
 
-NAME        = cub3d
+NAME        = cub3D
 
 INCL        = includes
 
