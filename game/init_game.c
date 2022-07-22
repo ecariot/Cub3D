@@ -6,7 +6,7 @@
 /*   By: emcariot <emcariot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/21 15:48:53 by mbascuna          #+#    #+#             */
-/*   Updated: 2022/07/21 15:53:37 by emcariot         ###   ########.fr       */
+/*   Updated: 2022/07/22 10:32:49 by emcariot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ int	draw_window(t_cub *cub, t_data *data)
 {
 	cub->mlx = mlx_init();
 	if (!cub->mlx)
-		exit_error(data, "Erreur");
+		exit_error(data, "Exit");
 	mlx_get_screen_size(cub->mlx, &cub->win_width, &cub->win_height);
 	cub->mlx_win = mlx_new_window(cub->mlx, cub->win_width,
 			cub->win_height, "Welcome to Saint Tropez");

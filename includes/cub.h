@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   cub.h                                              :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: emcariot <emcariot@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/07/22 10:52:24 by emcariot          #+#    #+#             */
+/*   Updated: 2022/07/22 10:56:22 by emcariot         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef CUB_H
 # define CUB_H
 
@@ -40,74 +52,69 @@ typedef struct s_pic
 
 typedef struct s_texture
 {
-	char *north;
-	char *south;
-	char *east;
-	char *west;
-	int	floor_r;
-	int	floor_g;
-	int	floor_b;
-	int	ceiling_r;
-	int	ceiling_g;
-	int	ceiling_b;
-	int full;
-	// int fd;
-	// int	endian;
-	// int	*width;
-	// int	*height;
-} t_texture;
+	char	*north;
+	char	*south;
+	char	*east;
+	char	*west;
+	int		floor_r;
+	int		floor_g;
+	int		floor_b;
+	int		ceiling_r;
+	int		ceiling_g;
+	int		ceiling_b;
+	int		full;
+}	t_texture;
 
-typedef struct	s_coord
+typedef struct s_coord
 {
-	double x;
-	double x1;
-	double y;
-	double y1;
-} t_coord;
+	double	x;
+	double	x1;
+	double	y;
+	double	y1;
+}	t_coord;
 
 typedef struct s_cub
 {
-	void	*mlx;
-	void	*mlx_win;
-	char	**map;
-	int	win_width;
-	int	win_height;
-	t_coord	pos;
-	t_coord	tab;
-	t_coord	dir;
-	t_coord	raydir;
-	t_coord	sidedist;
-	t_coord	deltadist;
-	t_coord	step;
-	t_coord plane;
-	int line;
-	int col;
-	char player;
-	double camerax;
-	double wallx;
-	double	wall_len;
-	int	hit;
-	int	rotate_r;
-	int	rotate_l;
-	int left;
-	int right;
-	int down;
-	int forward;
-	t_pic	screen;
-	t_pic	w_no;
-	t_pic	w_so;
-	t_pic	w_ea;
-	t_pic	w_we;
-	t_side_wall		side_wall;
+	void		*mlx;
+	void		*mlx_win;
+	char		**map;
+	int			win_width;
+	int			win_height;
+	t_coord		pos;
+	t_coord		tab;
+	t_coord		dir;
+	t_coord		raydir;
+	t_coord		sidedist;
+	t_coord		deltadist;
+	t_coord		step;
+	t_coord		plane;
+	int			line;
+	int			col;
+	char		player;
+	double		camerax;
+	double		wallx;
+	double		wall_len;
+	int			hit;
+	int			rotate_r;
+	int			rotate_l;
+	int			left;
+	int			right;
+	int			down;
+	int			forward;
+	t_pic		screen;
+	t_pic		w_no;
+	t_pic		w_so;
+	t_pic		w_ea;
+	t_pic		w_we;
+	t_side_wall	side_wall;
 }	t_cub;
-
 
 typedef struct s_data
 {
-	int		fd;
-	void	*mlx;
-	void	*win;
-	void	*img;
+	int			fd;
+	void		*mlx;
+	void		*win;
+	void		*img;
 	t_texture	texture;
 	t_cub		cub;
 }	t_data;
@@ -168,21 +175,21 @@ char	**ft_init_tab(t_data *data);
 int		init_cub(t_cub *cub);
 void	init_struct(t_cub *cub);
 int		draw_window(t_cub *cub, t_data *data);
-int	fill_wall_north(char **split_line, t_data *data);
+int		fill_wall_north(char **split_line, t_data *data);
 void	action_key(t_cub *cub);
-int	keycode(int key, t_data *data);
-int	keycode_zero(int key, t_data *data);
+int		keycode(int key, t_data *data);
+int		keycode_zero(int key, t_data *data);
 
 /** raycasting.c **/
-int init_raycasting(t_cub *cub, t_data *data);
-int	perform_dda(t_cub *cub);
-void init_step_and_side(t_cub *cub);
-int	create_trgb(int t, int r, int g, int b);
+int		init_raycasting(t_cub *cub, t_data *data);
+int		perform_dda(t_cub *cub);
+void	init_step_and_side(t_cub *cub);
+int		create_trgb(int t, int r, int g, int b);
 void	draw_ceiling(t_cub *cub, t_data *data, int x, int y);
 void	rotate_left(t_cub *cub);
 void	rotate_right(t_cub *cub);
-int	go_one(int key, t_data *data);
-int	reset_key(int key, t_data *data);
+int		go_one(int key, t_data *data);
+int		reset_key(int key, t_data *data);
 void	move_right(t_cub *cub);
 void	move_left(t_cub *cub);
 void	move_forward(t_cub *cub);
@@ -191,15 +198,13 @@ void	floor_pixel_put(t_data *data, t_cub *cub, int x, int y);
 
 //ERROR
 int		ft_errors(char *str);
-// int		exit_error(t_cub *cub, char *str);
 int		exit_error(t_data *data, char *str);
 
 //UTILS
-int	close_window(t_data *data);
-// int	close_window(t_cub *cub);
+int		close_window(t_data *data);
 char	*ft_strdup_no_n(const char *s1);
 char	*ft_replace_space_end(const char *s1, t_data *data);
-int	free_texture(t_cub *cub);
+int		free_texture(t_cub *cub);
 void	ft_free_struct(t_data *data);
 t_pic	*recup_wall(t_cub *cub);
 
