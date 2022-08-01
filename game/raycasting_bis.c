@@ -6,7 +6,7 @@
 /*   By: emcariot <emcariot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/21 15:20:01 by emcariot          #+#    #+#             */
-/*   Updated: 2022/07/21 15:33:38 by emcariot         ###   ########.fr       */
+/*   Updated: 2022/08/01 16:20:25 by emcariot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,17 +39,17 @@ void	init_step_and_side(t_cub *cub)
 void	perform_dda_help_bis(t_cub *cub)
 {
 	if (cub->raydir.y < 0.0)
-		cub->side_wall = EAST;
+		cub->side_wall = NORTH;
 	else
-		cub->side_wall = WEST;
+		cub->side_wall = SOUTH;
 }
 
 void	perform_dda_help(t_cub *cub)
 {
 	if (cub->raydir.x < 0.0)
-		cub->side_wall = NORTH;
+		cub->side_wall = WEST;
 	else
-		cub->side_wall = SOUTH;
+		cub->side_wall = EAST;
 }
 
 int	perform_dda(t_cub *cub)

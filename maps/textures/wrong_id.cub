@@ -1,7 +1,7 @@
-NONO ./textures/ocean_textures/farground.xpm
-SOSO ./textures/grass.xpm
-EAEA ./textures/purplestone.xpm
-WE ./textures/ocean_textures/bla.xpm
+NONO ./textures/backroom/monstre.xpm
+SOSO ./textures/backroom/girl.xpm
+EAEA ./textures/backroom/carpet1.xpm
+WE ./textures/backroom/ronce.xpm
 
 F 135, 14, 12
 C 230, 173, 189

@@ -1,7 +1,0 @@
-{
-	leak mlx
-	Memcheck:Leak
-	match-leak-kinds: reachable
-	...
-	fun:*mlx*
-}

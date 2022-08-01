@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: emcariot <emcariot@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mbascuna <mbascuna@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/22 10:52:24 by emcariot          #+#    #+#             */
-/*   Updated: 2022/07/22 10:56:22 by emcariot         ###   ########.fr       */
+/*   Updated: 2022/08/01 11:49:18 by mbascuna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -199,6 +199,7 @@ void	floor_pixel_put(t_data *data, t_cub *cub, int x, int y);
 //ERROR
 int		ft_errors(char *str);
 int		exit_error(t_data *data, char *str);
+int		exit_mlx(t_data *data, char *str);
 
 //UTILS
 int		close_window(t_data *data);

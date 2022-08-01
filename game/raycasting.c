@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycasting.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: emcariot <emcariot@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mbascuna <mbascuna@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/21 14:05:25 by emcariot          #+#    #+#             */
-/*   Updated: 2022/07/21 15:20:30 by emcariot         ###   ########.fr       */
+/*   Updated: 2022/07/25 13:36:33 by mbascuna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,8 +97,6 @@ int	init_raycasting(t_cub *cub, t_data *data)
 	{
 		perp_wall_dist = side_search(cub, x);
 		cub->wallx -= floor((cub->wallx));
-		if (perp_wall_dist < 1.0)
-			perp_wall_dist = 1;
 		cub->wall_len = (double)cub->win_height / perp_wall_dist;
 		y = 0;
 		draw_game(data, cub, x, y);

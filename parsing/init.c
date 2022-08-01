@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: emcariot <emcariot@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mbascuna <mbascuna@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/21 15:57:48 by emcariot          #+#    #+#             */
-/*   Updated: 2022/07/21 16:10:41 by emcariot         ###   ########.fr       */
+/*   Updated: 2022/07/25 13:24:12 by mbascuna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,11 @@ int	ft_init_cub(t_data *data)
 	data->cub.raydir.y = 0.0;
 	data->cub.sidedist.x = 0.0;
 	data->cub.sidedist.y = 0.0;
+	data->cub.screen.img = NULL;
+	data->cub.w_no.img = NULL;
+	data->cub.w_so.img = NULL;
+	data->cub.w_ea.img = NULL;
+	data->cub.w_we.img = NULL;
 	return (ft_init_cub_bis(data));
 }
 

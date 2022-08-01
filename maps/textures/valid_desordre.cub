@@ -1,18 +1,18 @@
-NO ./textures/ocean_textures/farground.xpm
-SO ./textures/grass.xpm
+NO ./textures/backroom/carpet1.xpm
+SO ./textures/backroom/girl.xpm
 
 
 F 220,100,0
 
 
 
-EA ./textures/ocean_textures/bla.xpm
+EA ./textures/backroom/carpet1.xpm
 
 
 
 C 225,30,0
 
-WE ./textures/purplestone.xpm
+WE ./textures/backroom/ronce.xpm
 
 
 

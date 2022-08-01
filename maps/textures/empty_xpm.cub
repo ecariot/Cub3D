@@ -1,7 +1,7 @@
-NO ./textures/ocean_textures/farground.xpm
-SO ./textures/empty.xpm
-EA ./textures/purplestone.xpm
-WE ./textures/ocean_textures/bla.xpm
+NO ./textures/backroom/monstre.xpm
+SO ./textures/backroom/girl.xpm
+EA ./textures/backroom/carpet1.xpm
+WE ./textures/backroom/empty.xpm
 
 F 135, 14, 12
 C 230, 173, 189

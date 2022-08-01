@@ -6,7 +6,7 @@
 /*   By: mbascuna <mbascuna@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/21 16:32:14 by mbascuna          #+#    #+#             */
-/*   Updated: 2022/07/22 10:47:14 by mbascuna         ###   ########.fr       */
+/*   Updated: 2022/08/01 11:50:14 by mbascuna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,26 @@
 int	exit_error(t_data *data, char *str)
 {
 	printf("Error\n%s\n", str);
-	if (data->cub.map)
-		ft_free_tab(data->cub.map);
 	ft_free_struct(data);
+	ft_free_tab(data->cub.map);
+	free_texture(&data->cub);
+	if (data->cub.mlx_win)
+		mlx_destroy_window(data->cub.mlx, data->cub.mlx_win);
+	if (data->cub.mlx)
+	{
+		mlx_destroy_display(data->cub.mlx);
+		free(data->cub.mlx);
+	}
+	close(data->fd);
+	exit (0);
+}
+
+int	exit_mlx(t_data *data, char *str)
+{
+	printf("Error\n%s\n", str);
+	ft_free_struct(data);
+	ft_free_tab(data->cub.map);
+	free_texture(&data->cub);
 	close(data->fd);
 	exit (0);
 }

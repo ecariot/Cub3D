@@ -6,7 +6,7 @@
 /*   By: mbascuna <mbascuna@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/21 16:15:43 by mbascuna          #+#    #+#             */
-/*   Updated: 2022/07/21 16:43:22 by mbascuna         ###   ########.fr       */
+/*   Updated: 2022/08/01 11:52:13 by mbascuna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,14 +28,12 @@ int	check_if_directory(char *file)
 int	ft_check_extension(char *file, char *extension)
 {
 	char	*file_extension;
-	int		extension_len;
 	int		fd;
 
 	fd = 0;
 	file_extension = ft_strrchr(file, '.');
 	if (!file_extension)
 		return (ft_errors("Wrong extension"));
-	extension_len = ft_strlen(file_extension);
 	if (check_if_directory(file))
 		return (ft_errors("Invalid : is a directory"));
 	fd = open(file, O_RDONLY);
@@ -44,7 +42,7 @@ int	ft_check_extension(char *file, char *extension)
 		close(fd);
 		return (ft_errors("Invalid File"));
 	}
-	if (ft_strncmp(extension, file_extension, extension_len) != 0)
+	if (ft_strcmp(extension, file_extension) != 0)
 	{
 		close (fd);
 		return (ft_errors("Wrong extension"));
@@ -108,8 +106,8 @@ int	ft_pick_player(char **map, t_data *data)
 			{
 				if (data->cub.player == '\0')
 				{
-					data->cub.pos.x = x;
-					data->cub.pos.y = y;
+					data->cub.pos.x = x + 0.2;
+					data->cub.pos.y = y + 0.2;
 					data->cub.player = map[y][x];
 				}
 				else
